@@ -111,6 +111,7 @@ return {
 					},
 				},
 			},
+			highlight = { enable = true }
 		},
 
 		config = function()

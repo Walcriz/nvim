@@ -25,7 +25,10 @@ return {
 					end
 				end,
 			},
-			{ "HiPhish/nvim-ts-rainbow2" }
+
+			{ "HiPhish/nvim-ts-rainbow2" },
+
+			{ "nvim-treesitter/playground" }
 		},
 
 		keys = {

@@ -32,8 +32,6 @@ opt.wrap = false
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 
-opt.termguicolors = true
-
 -- UNDO SETTINGS --
 opt.undodir = "~/.vim/undodir"
 opt.undofile = true

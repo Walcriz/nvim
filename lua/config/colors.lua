@@ -1,5 +1,7 @@
 -- Set specific colorscheme options here
 local palette = require("monokai").pro
+palette.param = "#FFDDC3"
+palette.const = "#D5D5D5"
 
 require("monokai").setup({
 	palette = palette,
@@ -15,14 +17,84 @@ require("monokai").setup({
 		["@include"] = {
 			fg = palette.pink,
 		},
+		["@function"] = {
+			fg = palette.green,
+		},
+		["@parameter"] = {
+			fg = palette.param,
+			style = 'italic',
+		},
 		["@function.builtin"] = {
 			fg = palette.aqua,
 			style = 'italic',
 		},
 		["@function.call"] = {
 			fg = palette.green,
-			style = 'italic',
 		},
+		["@method"] = {
+			fg = palette.green,
+		},
+		["@method.call"] = {
+			fg = palette.green,
+		},
+		["@annotation"] = {
+			fg = palette.aqua,
+			style = 'italic,bold',
+		},
+		["@attribute"] = {
+			fg = palette.aqua,
+			style = 'italic,bold',
+		},
+		["@constructor"] = {
+			fg = palette.green,
+			style = 'bold',
+		},
+		["@constant"] = {
+			fg = palette.const,
+		},
+		["@character.special"] = {
+			fg = palette.aqua,
+			style = 'italic,bold',
+		},
+		["@type"] = {
+			fg = palette.purple,
+			style = 'bold',
+		},
+		Type = {
+			fg = palette.purple,
+			style = 'bold',
+		},
+		Function = {
+			fg = palette.green,
+		},
+		Constant = {
+			fg = palette.const,
+		},
+		Label = {
+			fg = palette.pink,
+		},
+		["@type.builtin"] = {
+			fg = palette.pink,
+		},
+		["@variable.builtin"] = {
+			fg = palette.pink,
+			style = "bold"
+		},
+
+		-- Git
+		GitGutterAdd = {
+			fg = palette.green
+		},
+		GitGutterChange = {
+			fg = palette.aqua
+		},
+		GitGutterDelete = {
+			fg = palette.red
+		},
+		GitGutterChangeDelete = {
+			fg = palette.red
+		},
+
 		-- Rainbow
 		TSRainbow1 = {
 			fg = "#FFD865"

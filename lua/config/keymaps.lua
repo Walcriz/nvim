@@ -102,3 +102,6 @@ map("i", "<C-z>", "<C-o>u")
 
 -- Backspace delete in visual
 map("v", "<BS>", "s")
+
+-- Copy with right mouse
+map("v", "<RightMouse>", "y")

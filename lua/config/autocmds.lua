@@ -98,3 +98,4 @@ autocmd({ "BufWritePost", "TextChanged", "TextChangedI"}, {
 		vim.cmd([[call lightline#update()]])
 	end,
 })
+

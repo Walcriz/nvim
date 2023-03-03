@@ -18,6 +18,7 @@ return {
 			max_width = function()
 				return math.floor(vim.o.columns * 0.75)
 			end,
+			background_colour = "#000000",
 		},
 		init = function()
 			vim.opt.termguicolors = true
@@ -104,7 +105,7 @@ return {
 				dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
 				dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
 				dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-				dashboard.button("s", " " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
+				dashboard.button("s", " " .. " Restore Session", [[:lua require("persistence").load({ last = true }) <cr>]]),
 				dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
 				dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 			}

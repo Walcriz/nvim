@@ -36,7 +36,7 @@ return {
 
 		  { "<leader>ri", "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline variable"},
 
-		  { "<A-CR>", "<Esc><Cmd>lua require('refactoring').select_refactor()<CR>", desc = "Select refactoring", mode = "v" },
+		  { "<leader>rr", "<Esc><Cmd>lua require('refactoring').select_refactor()<CR>", desc = "Select refactoring", mode = "v" },
 	  },
 	  config = function(_, opts)
 		  require("refactoring").setup(opts)

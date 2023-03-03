@@ -115,6 +115,7 @@ return {
 				["<leader>os"] = { name = "+server actions" },
 				["<leader>op"] = { name = "+preview" },
 				["<leader>of"] = { name = "+find" },
+				["<leader>t"] = { name = "+tools" },
 			}
 			if Util.has("noice.nvim") then
 				keymaps["<leader>sn"] = { name = "+noice" }
@@ -133,5 +134,66 @@ return {
 		config = function(_, opts)
 			require("neogit").setup(opts)
 		end,
-	}
+	},
+
+	-- Scratch buffer
+	{
+		"n-shift/scratch.nvim",
+		keys = {
+			{ "<leader>x", "<Cmd>sp<CR><Cmd>ScratchNew lua<CR><C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-", desc = "Open a new scratch buffer"}
+		},
+		event = "VeryLazy"
+	},
+
+	-- Undotree
+	{
+		"mbbill/undotree",
+		keys = {
+			{ "<leader>tu", "<Cmd>UndotreeToggle<CR>", desc = "Toggle undo tree window"}
+		}
+	},
+
+	-- Nerdtree
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		keys = {
+			{
+				"<leader>tt",
+				function()
+					require("neo-tree.command").execute({ toggle = true, dir = require("util").get_root() })
+				end,
+				desc = "Explorer NeoTree (root dir)",
+			},
+			{
+				"<leader>tT",
+				function()
+					require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+				end,
+				desc = "Explorer NeoTree (cwd)",
+			},
+		},
+		deactivate = function()
+			vim.cmd([[Neotree close]])
+		end,
+		init = function()
+			vim.g.neo_tree_remove_legacy_commands = 1
+			if vim.fn.argc() == 1 then
+				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+				if stat and stat.type == "directory" then
+					require("neo-tree")
+				end
+			end
+		end,
+		opts = {
+			filesystem = {
+				bind_to_cwd = false,
+				follow_current_file = true,
+			},
+			window = {
+				mappings = {
+					["<space>"] = "none",
+				},
+			},
+		},
+	},
 }

@@ -65,8 +65,6 @@ return {
 				keymaps = {
 					init_selection = "<C-space>",
 					node_incremental = "<C-space>",
-					scope_incremental = "<nop>",
-					node_decremental = "<bs>",
 				},
 			},
 			rainbow = {

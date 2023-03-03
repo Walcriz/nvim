@@ -24,6 +24,7 @@ opt.pumblend = 10
 opt.pumheight = 10
 opt.shortmess:append { W = true, I = true, c = true }
 opt.autowrite = true
+opt.updatetime = 50
 
 opt.scrolloff = 15
 opt.wildmode = "longest:full,full"
@@ -33,7 +34,7 @@ opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 
 -- UNDO SETTINGS --
-opt.undodir = "~/.vim/undodir"
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
 opt.history = 1000
 opt.undolevels = 10000
@@ -53,9 +54,9 @@ opt.smartcase = true
 opt.formatoptions = "jcroqlnt"
 
 -- TABS AND SPACES SETTINGS --
-opt.smartindent = true
-opt.smarttab = true
-opt.tabstop = 2
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
 opt.expandtab = true
 
 -- WINDOW SETTINGS --
@@ -65,3 +66,7 @@ opt.winminwidth = 5
 
 -- CLIPBOARD SYNC --
 opt.clipboard = "unnamedplus"
+
+-- MOUSE SETTINGS --
+opt.mousefocus = true
+opt.mouse:append("a")

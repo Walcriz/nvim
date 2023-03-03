@@ -27,10 +27,8 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window w
 -- Move Lines
 map("n", "<S-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
 map("n", "<S-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("v", "<S-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<S-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
@@ -98,3 +96,9 @@ vim.g.coc_snippet_next = '<TAB>'
 vim.g.coc_snippet_prev = '<S-TAB>'
 
 map("i", "<C-k>", "<Plug>(coc-snippets-expand-jump)", { desc = "Expand and jump in snippet" })
+
+-- Undo
+map("i", "<C-z>", "<C-o>u")
+
+-- Backspace delete in visual
+map("v", "<BS>", "s")

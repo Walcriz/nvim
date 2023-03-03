@@ -130,6 +130,13 @@ return {
 			function reset_coc_diag_record(window)
 				coc_diag_record = {}
 			end
+
+			local group = require("util").augroup("coc")
+			require("util").autocmd("CursorHold", {
+				group = group,
+				command = "silent call CocActionAsync('highlight')",
+				desc = "Highlight symbol under cursor on CursorHold",
+			})
 		end,
 		event = "BufReadPre",
 		dependencies = {

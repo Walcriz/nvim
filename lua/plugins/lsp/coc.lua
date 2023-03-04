@@ -14,7 +14,7 @@ return {
 			{"gh", "<Cmd>call CocAction('doHover')<CR>", desc = "Show documentation" },
 			{"<leader>cc", "<Cmd>CocList marketplace<CR>", desc = "Search for coc plugins" },
 
-            {"<leader>rr", "<Plug>(coc-codeaction-cursor)", desc = "Do code action at cursor"},
+            {"<leader>rr", "<Plug>(coc-codeaction-cursor)", desc = "Do code action"},
             {"<leader>ra", "<Plug>(coc-codeaction-selected)", desc = "Do code action for selected"},
             {"<leader>ra", "<Plug>(coc-codeaction-selected)", desc = "Do code action for selected", mode = "v"},
             {"<leader>rs", "<Plug>(coc-codeaction-source)", desc = "Do code action in whole buffer"},
@@ -154,7 +154,7 @@ return {
 				desc = "Highlight symbol under cursor on CursorHold",
 			})
 		end,
-		event = "BufReadPre",
+        lazy = false,
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 		},

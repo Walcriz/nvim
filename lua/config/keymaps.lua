@@ -111,3 +111,12 @@ map("v", "<RightMouse>", "y")
 map("c", "<RightMouse>", "<C-r>*")
 map("i", "<RightMouse>", "<C-o>h<C-o>p")
 map("n", "<RightMouse>", "p")
+
+-- Surround in visual mode
+map("v", "(", [[:s/\%V.*\%V/(&)<CR>:noh<cr><esc>`<]])
+map("v", "{", [[:s/\%V.*\%V/{&}<CR>:noh<cr><esc>`<]])
+map("v", "\"", [[:s/\%V.*\%V/"&"<CR>:noh<cr><esc>`<]])
+map("v", "'", [[:s/\%V.*\%V/'&'<CR>:noh<cr><esc>`<]])
+map("v", "[", [[:s/\%V.*\%V/[&]<CR>::noh<cr><esc>`<]])
+map("v", "`", [[:s/\%V.*\%V/`&`<CR>:noh<cr><esc>`<]])
+map("v", "<", [[:s/\%V.*\%V/<&><CR>:noh<cr><esc>`<]])

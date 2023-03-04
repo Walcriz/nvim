@@ -31,9 +31,6 @@ return {
         event = "VeryLazy",
     },
 
-	-- Vim surround
-	{ "tpope/vim-surround" },
-
 	-- better diagnostics list and others
 	{
 		"folke/trouble.nvim",
@@ -98,7 +95,6 @@ return {
 			local keymaps = {
 				mode = { "n", "v" },
 				["g"] = { name = "+goto" },
-				["gz"] = { name = "+surround" },
 				["]"] = { name = "+next" },
 				["["] = { name = "+prev" },
 				["<leader><tab>"] = { name = "+tabs" },

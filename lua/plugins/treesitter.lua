@@ -56,6 +56,7 @@ return {
 				"tsx",
 				"typescript",
 				"vim",
+				"c_sharp",
 			},
 			incremental_selection = {
 				enable = true,

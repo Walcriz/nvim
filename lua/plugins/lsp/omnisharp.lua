@@ -47,7 +47,6 @@ return {
 			"dense-analysis/ale",
             "neoclide/coc.nvim"
 		},
-		event = "BufReadPre",
 	},
 
 	{

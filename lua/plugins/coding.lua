@@ -39,7 +39,10 @@ return {
 
 	-- Commentary
 	{ "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-	{ "tpope/vim-commentary" },
+	{
+        "tpope/vim-commentary",
+        event = "VeryLazy",
+    },
 
 	-- better text-objects
 	{

@@ -23,7 +23,7 @@ return {
 				'coc-dictionary',
 				'coc-docker',
 				'coc-eslint',
-				'coc-git',
+				-- 'coc-git',
 				'coc-highlight',
 				'coc-html',
 				'coc-java',
@@ -53,7 +53,6 @@ return {
 			command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 			" Add `:OR` command for organize imports of the current buffer.
 			command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
 
 			function! s:DiagnosticNotify() abort
 			  let l:info = get(b:, 'coc_diagnostic_info', {})

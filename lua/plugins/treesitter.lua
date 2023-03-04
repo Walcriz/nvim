@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = false, -- last release is way too old and doesn't work on Windows
-		build = ":TSUpdate",
+		build = "TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			{
@@ -46,19 +46,16 @@ return {
 				"java",
 				"c",
 				"help",
-				"html",
 				"javascript",
 				"json",
 				"lua",
 				"markdown",
-				"markdown_inline",
 				"python",
 				"query",
 				"regex",
 				"tsx",
 				"typescript",
 				"vim",
-				"yaml",
 			},
 			incremental_selection = {
 				enable = true,

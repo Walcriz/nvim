@@ -105,3 +105,8 @@ map("v", "<BS>", "s")
 
 -- Copy with right mouse
 map("v", "<RightMouse>", "y")
+
+-- Paste with mouse
+map("c", "<RightMouse>", "<C-r>*")
+map("i", "<RightMouse>", "<C-o>h<C-o>p")
+map("n", "<RightMouse>", "p")

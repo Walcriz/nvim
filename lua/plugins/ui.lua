@@ -45,7 +45,7 @@ return {
 	},
 
 	-- statusline
-	{ -- TODO: Setup
+	{
 		"itchyny/lightline.vim",
 		config = function()
 			vim.g.lightline = {
@@ -53,7 +53,8 @@ return {
 				active = {
 					left = {
 						{ "mode", "paste" },
-						{ "readonly", "buffers" },
+						{ "readonly", "filename" },
+						{ "readonly", "modified" },
 						{ "cocstatus", "currentfunction"}
 					}
 				},
@@ -100,10 +101,10 @@ return {
 
 			dashboard.section.header.val = vim.split(logo, "\n")
 			dashboard.section.buttons.val = {
-				dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-				dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-				dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-				dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
+				dashboard.button("f", " " .. " Find file", ":Telescope find_files<CR>"),
+				dashboard.button("p", " " .. " Open project", ":Telescope project<CR>"),
+				dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles<CR>"),
+				dashboard.button("g", " " .. " Find text", ":Telescope live_grep disable_devicons=true<CR>"),
 				dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
 				dashboard.button("s", " " .. " Restore Session", [[:lua require("persistence").load({ last = true }) <cr>]]),
 				dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
@@ -146,7 +147,14 @@ return {
 	},
 
 	-- icons
-	{ "nvim-tree/nvim-web-devicons", lazy = true },
+	{
+        "nvim-tree/nvim-web-devicons",
+        lazy = true,
+        opts = {
+            color_icons = false,
+        },
+        config = true,
+    },
 
 	-- ui components
 	{ "MunifTanjim/nui.nvim", lazy = true },

@@ -9,23 +9,27 @@ return {
 			{ "gr", "<Plug>(omnisharp_find_usages)", desc = ""},
 			{ "gi", "<Plug>(omnisharp_find_implementations)", desc = ""},
 
-			{ "<Leader>opd", "<Plug>(omnisharp_preview_definition)", desc = "Preview definition"},
-			{ "<Leader>opi", "<Plug>(omnisharp_preview_implementations)", desc = "Preview implementations"},
-			{ "<Leader>ot", "<Plug>(omnisharp_type_lookup)", desc = "Lookup type"},
-			{ "<Leader>ofs", "<Plug>(omnisharp_find_symbol)", desc = "Find symbol"},
-			{ "<Leader>ofx", "<Plug>(omnisharp_fix_usings)", desc = "Fix usings"},
+			{ "<Leader>gpd", "<Plug>(omnisharp_preview_definition)", desc = "Preview definition"},
+			{ "<Leader>gpi", "<Plug>(omnisharp_preview_implementations)", desc = "Preview implementations"},
+			{ "<Leader>gt", "<Plug>(omnisharp_type_lookup)", desc = "Lookup type"},
+			{ "<Leader>gfs", "<Plug>(omnisharp_find_symbol)", desc = "Find symbol"},
+			{ "<Leader>ru", "<Plug>(omnisharp_fix_usings)", desc = "Fix usings"},
 
-			{ "<Leader>ogcc", "<Plug>(omnisharp_global_code_check)", desc = "Do code check"},
-			{ "<A-CR>", "<Plug>(omnisharp_code_actions)", desc = "Do code actions"},
-			{ "<A-CR>", "<Plug>(omnisharp_code_actions)", desc = "Do code actions", mode = "x"},
-			{ "<Leader>o.", "<Plug>(omnisharp_code_action_repeat)", desc = "Repeat action"},
-			{ "<Leader>o.", "<Plug>(omnisharp_code_action_repeat)", desc = "Repeat action", mode = "x"},
+			{ "<leader>rr", "<Plug>(omnisharp_code_actions)", desc = "Do code action"},
+			{ "<leader>rr", "<Plug>(omnisharp_code_actions)", desc = "Do code action", mode = "x"},
+			{ "<Leader>r.", "<Plug>(omnisharp_code_action_repeat)", desc = "Repeat action"},
+			{ "<Leader>r.", "<Plug>(omnisharp_code_action_repeat)", desc = "Repeat action", mode = "x"},
 
-			{ "<Leader>o=", "<Plug>(omnisharp_code_format)", desc = "Format code"},
+			{ "<Leader>r=", "<Plug>(omnisharp_code_format)", desc = "Format code"},
 
-			{ "<Leader>osr", "<Plug>(omnisharp_restart_server)", desc = "Restart server"},
-			{ "<Leader>ost", "<Plug>(omnisharp_start_server)", desc = "Start server"},
-			{ "<Leader>osp", "<Plug>(omnisharp_stop_server)", desc = "Stop server"},
+			{ "<Leader>or", "<Plug>(omnisharp_restart_server)", desc = "Restart server"},
+			{ "<Leader>ot", "<Plug>(omnisharp_start_server)", desc = "Start server"},
+			{ "<Leader>op", "<Plug>(omnisharp_stop_server)", desc = "Stop server"},
+
+			{ "<Leader>dc", "<Plug>(omnisharp_global_code_check)", desc = "Do code check"},
+            { "<leader>da", "<Plug>(omnisharp_run_test)>", desc = "Run all tests"},
+            { "<leader>dd", "<Plug>(omnisharp_run_test)>", desc = "Debug test"},
+            { "<leader>df", "<Plug>(omnisharp_run_test)>", desc = "Run tests in file"},
 		},
 		config = function()
 			vim.g.omnicomplete_fetch_full_documentation = 1
@@ -40,7 +44,8 @@ return {
 			}
 		end,
 		dependencies = {
-			"dense-analysis/ale"
+			"dense-analysis/ale",
+            "neoclide/coc.nvim"
 		},
 		event = "BufReadPre",
 	},

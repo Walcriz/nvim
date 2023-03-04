@@ -26,7 +26,10 @@ return {
 	},
 
 	-- Visual multi (multi cursors)
-	{ "mg979/vim-visual-multi" },
+	{
+        "mg979/vim-visual-multi",
+        event = "VeryLazy",
+    },
 
 	-- Vim surround
 	{ "tpope/vim-surround" },
@@ -102,7 +105,8 @@ return {
 				["<leader>b"] = { name = "+buffer" },
 				["<leader>c"] = { name = "+code" },
 				["<leader>f"] = { name = "+file/find" },
-				["<leader>g"] = { name = "+git" },
+				["<leader>g"] = { name = "+goto" },
+				["<leader>gg"] = { name = "+git" },
 				["<leader>gh"] = { name = "+hunks" },
 				["<leader>q"] = { name = "+quit/session" },
 				["<leader>s"] = { name = "+search" },
@@ -111,11 +115,10 @@ return {
 				["<leader>x"] = { name = "+diagnostics/quickfix" },
 				["<leader>n"] = { name = "+harpoon" },
 				["<leader>r"] = { name = "+quick refactorings" },
-				["<leader>o"] = { name = "+omnisharp" },
-				["<leader>os"] = { name = "+server actions" },
-				["<leader>op"] = { name = "+preview" },
-				["<leader>of"] = { name = "+find" },
+				["<leader>o"] = { name = "+server actions" },
 				["<leader>t"] = { name = "+tools" },
+				["<leader>d"] = { name = "+code actions" },
+				["<leader>gp"] = { name = "+preview" },
 			}
 			if Util.has("noice.nvim") then
 				keymaps["<leader>sn"] = { name = "+noice" }
@@ -128,8 +131,8 @@ return {
 	{
 		"TimUntersberger/neogit",
 		keys = {
-			{ "<leader>gg", "<cmd>Neogit kind=split<CR>", desc = "Open neogit ui"},
-			{ "<leader>gc", "<cmd>Neogit commit<CR>", desc = "Open commit neogit ui"},
+			{ "<leader>ggg", "<cmd>Neogit kind=split<CR>", desc = "Open neogit ui"},
+			{ "<leader>ggc", "<cmd>Neogit commit<CR>", desc = "Open commit neogit ui"},
 		},
 		config = function(_, opts)
 			require("neogit").setup(opts)

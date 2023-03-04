@@ -26,17 +26,7 @@ return {
 		  "nvim-treesitter/nvim-treesitter"
 	  },
 	  keys = {
-		  { "<leader>re", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>", desc = "Extract selected function", mode = "v" },
-		  { "<leader>rf", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>", desc = "Extract selected function to file", mode = "v" },
-		  { "<leader>rv", "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", desc = "Extract selected variable", mode = "v" },
-		  { "<leader>ri", "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline selected variable", mode = "v" },
-
-		  { "<leader>rb", "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>", desc = "Extract block"},
-		  { "<leader>rb", "<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>", desc = "Extract block to file"},
-
-		  { "<leader>ri", "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline variable"},
-
-		  { "<leader>rr", "<Esc><Cmd>lua require('refactoring').select_refactor()<CR>", desc = "Select refactoring", mode = "v" },
+		  { "<leader>rk", "<Esc><Cmd>lua require('refactoring').select_refactor()<CR>", desc = "Select refactoring (refactoring.nvim)", mode = "v" },
 	  },
 	  config = function(_, opts)
 		  require("refactoring").setup(opts)

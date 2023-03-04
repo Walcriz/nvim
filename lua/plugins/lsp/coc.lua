@@ -13,6 +13,16 @@ return {
 			{"gr", "<Plug>(coc-references)", desc = "Find references" },
 			{"gh", "<Cmd>call CocAction('doHover')<CR>", desc = "Show documentation" },
 			{"<leader>cc", "<Cmd>CocList marketplace<CR>", desc = "Search for coc plugins" },
+
+            {"<leader>rr", "<Plug>(coc-codeaction-cursor)", desc = "Do code action at cursor"},
+            {"<leader>ra", "<Plug>(coc-codeaction-selected)", desc = "Do code action for selected"},
+            {"<leader>ra", "<Plug>(coc-codeaction-selected)", desc = "Do code action for selected", mode = "v"},
+            {"<leader>rs", "<Plug>(coc-codeaction-source)", desc = "Do code action in whole buffer"},
+            {"<leader>rf", "<Plug>(coc-fix-current)", desc = "Quickfix"},
+
+            {"<leader>rl", "<Plug>(coc-codelens-action)", desc = "Do codelens action"},
+
+            {"rr", "<Plug>(coc-rename)", desc = "Rename variable or function"},
 		},
 		opts = {
 			ensure_installed = {
@@ -98,6 +108,13 @@ return {
 			autocmd User CocNvimInit call s:InitCoc()
 			autocmd User CocDiagnosticChange call s:DiagnosticNotify()
 			autocmd User CocStatusChange call s:StatusNotify()
+
+            nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+            nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+            inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+            inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+            vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+            vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 			]])
 
 			local coc_diag_record = {}

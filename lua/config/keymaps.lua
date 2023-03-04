@@ -99,6 +99,7 @@ map("i", "<C-k>", "<Plug>(coc-snippets-expand-jump)", { desc = "Expand and jump 
 
 -- Undo
 map("i", "<C-z>", "<C-o>u")
+map("v", "<C-z>", "u")
 
 -- Backspace delete in visual
 map("v", "<BS>", "s")

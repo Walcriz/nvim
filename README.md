@@ -1,6 +1,6 @@
 # My Personal Neovim Configuration
 This neovim configuration was heavly inspired by the [LazyVim](https://github.com/LazyVim/LazyVim) neovim configuration.
-And as such also uses the [💤 lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
+And as such it also uses the [💤lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
 
 ## Autocompletion
 This config uses [coc.nvim](https://github.com/neoclide/coc.nvim) as its autocompletion.
@@ -28,8 +28,11 @@ file in neovim's installiation files. (This is to make it use the system install
 - The coc-lua extension does not work
 
 ### WSL
-In wsl i would recommend not writing C# code in wsl write that in windows native instead
+- In wsl i would recommend not writing C# code in wsl write that in windows native instead
 (spoiler alert: **It is a pain to set up with [omnisharp.vim](https://github.com/OmniSharp/Omnisharp-vim)**)
+
+### Neovim 0.9
+- In neovim the `nvim/lua/plugins/nvim07.lua` file is not needed and is safe to [delete](https://github.com/gpanders/editorconfig.nvim)
 
 ## Installation
 

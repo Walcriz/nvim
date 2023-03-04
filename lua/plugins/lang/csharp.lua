@@ -44,8 +44,7 @@ return {
 			}
 		end,
 		dependencies = {
-			"dense-analysis/ale",
-            "neoclide/coc.nvim"
+			"dense-analysis/ale"
 		},
 	},
 

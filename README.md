@@ -1,6 +1,6 @@
 # My Personal Neovim Configuration
-This neovim configuration was heavly inspired by the [💤 LazyVim](https://github.com/LazyVim/LazyVim).
-And as such also uses the [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
+This neovim configuration was heavly inspired by the [LazyVim](https://github.com/LazyVim/LazyVim) neovim configuration.
+And as such also uses the [💤 lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
 
 ## Autocompletion
 This config uses [coc.nvim](https://github.com/neoclide/coc.nvim) as its autocompletion.

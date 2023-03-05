@@ -206,8 +206,9 @@ return {
                 group = group,
                 callback = function ()
                     local map = require("util").map
-                    map("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : v:lua.MiniPairs.cr()]], opts)
-                    map("i", "<tab>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"]], opts)
+                    local o = {silent = true, noremap = false, expr = true, replace_keycodes = false, desc = "Accept autocomplete" }
+                    map("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : v:lua.MiniPairs.cr()]], o)
+                    map("i", "<tab>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"]], o)
                     map("i", "<C-k>", "<Plug>(coc-snippets-expand-jump)", { desc = "Expand and jump in snippet" })
                 end,
             })

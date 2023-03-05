@@ -85,9 +85,6 @@ map("n", "<leader><tab>k", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>j", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
--- coc
-local opts = {silent = true, noremap = false, expr = true, replace_keycodes = false, desc = "Accept autocomplete" }
-
 -- Snippets
 vim.g.coc_snippet_next = '<TAB>'
 vim.g.coc_snippet_prev = '<S-TAB>'

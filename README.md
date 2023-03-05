@@ -11,7 +11,7 @@ C# - Uses the omnisharp.vim plugin
 ```
 
 ## Theme
-I am using a modified [monokai pro](https://monokai.pro/) based from the
+I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 [monokai.nvim](https://github.com/tanvirtin/monokai.nvim) vim colorscheme.
 
 ## Requirements

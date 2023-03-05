@@ -86,7 +86,6 @@ map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>j", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- coc
-
 local opts = {silent = true, noremap = false, expr = true, replace_keycodes = false, desc = "Accept autocomplete" }
 map("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : v:lua.MiniPairs.cr()]], opts)
 map("i", "<tab>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"]], opts)
@@ -109,14 +108,17 @@ map("v", "<RightMouse>", "y")
 
 -- Paste with mouse
 map("c", "<RightMouse>", "<C-r>*")
-map("i", "<RightMouse>", "<C-o>h<C-o>p")
+map("i", "<RightMouse>", "<Left><C-o>p")
 map("n", "<RightMouse>", "p")
 
 -- Surround in visual mode
-map("v", "(", [[:s/\%V.*\%V/(&)<cr>:noh<cr><esc>`<]])
-map("v", "{", [[:s/\%V.*\%V/{&}<cr>:noh<cr><esc>`<]])
-map("v", "\"", [[:s/\%V.*\%V/"&"<cr>:noh<cr><esc>`<]])
-map("v", "'", [[:s/\%V.*\%V/'&'<cr>:noh<cr><esc>`<]])
-map("v", "[", [[:s/\%V.*\%V/[&]<cr>::noh<cr><esc>`<]])
-map("v", "`", [[:s/\%V.*\%V/`&`<cr>:noh<cr><esc>`<]])
-map("v", "<", [[:s/\%V.*\%V/<&><cr>:noh<cr><esc>`<]])
+-- Group 1: Spaces/Tabs in the beginning \([ \t]*\)
+-- Group 2: The rest \(.*\)
+-- Group 3: The last character in selection \(.\)
+map("v", "(", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1(\2\3)<cr>:noh<cr><esc>`<]])
+map("v", "{", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1{\2\3}<cr>:noh<cr><esc>`<]])
+map("v", "\"", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1"\2\3"<cr>:noh<cr><esc>`<]])
+map("v", "'", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1'\2\3'<cr>:noh<cr><esc>`<]])
+map("v", "[", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1[\2\3]<cr>::noh<cr><esc>`<]])
+map("v", "`", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1`\2\3`<cr>:noh<cr><esc>`<]])
+map("v", "<", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1<\2\3><cr>:noh<cr><esc>`<]])

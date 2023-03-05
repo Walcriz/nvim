@@ -45,7 +45,7 @@ opt.signcolumn = "yes"
 opt.colorcolumn = "100"
 
 -- SEARCH SETTINGS --
-opt.hlsearch = true
+opt.hlsearch = false
 opt.ignorecase = true
 opt.incsearch = true
 opt.smartcase = true

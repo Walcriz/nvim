@@ -41,7 +41,8 @@ autocmd("FileType", {
     "startuptime",
     "tsplayground",
     "PlenaryTestPopup",
-    "Neogitstatus",
+    "NeogitStatus",
+    "NeogitHelpPopup",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -90,4 +91,3 @@ autocmd({ "BufWritePost", "TextChanged", "TextChangedI"}, {
 		vim.cmd([[call lightline#update()]])
 	end,
 })
-

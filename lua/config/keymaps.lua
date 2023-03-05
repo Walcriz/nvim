@@ -85,16 +85,9 @@ map("n", "<leader><tab>k", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>j", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
--- coc
-local opts = {silent = true, noremap = false, expr = true, replace_keycodes = false, desc = "Accept autocomplete" }
-map("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : v:lua.MiniPairs.cr()]], opts)
-map("i", "<tab>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"]], opts)
-
 -- Snippets
 vim.g.coc_snippet_next = '<TAB>'
 vim.g.coc_snippet_prev = '<S-TAB>'
-
-map("i", "<C-k>", "<Plug>(coc-snippets-expand-jump)", { desc = "Expand and jump in snippet" })
 
 -- Undo
 map("i", "<C-z>", "<C-o>u")

@@ -3,7 +3,7 @@
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
-		{ import = "plugins.lsp"}
+		{ import = "plugins.lang" },
 	},
 	defaults = {
 		lazy = true,
@@ -17,7 +17,7 @@ require("lazy").setup({
 				"gzip",
 				-- "matchit",
 				-- "matchparen",
-				-- "netrwPlugin",
+				"netrwPlugin",
 				"tarPlugin",
 				"tohtml",
 				"tutor",

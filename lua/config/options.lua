@@ -2,7 +2,6 @@
 local opt = vim.opt
 
 -- ETC --
-opt.encoding = "utf-8"
 opt.ruler = true
 opt.showmatch = true
 opt.showmode = true

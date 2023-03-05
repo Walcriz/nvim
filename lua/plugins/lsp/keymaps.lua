@@ -5,7 +5,7 @@ M._keys = nil
 
 ---@return (LazyKeys|{has?:string})[]
 function M.get()
-    local format = require("lazyvim.plugins.lsp.format").format
+    local format = require("plugins.lsp.format").format
     if not M._keys then
         ---@class PluginLspKeys
         -- stylua: ignore
@@ -15,24 +15,24 @@ function M.get()
             { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
             { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
             { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-            { "gI", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
+            { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
             { "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
             { "K", vim.lsp.buf.hover, desc = "Hover" },
             { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
             { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
-            { "]d", M.diagnostic_goto(true), desc = "Next Diagnostic" },
-            { "[d", M.diagnostic_goto(false), desc = "Prev Diagnostic" },
-            { "]e", M.diagnostic_goto(true, "ERROR"), desc = "Next Error" },
-            { "[e", M.diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
-            { "]w", M.diagnostic_goto(true, "WARN"), desc = "Next Warning" },
-            { "[w", M.diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
+            { "äd", M.diagnostic_goto(true), desc = "Next Diagnostic" },
+            { "åd", M.diagnostic_goto(false), desc = "Prev Diagnostic" },
+            { "äe", M.diagnostic_goto(true, "ERROR"), desc = "Next Error" },
+            { "åe", M.diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
+            { "äw", M.diagnostic_goto(true, "WARN"), desc = "Next Warning" },
+            { "åw", M.diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
             { "<leader>rr", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
-            { "<leader>rd", format, desc = "Format Document", has = "documentFormatting" },
-            { "<leader>rf", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
+            { "<leader>r=", format, desc = "Format Document", has = "documentFormatting" },
+            { "<leader>r=", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
         }
-        if require("lazyvim.util").has("inc-rename.nvim") then
+        if require("util").has("inc-rename.nvim") then
             M._keys[#M._keys + 1] = {
-                "<leader>cr",
+                "<leader>rr",
                 function()
                     require("inc_rename")
                     return ":IncRename " .. vim.fn.expand("<cword>")
@@ -42,7 +42,7 @@ function M.get()
                 has = "rename",
             }
         else
-            M._keys[#M._keys + 1] = { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
+            M._keys[#M._keys + 1] = { "rr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
         end
     end
     return M._keys

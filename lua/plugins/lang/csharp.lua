@@ -55,7 +55,12 @@ return {
 		end,
 		dependencies = {
 			"dense-analysis/ale",
-            "neoclide/coc.nvim"
+            "junegunn/fzf",
 		},
 	},
+
+    {
+        "junegunn/fzf",
+        build = "call fzf#install()"
+    }
 }

@@ -53,29 +53,21 @@ return {
 				active = {
 					left = {
 						{ "mode", "paste" },
-						{ "readonly", "filename" },
-						{ "readonly", "modified" },
-						{ "cocstatus", "currentfunction"}
+						{ "readonly", "filename", "modified" },
+						{ 'lsp_info', 'lsp_hints', 'lsp_errors', 'lsp_warnings', 'lsp_ok', 'lsp_status' },
 					}
 				},
-				component_expand = {
-					buffers = 'lightline#bufferline#buffers'
-				},
-				component_type = {
-					buffers = 'tabsel'
-				},
-				component_function = {
-					cocstatus = "coc#status",
-					currentfunction = "CocCurrentFunction",
-				}
 			}
 		end,
 		lazy = false,
-		dependencies = { "mengelbrecht/lightline-bufferline" },
+		dependencies = { "josa42/nvim-lightline-lsp" },
 	},
 
 	{
-		"mengelbrecht/lightline-bufferline",
+        "josa42/nvim-lightline-lsp",
+        config = function ()
+            vim.cmd("call lightline#lsp#register()")
+        end
 	},
 
 	-- Dashboard
@@ -135,7 +127,7 @@ return {
 			require("alpha").setup(dashboard.opts)
 
 			vim.api.nvim_create_autocmd("User", {
-				pattern = "LazyVimStarted",
+				pattern = "LazyVimStarted", -- Comes from that this is a fork
 				callback = function()
 					local stats = require("lazy").stats()
 					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
@@ -157,7 +149,10 @@ return {
     },
 
 	-- ui components
-	{ "MunifTanjim/nui.nvim", lazy = true },
+	{
+        "MunifTanjim/nui.nvim",
+        lazy = true
+    },
 
 	-- Rainbow brackets/delimiters
 	{

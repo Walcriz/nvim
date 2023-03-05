@@ -2,6 +2,8 @@
 local palette = require("monokai").pro
 palette.param = "#FFDDC3"
 palette.const = "#D5D5D5"
+palette.popupSel = "#353336"
+palette.popup = "#1d1b1e"
 
 require("monokai").setup({
 	palette = palette,
@@ -109,7 +111,16 @@ require("monokai").setup({
 		LightlineLeft_active_tabsel = {
 			fg = "#abb2bf",
 			bg = "#3e4452",
-		}
+		},
+
+        -- Popup menu
+        PmenuSel = {
+            bg = palette.popupSel
+        },
+
+        Pmenu = {
+            bg = palette.popup
+        },
 	}
 })
 

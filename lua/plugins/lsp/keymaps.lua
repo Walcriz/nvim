@@ -10,8 +10,8 @@ function M.get()
         ---@class PluginLspKeys
         -- stylua: ignore
         M._keys =  {
-            { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-            { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+            { "<leader>dd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+            { "<leader>dl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
             { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
             { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
             { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },

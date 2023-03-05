@@ -1,3 +1,8 @@
+local coc_languages = {
+    "java",
+    "xml"
+}
+
 return {
     -- lspconfig
     {
@@ -133,12 +138,7 @@ return {
     -- coc.nvim
 	{
 		"neoclide/coc.nvim",
-
-        ft = { -- Filetypes to load coc on
-            "java",
-            "xml",
-        },
-
+        ft = coc_languages,
 		branch = "master",
         build = "yarn install --frozen-lockfile",
 		keys = {
@@ -200,6 +200,17 @@ return {
 				command = "silent call CocActionAsync('highlight')",
 				desc = "Highlight symbol under cursor on CursorHold",
 			})
+
+            require("util").autocmd("Filetype", {
+                pattern = coc_languages,
+                group = group,
+                callback = function ()
+                    local map = require("util").map
+                    map("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : v:lua.MiniPairs.cr()]], opts)
+                    map("i", "<tab>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"]], opts)
+                    map("i", "<C-k>", "<Plug>(coc-snippets-expand-jump)", { desc = "Expand and jump in snippet" })
+                end,
+            })
 
 			vim.cmd([[
 			" Add `:Format` command to format current buffer.

@@ -160,5 +160,9 @@ return {
 	{ "MunifTanjim/nui.nvim", lazy = true },
 
 	-- Rainbow brackets/delimiters
-	{ "HiPhish/nvim-ts-rainbow2", lazy = true },
+	{
+        "HiPhish/nvim-ts-rainbow2",
+        event = "VeryLazy",
+    },
+    -- { "p00f/nvim-ts-rainbow", lazy = true}
 }

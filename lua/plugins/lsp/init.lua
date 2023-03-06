@@ -141,27 +141,6 @@ return {
         ft = coc_languages,
 		branch = "master",
         build = "yarn install --frozen-lockfile",
-		keys = {
-			{"åg", "<Plug>(coc-diagnostic-prev)", desc = "Diagnostics previous"},
-			{"äg", "<Plug>(coc-diagnostic-next)", desc = "Diagnostics next" },
-			{"gb", "<Plug>(coc-cursors-word)", desc = "Highlight current word" },
-			{"gd", "<Plug>(coc-definition)", desc = "Go to definition" },
-			{"gy", "<Plug>(coc-type-definition)", desc = "Go to type definition" },
-			{"gi", "<Plug>(coc-implementation)", desc = "Go to implementation" },
-			{"gr", "<Plug>(coc-references)", desc = "Find references" },
-			{"gh", "<Cmd>call CocAction('doHover')<CR>", desc = "Show documentation" },
-			{"<leader>cc", "<Cmd>CocList marketplace<CR>", desc = "Search for coc plugins" },
-
-            {"<leader>rr", "<Plug>(coc-codeaction-cursor)", desc = "Do code action"},
-            {"<leader>ra", "<Plug>(coc-codeaction-selected)", desc = "Do code action for selected"},
-            {"<leader>ra", "<Plug>(coc-codeaction-selected)", desc = "Do code action for selected", mode = "v"},
-            {"<leader>rs", "<Plug>(coc-codeaction-source)", desc = "Do code action in whole buffer"},
-            {"<leader>rf", "<Plug>(coc-fix-current)", desc = "Quickfix"},
-
-            {"<leader>rl", "<Plug>(coc-codelens-action)", desc = "Do codelens action"},
-
-            {"rr", "<Plug>(coc-rename)", desc = "Rename variable or function"},
-		},
 		opts = {
 			ensure_installed = {
 				'coc-diagnostic',
@@ -210,6 +189,26 @@ return {
                     map("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : v:lua.MiniPairs.cr()]], o)
                     map("i", "<tab>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"]], o)
                     map("i", "<C-k>", "<Plug>(coc-snippets-expand-jump)", { desc = "Expand and jump in snippet" })
+
+                    map("n", "åg", "<Plug>(coc-diagnostic-prev)", { desc = "Diagnostics previous" })
+                    map("n", "äg", "<Plug>(coc-diagnostic-next)", { desc = "Diagnostics next"  })
+                    map("n", "gb", "<Plug>(coc-cursors-word)", { desc = "Highlight current word"  })
+                    map("n", "gd", "<Plug>(coc-definition)", { desc = "Go to definition"  })
+                    map("n", "gy", "<Plug>(coc-type-definition)", { desc = "Go to type definition"  })
+                    map("n", "gi", "<Plug>(coc-implementation)", { desc = "Go to implementation"  })
+                    map("n", "gr", "<Plug>(coc-references)", { desc = "Find references"  })
+                    map("n", "gh", "<Cmd>call CocAction('doHover')<CR>", { desc = "Show documentation"  })
+                    map("n", "<leader>cc", "<Cmd>CocList marketplace<CR>", { desc = "Search for coc plugins"  })
+
+                    map("n", "<leader>rr", "<Plug>(coc-codeaction-cursor)", { desc = "Do code action" })
+                    map("n", "<leader>ra", "<Plug>(coc-codeaction-selected)", { desc = "Do code action for selected" })
+                    map("n", "<leader>ra", "<Plug>(coc-codeaction-selected)", { desc = "Do code action for selected", mode = "v" })
+                    map("n", "<leader>rs", "<Plug>(coc-codeaction-source)", { desc = "Do code action in whole buffer" })
+                    map("n", "<leader>rf", "<Plug>(coc-fix-current)", { desc = "Quickfix" })
+
+                    map("n", "<leader>rl", "<Plug>(coc-codelens-action)", { desc = "Do codelens action" })
+
+                    map("n", "rr", "<Plug>(coc-rename)", { desc = "Rename variable or function" })
                 end,
             })
 
@@ -241,7 +240,6 @@ return {
             vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 			]])
 		end,
-        event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 		},

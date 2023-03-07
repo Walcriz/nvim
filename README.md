@@ -38,6 +38,7 @@ file in neovim's installiation files. (This is to make it use the system install
 ### WSL
 - In wsl i would recommend not writing C# code in wsl write that in windows native instead
 (spoiler alert: **It is a pain to set up with [omnisharp.vim](https://github.com/OmniSharp/Omnisharp-vim)**)
+- I would recommend to install [GWSL](https://opticos.github.io/gwsl/) for its clipboard sync feature
 
 ### Neovim 0.9
 - In neovim the `nvim/lua/plugins/nvim07.lua` file is not needed and is safe to [delete](https://github.com/gpanders/editorconfig.nvim)

@@ -24,6 +24,7 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 - [RipGrep](https://github.com/BurntSushi/ripgrep)
 - [fzf](https://github.com/junegunn/fzf)
 - Node.js >= **v18.11.0** **(Only required for languages that use coc.nvim)**
+- [yarn](https://yarnpkg.com) **(To build coc.nvim from source)**
 - [Jetbrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono) **(optional)**
 
 ## Notes

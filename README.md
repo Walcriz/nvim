@@ -21,6 +21,8 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 ## Requirements
 - Neovim >= **0.8.0**
 - Git >= **2.19.0**
+- [RipGrep](https://github.com/BurntSushi/ripgrep)
+- [fzf](https://github.com/junegunn/fzf)
 - Node.js >= **v18.11.0** **(Only required for languages that use coc.nvim)**
 - [Jetbrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono) **(optional)**
 

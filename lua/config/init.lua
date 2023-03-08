@@ -1,6 +1,12 @@
 return {
 	leader = " ",
 
+	lsp = {
+		java = {
+			jdtls_launcher_version = "1.6.400.v20210924-0641",
+		},
+	},
+
 	icons = {
 		diagnostics = {
 			Error = " ",
@@ -50,5 +56,5 @@ return {
 			Value = " ",
 			Variable = " ",
 		},
-	}
+	},
 }

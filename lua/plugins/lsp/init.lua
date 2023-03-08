@@ -104,6 +104,7 @@ return {
 						return
 					end
 				end
+				-- Setup config
 				require("lspconfig")[server].setup(server_opts)
 			end
 

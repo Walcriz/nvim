@@ -5,7 +5,14 @@ This neovim configuration was heavly inspired by the [LazyVim](https://github.co
 - The [💤lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
 
 ## Autocompletion
-This config uses the built in lsp as its autocompletion with luasnip for snippets.
+This config uses the built in lsp as its autocompletion with luasnip for snippets. Some languages also
+use [coc.nvim](https://github.com/neoclide/coc.nvim) instead.
+
+### Special languages
+```
+C# - Uses the omnisharp.vim plugin
+Java - coc.nvim
+```
 
 ## Theme
 I am using a modified [monokai pro](https://monokai.pro/) theme based from the
@@ -16,6 +23,8 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 - Git >= **2.19.0**
 - [RipGrep](https://github.com/BurntSushi/ripgrep)
 - [fzf](https://github.com/junegunn/fzf)
+- Node.js >= **v18.11.0** **(Only required for languages that use coc.nvim)**
+- [yarn](https://yarnpkg.com) **(To build coc.nvim from source)**
 - [Jetbrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono) **(optional)**
 
 ## Notes

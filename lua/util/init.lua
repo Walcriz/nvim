@@ -43,7 +43,6 @@ end
 -- * lsp root_dir
 -- * root pattern of filename of the current buffer
 -- * root pattern of cwd
--- * git repo
 ---@return string
 function M.get_root()
 	---@type string?
@@ -104,10 +103,16 @@ function M.telescope(builtin, opts)
 	end
 end
 
--- FIXME: create a togglable terminal
--- Opens a floating terminal (interactive by default)
----@param cmd? string[]|string
----@param opts? LazyCmdOptions|{interactive?:boolean}
+function M.telescope_extensions(builtin, opts)
+	local params = { builtin = builtin, opts = opts }
+	return function()
+		builtin = params.builtin
+		opts = params.opts
+		opts = vim.tbl_deep_extend("force", { cwd = M.get_root() }, opts or {})
+		require("telescope.extensions")[builtin](opts)
+	end
+end
+
 function M.float_term(cmd, opts)
 	opts = vim.tbl_deep_extend("force", {
 		size = { width = 0.9, height = 0.9 },

@@ -5,18 +5,40 @@ return {
 		opts = {
 			tools = {
 				-- Lazygit
-				lazygit = {
-					term_opts = {
-						cmd = "lazygit",
-						direction = "float",
-					},
+				-- lazygit = {
+				-- 	term_opts = {
+				-- 		cmd = "lazygit",
+				-- 		direction = "float",
+				-- 	},
 
-					toggle_key = "<leader>gg",
+				-- 	toggle_key = "<leader>gg",
+				-- },
+
+				terminal = {
+					term_opts = {},
+					toggle_key = "<leader>te",
 				},
 			},
 			defaults = {
 				direction = "float",
+				winblend = 0,
+				highlights = {
+					border = "TelescopeNormal",
+					background = "TelescopeNormal",
+				},
 			},
+		},
+		keys = {
+			{ "<esc>", [[<C-\><C-n>]], mode = "t" },
+
+			{ "<C-W>h", [[<Cmd>wincmd h<CR>]], mode = "t" },
+			{ "<C-W>j", [[<Cmd>wincmd j<CR>]], mode = "t" },
+			{ "<C-W>k", [[<Cmd>wincmd k<CR>]], mode = "t" },
+			{ "<C-W>l", [[<Cmd>wincmd l<CR>]], mode = "t" },
+			{ "<C-h>", [[<Cmd>wincmd h<CR>]], mode = "t" },
+			{ "<C-j>", [[<Cmd>wincmd j<CR>]], mode = "t" },
+			{ "<C-k>", [[<Cmd>wincmd k<CR>]], mode = "t" },
+			{ "<C-l>", [[<Cmd>wincmd l<CR>]], mode = "t" },
 		},
 		config = function(_, opts)
 			require("toggleterm").setup()

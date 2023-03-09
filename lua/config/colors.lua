@@ -179,6 +179,11 @@ require("monokai").setup({
 		WhichKeyFloat = {
 			bg = palette.darker_black,
 		},
+
+		-- Float menus
+		NormalFloat = {
+			bg = palette.darker_black,
+		},
 	},
 })
 

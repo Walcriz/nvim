@@ -66,6 +66,7 @@ return {
 				["<leader>b"] = { name = "+buffer" },
 				["<leader>c"] = { name = "+code" },
 				["<leader>f"] = { name = "+file/find" },
+				["<leader>g"] = { name = "+git" },
 				["<leader>gh"] = { name = "+hunks" },
 				["<leader>q"] = { name = "+quit/session" },
 				["<leader>s"] = { name = "+search" },
@@ -83,6 +84,17 @@ return {
 				keymaps["<leader>sn"] = { name = "+noice" }
 			end
 			wk.register(keymaps)
+		end,
+	},
+
+	-- Neogit
+	{
+		"TimUntersberger/neogit",
+		keys = {
+			{ "<leader>gg", "<cmd>Neogit kind=float<CR>", desc = "Open neogit" },
+		},
+		config = function(_, opts)
+			require("neogit").setup(opts)
 		end,
 	},
 

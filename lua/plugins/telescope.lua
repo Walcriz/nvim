@@ -91,14 +91,14 @@ return {
 						["<a-t>"] = function(...)
 							return require("trouble.providers.telescope").open_selected_with_trouble(...)
 						end,
-						["<a-i>"] = function()
+						["<a-f>"] = function()
 							Util.telescope("find_files", { no_ignore = true })()
 						end,
 						["<a-h>"] = function()
 							Util.telescope("find_files", { hidden = true })()
 						end,
-						["<a-b>"] = function()
-							Util.telescope("file_browser", { hidden = true })()
+						["<a-n>"] = function()
+							Util.telescope_extensions("file_browser", { hidden = true })()
 						end,
 						["<C-Down>"] = function(...)
 							return require("telescope.actions").cycle_history_next(...)

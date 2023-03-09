@@ -109,20 +109,6 @@ return {
 			require("workbench")
 
 			vim.g.workbench_border = "single"
-
-			local augroup = require("util").augroup("workbench")
-			require("util").autocmd("FileType", {
-				pattern = "md",
-				group = augroup,
-				callback = function()
-					vim.keymap.set(
-						"n",
-						"<leader><CR>",
-						"<Plug>WorkbenchToggleCheckbox",
-						{ desc = "add/toggle checkbox", noremap = false }
-					)
-				end,
-			})
 		end,
 	},
 

@@ -66,8 +66,6 @@ return {
 				["<leader>b"] = { name = "+buffer" },
 				["<leader>c"] = { name = "+code" },
 				["<leader>f"] = { name = "+file/find" },
-				["<leader>g"] = { name = "+goto" },
-				["<leader>gg"] = { name = "+git" },
 				["<leader>gh"] = { name = "+hunks" },
 				["<leader>q"] = { name = "+quit/session" },
 				["<leader>s"] = { name = "+search" },
@@ -85,18 +83,6 @@ return {
 				keymaps["<leader>sn"] = { name = "+noice" }
 			end
 			wk.register(keymaps)
-		end,
-	},
-
-	-- Neogit
-	{
-		"TimUntersberger/neogit",
-		keys = {
-			{ "<leader>ggg", "<cmd>Neogit kind=split<CR>", desc = "Open neogit ui" },
-			{ "<leader>ggc", "<cmd>Neogit commit<CR>", desc = "Open commit neogit ui" },
-		},
-		config = function(_, opts)
-			require("neogit").setup(opts)
 		end,
 	},
 
@@ -168,7 +154,7 @@ return {
 	-- Color picker
 	{
 		"nvim-colortils/colortils.nvim",
-		cmd = "colortils",
+		cmd = "Colortils",
 		config = true,
 		keys = {
 			{ "<leader>rc", "<Cmd>Colortils picker<cr>", desc = "Pick color" },

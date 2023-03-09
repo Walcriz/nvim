@@ -110,6 +110,7 @@ return {
 
 			vim.g.workbench_border = "single"
 		end,
+		event = "VeryLazy",
 	},
 
 	-- Undotree

@@ -27,7 +27,6 @@ function M.init()
 end
 
 function M.after()
-
 	-- Load autocmds and such
 	if vim.fn.argc(-1) == 0 then
 		-- Loading of autocmds and keymaps can wait
@@ -37,7 +36,7 @@ function M.after()
 			callback = function()
 				M.load("autocmds")
 				M.load("keymaps")
-			end
+			end,
 		})
 	else
 		-- Load autocmds and keymaps so they affect current buffers
@@ -49,7 +48,7 @@ function M.after()
 	require("config.colors")
 
 	-- Treesitter trickery
-	require("nvim-treesitter.configs").setup({ rainbow = { enable = true} })
+	require("nvim-treesitter.configs").setup({ rainbow = { enable = true } })
 end
 
 function M.load(name) -- Fully taken from https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/init.lua
@@ -58,23 +57,23 @@ function M.load(name) -- Fully taken from https://github.com/LazyVim/LazyVim/blo
 		Util.try(function()
 			require(mod)
 		end, {
-		msg = "Failed loading " .. mod,
-		on_error = function(msg)
-			local modpath = require("lazy.core.cache").find(mod)
-			if modpath then
-				Util.error(msg)
-			end
-		end,
-	})
-end
+			msg = "Failed loading " .. mod,
+			on_error = function(msg)
+				local modpath = require("lazy.core.cache").find(mod)
+				if modpath then
+					Util.error(msg)
+				end
+			end,
+		})
+	end
 
--- Load config
-_load("config." .. name)
+	-- Load config
+	_load("config." .. name)
 
-if vim.bo.filetype == "lazy" then
-	-- HACK: WalVim may have overwritten options of the Lazy ui, so reset this here
-	vim.cmd([[do VimResized]])
-end
+	if vim.bo.filetype == "lazy" then
+		-- HACK: WalVim may have overwritten options of the Lazy ui, so reset this here
+		vim.cmd([[do VimResized]])
+	end
 end
 
 return M

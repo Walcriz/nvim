@@ -4,10 +4,10 @@ return {
 	-- search/replace in multiple files
 	{
 		"windwp/nvim-spectre",
-		-- stylua: ignore
-		keys = {
-			{ "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
-		},
+        -- stylua: ignore
+        keys = {
+            { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+        },
 	},
 
 	-- Super fast file movements
@@ -37,14 +37,14 @@ return {
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		event = { "BufReadPost", "BufNewFile" },
 		config = true,
-		-- stylua: ignore
-		keys = {
-			{ "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-			{ "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-			{ "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-			{ "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
-			{ "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
-		},
+        -- stylua: ignore
+        keys = {
+            { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+            { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+            { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+            { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+            { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+        },
 	},
 
 	-- which-key
@@ -84,19 +84,6 @@ return {
 			end
 			wk.register(keymaps)
 		end,
-	},
-
-	-- Scratch buffer
-	{
-		"n-shift/scratch.nvim",
-		keys = {
-			{
-				"<leader>x",
-				"<Cmd>sp<CR><Cmd>ScratchNew lua<CR><C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-",
-				desc = "Open a new scratch buffer",
-			},
-		},
-		event = "VeryLazy",
 	},
 
 	-- Undotree
@@ -158,6 +145,38 @@ return {
 		config = true,
 		keys = {
 			{ "<leader>rc", "<Cmd>Colortils picker<cr>", desc = "Pick color" },
+		},
+	},
+
+	-- Neorg
+	{
+		"nvim-neorg/neorg",
+		build = ":Neorg sync-parsers",
+		keys = {
+			{ "<leader>tn", "<cmd>Neorg workspace", desc = "Open Neorg workspace" },
+		},
+		opts = {
+			load = {
+				["core.defaults"] = {}, -- Loads default behaviour
+				["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
+				["core.norg.dirman"] = { -- Manages Neorg workspaces
+					config = {
+						workspaces = {
+							notes = "~/notes",
+						},
+					},
+				},
+				["core.neorg.completion"] = {
+					config = {
+						engine = "nvim-cmp",
+					},
+				},
+			},
+		},
+
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-lua/plenary.nvim",
 		},
 	},
 }

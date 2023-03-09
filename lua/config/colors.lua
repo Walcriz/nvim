@@ -4,6 +4,9 @@ palette.param = "#FFDDC3"
 palette.const = "#D5D5D5"
 palette.popupSel = "#353336"
 palette.popup = "#1d1b1e"
+palette.black = "#242730"
+palette.black2 = "#292c35"
+palette.darker_black = "#1f222b"
 
 require("monokai").setup({
 	palette = palette,
@@ -11,7 +14,7 @@ require("monokai").setup({
 		-- Treesitter
 		["@keyword.function"] = {
 			fg = palette.pink,
-			style = 'italic'
+			style = "italic",
 		},
 		Include = {
 			fg = palette.pink,
@@ -24,11 +27,11 @@ require("monokai").setup({
 		},
 		["@parameter"] = {
 			fg = palette.param,
-			style = 'italic',
+			style = "italic",
 		},
 		["@function.builtin"] = {
 			fg = palette.aqua,
-			style = 'italic',
+			style = "italic",
 		},
 		["@function.call"] = {
 			fg = palette.green,
@@ -41,30 +44,30 @@ require("monokai").setup({
 		},
 		["@annotation"] = {
 			fg = palette.aqua,
-			style = 'italic,bold',
+			style = "italic,bold",
 		},
 		["@attribute"] = {
 			fg = palette.aqua,
-			style = 'italic,bold',
+			style = "italic,bold",
 		},
 		["@constructor"] = {
 			fg = palette.green,
-			style = 'bold',
+			style = "bold",
 		},
 		["@constant"] = {
 			fg = palette.const,
 		},
 		["@character.special"] = {
 			fg = palette.aqua,
-			style = 'italic,bold',
+			style = "italic,bold",
 		},
 		["@type"] = {
 			fg = palette.purple,
-			style = 'bold',
+			style = "bold",
 		},
 		Type = {
 			fg = palette.purple,
-			style = 'bold',
+			style = "bold",
 		},
 		Function = {
 			fg = palette.green,
@@ -80,32 +83,32 @@ require("monokai").setup({
 		},
 		["@variable.builtin"] = {
 			fg = palette.pink,
-			style = "bold"
+			style = "bold",
 		},
 
 		-- Git
 		GitGutterAdd = {
-			fg = palette.green
+			fg = palette.green,
 		},
 		GitGutterChange = {
-			fg = palette.aqua
+			fg = palette.aqua,
 		},
 		GitGutterDelete = {
-			fg = palette.red
+			fg = palette.red,
 		},
 		GitGutterChangeDelete = {
-			fg = palette.red
+			fg = palette.red,
 		},
 
 		-- Rainbow
 		TSRainbow1 = {
-			fg = "#FFD865"
+			fg = "#FFD865",
 		},
 		TSRainbow2 = {
-			fg = "#AB9DF2"
+			fg = "#AB9DF2",
 		},
 		TSRainbow3 = {
-			fg = "#67ACB5"
+			fg = "#67ACB5",
 		},
 
 		LightlineLeft_active_tabsel = {
@@ -113,15 +116,65 @@ require("monokai").setup({
 			bg = "#3e4452",
 		},
 
-        -- Popup menu
-        PmenuSel = {
-            bg = palette.popupSel
-        },
+		-- Popup menu
+		PmenuSel = {
+			bg = palette.popupSel,
+		},
 
-        Pmenu = {
-            bg = palette.popup
-        },
-	}
+		Pmenu = {
+			bg = palette.popup,
+		},
+
+		-- Telescope
+		TelescopeBorder = {
+			fg = palette.darker_black,
+		},
+
+		TelescopePromptBorder = {
+			fg = palette.black2,
+		},
+
+		TelescopePromptNormal = {
+			fg = palette.white,
+			bg = palette.black2,
+		},
+
+		TelescopePromptPrefix = {
+			fg = palette.red,
+			bg = palette.black2,
+		},
+
+		TelescopeNormal = { bg = palette.darker_black },
+
+		TelescopePreviewTitle = {
+			fg = palette.black,
+			bg = palette.green,
+		},
+
+		TelescopePromptTitle = {
+			fg = palette.black,
+			bg = palette.red,
+		},
+
+		TelescopeResultsTitle = {
+			fg = palette.black,
+			bg = palette.aqua,
+		},
+
+		TelescopeSelection = { bg = palette.black2, fg = palette.white },
+
+		TelescopeResultsDiffAdd = {
+			fg = palette.green,
+		},
+
+		TelescopeResultsDiffChange = {
+			fg = palette.yellow,
+		},
+
+		TelescopeResultsDiffDelete = {
+			fg = palette.red,
+		},
+	},
 })
 
 vim.cmd([[

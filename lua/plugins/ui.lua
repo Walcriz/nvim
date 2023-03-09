@@ -54,8 +54,8 @@ return {
 					left = {
 						{ "mode", "paste" },
 						{ "readonly", "filename", "modified" },
-						{ 'lsp_info', 'lsp_hints', 'lsp_errors', 'lsp_warnings', 'lsp_ok', 'lsp_status' },
-					}
+						{ "lsp_info", "lsp_hints", "lsp_errors", "lsp_warnings", "lsp_ok", "lsp_status" },
+					},
 				},
 			}
 		end,
@@ -64,10 +64,10 @@ return {
 	},
 
 	{
-        "josa42/nvim-lightline-lsp",
-        config = function ()
-            vim.cmd("call lightline#lsp#register()")
-        end
+		"josa42/nvim-lightline-lsp",
+		config = function()
+			vim.cmd("call lightline#lsp#register()")
+		end,
 	},
 
 	-- Dashboard
@@ -98,7 +98,11 @@ return {
 				dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles<CR>"),
 				dashboard.button("g", " " .. " Find text", ":Telescope live_grep disable_devicons=true<CR>"),
 				dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-				dashboard.button("s", " " .. " Restore Session", [[:lua require("persistence").load({ last = true }) <cr>]]),
+				dashboard.button(
+					"s",
+					" " .. " Restore Session",
+					[[:lua require("persistence").load({ last = true }) <cr>]]
+				),
 				dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
 				dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 			}
@@ -140,24 +144,30 @@ return {
 
 	-- icons
 	{
-        "nvim-tree/nvim-web-devicons",
-        lazy = true,
-        opts = {
-            color_icons = false,
-        },
-        config = true,
-    },
+		"nvim-tree/nvim-web-devicons",
+		lazy = true,
+		opts = {
+			color_icons = false,
+		},
+		config = true,
+	},
 
 	-- ui components
 	{
-        "MunifTanjim/nui.nvim",
-        lazy = true
-    },
+		"MunifTanjim/nui.nvim",
+		lazy = true,
+	},
 
 	-- Rainbow brackets/delimiters
 	{
-        "HiPhish/nvim-ts-rainbow2",
-        event = "VeryLazy",
-    },
-    -- { "p00f/nvim-ts-rainbow", lazy = true}
+		"HiPhish/nvim-ts-rainbow2",
+		event = "VeryLazy",
+	},
+	-- { "p00f/nvim-ts-rainbow", lazy = true}
+
+	-- Colorize colors
+	{
+		"NvChad/nvim-colorizer.lua",
+		event = "VeryLazy",
+	},
 }

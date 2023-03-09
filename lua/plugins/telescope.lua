@@ -33,9 +33,17 @@ return {
 			{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
 			{ "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
 			{ "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-			{ "<leader>sw", Util.telescope("grep_string", { disable_devicons=true }), desc = "Word (root dir)" },
-			{ "<leader>sW", Util.telescope("grep_string", { cwd = false, disable_devicons=true }), desc = "Word (cwd)" },
-			{ "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
+			{ "<leader>sw", Util.telescope("grep_string", { disable_devicons = true }), desc = "Word (root dir)" },
+			{
+				"<leader>sW",
+				Util.telescope("grep_string", { cwd = false, disable_devicons = true }),
+				desc = "Word (cwd)",
+			},
+			{
+				"<leader>uC",
+				Util.telescope("colorscheme", { enable_preview = true }),
+				desc = "Colorscheme with preview",
+			},
 			{
 				"<leader>ss",
 				Util.telescope("lsp_document_symbols", {
@@ -75,8 +83,6 @@ return {
 		},
 		opts = {
 			defaults = {
-				prompt_prefix = " ",
-				selection_caret = " ",
 				mappings = {
 					i = {
 						["<c-t>"] = function(...)
@@ -110,11 +116,47 @@ return {
 						end,
 					},
 				},
+
+				vimgrep_arguments = {
+					"rg",
+					"-L",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+				},
+				prompt_prefix = " ",
+				selection_caret = " ",
+				entry_prefix = "  ",
+				initial_mode = "insert",
+				layout_strategy = "horizontal",
+				layout_config = {
+					horizontal = {
+						prompt_position = "bottom",
+						preview_width = 0.55,
+						results_width = 0.8,
+					},
+					vertical = {
+						mirror = false,
+					},
+					width = 0.87,
+					height = 0.80,
+					preview_cutoff = 120,
+				},
+				path_display = { "truncate" },
+				winblend = 0,
+				border = {},
+				-- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+				borderchars = { "▄", "▌", "▀", "▐", "▗", "▖", "▘", "▝" },
+				color_devicons = true,
+				set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 			},
-			highlight = { enable = true }
+			highlight = { enable = true },
 		},
 
-		config = function()
+		config = function(_, opts)
 			local telescope = require("telescope")
 			telescope.setup({
 				extensions = {
@@ -123,19 +165,20 @@ return {
 						hijack_netrw = true,
 					},
 					harpoon = {},
-					project = {}
+					project = {},
 				},
+				defaults = opts.defaults,
 			})
 
-			telescope.load_extension('project')
-			telescope.load_extension('file_browser')
-			telescope.load_extension('harpoon')
+			telescope.load_extension("project")
+			telescope.load_extension("file_browser")
+			telescope.load_extension("harpoon")
 		end,
 
 		dependencies = {
 			"nvim-telescope/telescope-file-browser.nvim",
 			"nvim-telescope/telescope-project.nvim",
-			"ThePrimeagen/harpoon"
+			"ThePrimeagen/harpoon",
 		},
 	},
 
@@ -143,12 +186,12 @@ return {
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = {
-			"nvim-lua/plenary.nvim"
+			"nvim-lua/plenary.nvim",
 		},
 		keys = {
 			{ "fn", "<cmd>Telescope file_browser disable_devicons=false<cr>", desc = "File Browser" },
 		},
-		lazy = true
+		lazy = true,
 	},
 
 	{
@@ -156,7 +199,6 @@ return {
 		keys = {
 			{ "<leader>sp", "<cmd>Telescope project<cr>", desc = "Project Browser" },
 		},
-		lazy = true
-	}
-
+		lazy = true,
+	},
 }

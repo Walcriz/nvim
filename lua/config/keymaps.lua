@@ -1,6 +1,5 @@
-
 local Util = require("util")
-local map = Util.map;
+local map = Util.map
 
 map("i", "<C-H>", "<C-W>", { desc = "" })
 map("i", "<C-H>", "<C-W>")
@@ -36,14 +35,14 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsea
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
 map(
-  "n",
-  "<leader>ur",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-  { desc = "Redraw / clear hlsearch / diff update" }
+	"n",
+	"<leader>ur",
+	"<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+	{ desc = "Redraw / clear hlsearch / diff update" }
 )
 
 -- Replace selected
-map("v", "r", "\"hy:%s/<C-r>h//gc<left><left><left>")
+map("v", "r", '"hy:%s/<C-r>h//gc<left><left><left>')
 
 -- Add undo break-points
 map("i", ",", ",<c-g>u")
@@ -65,17 +64,30 @@ map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
 -- toggle options
 -- map("n", "<leader>uf", require("lazy.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
-map("n", "<leader>us", function() Util.toggle("spell") end, { desc = "Toggle Spelling" })
-map("n", "<leader>uw", function() Util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-map("n", "<leader>ul", function() Util.toggle("relativenumber", true) Util.toggle("number") end, { desc = "Toggle Line Numbers" })
+map("n", "<leader>us", function()
+	Util.toggle("spell")
+end, { desc = "Toggle Spelling" })
+map("n", "<leader>uw", function()
+	Util.toggle("wrap")
+end, { desc = "Toggle Word Wrap" })
+map("n", "<leader>ul", function()
+	Util.toggle("relativenumber", true)
+	Util.toggle("number")
+end, { desc = "Toggle Line Numbers" })
 map("n", "<leader>ud", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
-map("n", "<leader>uc", function() Util.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
+map("n", "<leader>uc", function()
+	Util.toggle("conceallevel", false, { 0, conceallevel })
+end, { desc = "Toggle Conceal" })
 
 -- floating terminal
-map("n", "<leader>ft", function() Util.float_term(nil, { cwd = Util.get_root() }) end, { desc = "Terminal (root dir)" })
-map("n", "<leader>fT", function() Util.float_term() end, { desc = "Terminal (cwd)" })
-map("t", "<esc><esc>", "<c-\\><c-n>", {desc = "Enter Normal Mode"})
+map("n", "<leader>ft", function()
+	Util.float_term(nil, { cwd = Util.get_root() })
+end, { desc = "Terminal (root dir)" })
+map("n", "<leader>fT", function()
+	Util.float_term()
+end, { desc = "Terminal (cwd)" })
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
@@ -86,8 +98,8 @@ map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>j", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Snippets
-vim.g.coc_snippet_next = '<TAB>'
-vim.g.coc_snippet_prev = '<S-TAB>'
+vim.g.coc_snippet_next = "<TAB>"
+vim.g.coc_snippet_prev = "<S-TAB>"
 
 -- Undo
 map("i", "<C-z>", "<C-o>u")
@@ -110,7 +122,7 @@ map("n", "<RightMouse>", "p")
 -- Group 3: The last character in selection \(.\)
 map("v", "(", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1(\2\3)<cr>:noh<cr><esc>`<]])
 map("v", "{", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1{\2\3}<cr>:noh<cr><esc>`<]])
-map("v", "\"", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1"\2\3"<cr>:noh<cr><esc>`<]])
+map("v", '"', [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1"\2\3"<cr>:noh<cr><esc>`<]])
 map("v", "'", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1'\2\3'<cr>:noh<cr><esc>`<]])
 map("v", "[", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1[\2\3]<cr>::noh<cr><esc>`<]])
 map("v", "`", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1`\2\3`<cr>:noh<cr><esc>`<]])

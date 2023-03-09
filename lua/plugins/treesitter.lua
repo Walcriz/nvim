@@ -28,7 +28,7 @@ return {
 
 			{ "HiPhish/nvim-ts-rainbow2" },
 
-			{ "nvim-treesitter/playground" }
+			{ "nvim-treesitter/playground" },
 		},
 
 		keys = {
@@ -58,6 +58,9 @@ return {
 				"typescript",
 				"vim",
 				"c_sharp",
+				"css",
+				"scss",
+				"html",
 			},
 			incremental_selection = {
 				enable = true,
@@ -73,8 +76,8 @@ return {
 					"TSRainbow1",
 					"TSRainbow2",
 					"TSRainbow3",
-				}
-			}
+				},
+			},
 		},
 
 		---@param opts TSConfig

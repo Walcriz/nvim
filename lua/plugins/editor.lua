@@ -14,10 +14,10 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		keys = {
-			{ "<leader>ö", "<cmd>Telescope harpoon marks<cr>", desc = "Search harpoon marks"},
-			{ "<leader>nj", "<cmd>lua require(\"harpoon\").add_file()<cr>", desc = "Create new harpoon file mark" },
-			{ "<leader>nl", "<cmd>lua require(\"harpoon\").nav_next()<cr>", desc = "Go to next harpoon file mark" },
-			{ "<leader>nh", "<cmd>lua require(\"harpoon\").nav_prev()<cr>", desc = "Go to next harpoon file mark" },
+			{ "<leader>ö", "<cmd>Telescope harpoon marks<cr>", desc = "Search harpoon marks" },
+			{ "<leader>nj", '<cmd>lua require("harpoon").add_file()<cr>', desc = "Create new harpoon file mark" },
+			{ "<leader>nl", '<cmd>lua require("harpoon").nav_next()<cr>', desc = "Go to next harpoon file mark" },
+			{ "<leader>nh", '<cmd>lua require("harpoon").nav_prev()<cr>', desc = "Go to next harpoon file mark" },
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -27,9 +27,9 @@ return {
 
 	-- Visual multi (multi cursors)
 	{
-        "mg979/vim-visual-multi",
-        event = "VeryLazy",
-    },
+		"mg979/vim-visual-multi",
+		event = "VeryLazy",
+	},
 
 	-- Todo comments
 	{
@@ -92,8 +92,8 @@ return {
 	{
 		"TimUntersberger/neogit",
 		keys = {
-			{ "<leader>ggg", "<cmd>Neogit kind=split<CR>", desc = "Open neogit ui"},
-			{ "<leader>ggc", "<cmd>Neogit commit<CR>", desc = "Open commit neogit ui"},
+			{ "<leader>ggg", "<cmd>Neogit kind=split<CR>", desc = "Open neogit ui" },
+			{ "<leader>ggc", "<cmd>Neogit commit<CR>", desc = "Open commit neogit ui" },
 		},
 		config = function(_, opts)
 			require("neogit").setup(opts)
@@ -104,17 +104,21 @@ return {
 	{
 		"n-shift/scratch.nvim",
 		keys = {
-			{ "<leader>x", "<Cmd>sp<CR><Cmd>ScratchNew lua<CR><C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-", desc = "Open a new scratch buffer"}
+			{
+				"<leader>x",
+				"<Cmd>sp<CR><Cmd>ScratchNew lua<CR><C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-",
+				desc = "Open a new scratch buffer",
+			},
 		},
-		event = "VeryLazy"
+		event = "VeryLazy",
 	},
 
 	-- Undotree
 	{
 		"mbbill/undotree",
 		keys = {
-			{ "<leader>tu", "<Cmd>UndotreeToggle<CR>", desc = "Toggle undo tree window"}
-		}
+			{ "<leader>tu", "<Cmd>UndotreeToggle<CR>", desc = "Toggle undo tree window" },
+		},
 	},
 
 	-- Nerdtree
@@ -158,6 +162,16 @@ return {
 					["<space>"] = "none",
 				},
 			},
+		},
+	},
+
+	-- Color picker
+	{
+		"nvim-colortils/colortils.nvim",
+		cmd = "colortils",
+		config = true,
+		keys = {
+			{ "<leader>rc", "<Cmd>Colortils picker<cr>", desc = "Pick color" },
 		},
 	},
 }

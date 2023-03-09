@@ -17,8 +17,25 @@ return {
 				terminal = {
 					term_opts = {
 						cmd = require("config").shell,
+						direction = "horizontal",
 					},
 					toggle_key = "<leader>te",
+				},
+
+				float_terminal = {
+					term_opts = {
+						cmd = require("config").shell,
+						direction = "float",
+					},
+					toggle_key = "<leader>tf",
+				},
+
+				btop = {
+					term_opts = {
+						cmd = "btop",
+						direction = "vertical",
+					},
+					toggle_key = "<leader>tm",
 				},
 			},
 			defaults = {
@@ -38,10 +55,10 @@ return {
 			require("toggleterm").setup()
 			local util = require("lazy.core.util")
 
-			local Terminal = require("toggleterm.terminal").Terminal
-
 			for tool, options in pairs(opts.tools) do
-				local term_opts = opts.defaults
+				local Terminal = require("toggleterm.terminal").Terminal
+
+				local term_opts = vim.deepcopy(opts.defaults)
 				for k, v in pairs(options.term_opts) do
 					term_opts[k] = v
 				end

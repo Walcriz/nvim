@@ -88,3 +88,13 @@ autocmd({ "BufWritePost", "TextChanged", "TextChangedI" }, {
 		vim.cmd([[call lightline#update()]])
 	end,
 })
+
+-- Checkboxes markdown
+autocmd("BufReadPre", {
+	pattern = "*.md",
+	group = augroup("checkbox_markdown"),
+	callback = function()
+		vim.keymap.set("n", "<leader><CR>", "<Plug>WorkbenchToggleCheckbox", { desc = "Check" })
+		vim.keymap.set("i", "<A-x>", "<C-o><Plug>WorkbenchToggleCheckbox", { desc = "Check" })
+	end,
+})

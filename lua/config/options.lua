@@ -1,4 +1,3 @@
-
 local opt = vim.opt
 
 -- ETC --
@@ -21,7 +20,7 @@ opt.showmode = false
 opt.laststatus = 2
 opt.pumblend = 10
 opt.pumheight = 10
-opt.shortmess:append { W = true, I = true, c = true }
+opt.shortmess:append({ W = true, I = true, c = true })
 opt.autowrite = true
 opt.updatetime = 50
 

@@ -98,6 +98,34 @@ return {
 		end,
 	},
 
+	-- Thoughts
+	{
+		"weizheheng/nvim-workbench",
+		keys = {
+			{ "<leader>dp", "<Plug>ToggleProjectWorkbench", desc = "Toggle Project Thoughts Pad" },
+			{ "<leader>db", "<Plug>ToggleBranchWorkbench", desc = "Toggle Branch Thoughts Pad" },
+		},
+		config = function()
+			require("workbench")
+
+			vim.g.workbench_border = "single"
+
+			local augroup = require("util").augroup("workbench")
+			require("util").autocmd("FileType", {
+				pattern = "md",
+				group = augroup,
+				callback = function()
+					vim.keymap.set(
+						"n",
+						"<leader><CR>",
+						"<Plug>WorkbenchToggleCheckbox",
+						{ desc = "add/toggle checkbox", noremap = false }
+					)
+				end,
+			})
+		end,
+	},
+
 	-- Undotree
 	{
 		"mbbill/undotree",
@@ -165,7 +193,7 @@ return {
 		"nvim-neorg/neorg",
 		build = ":Neorg sync-parsers",
 		keys = {
-			{ "<leader>tn", "<cmd>Neorg workspace", desc = "Open Neorg workspace" },
+			{ "<leader>tn", "<cmd>Neorg workspace<CR>", desc = "Open Neorg workspace" },
 		},
 		opts = {
 			load = {
@@ -176,11 +204,6 @@ return {
 						workspaces = {
 							notes = "~/notes",
 						},
-					},
-				},
-				["core.neorg.completion"] = {
-					config = {
-						engine = "nvim-cmp",
 					},
 				},
 			},

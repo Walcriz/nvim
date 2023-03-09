@@ -16,7 +16,7 @@ return {
 
 				terminal = {
 					term_opts = {
-						cmd = "powershell",
+						cmd = require("config").shell,
 					},
 					toggle_key = "<leader>te",
 				},

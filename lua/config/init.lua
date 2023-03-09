@@ -1,6 +1,8 @@
 return {
 	leader = " ",
 
+	shell = "powershell",
+
 	icons = {
 		diagnostics = {
 			Error = " ",
@@ -50,5 +52,5 @@ return {
 			Value = " ",
 			Variable = " ",
 		},
-	}
+	},
 }

@@ -29,6 +29,8 @@ return {
 			},
 		},
 		keys = {
+			{ "<C-W>:", [[<Cmd>wincmd h<CR>]], mode = "t" },
+
 			{ "<C-W>h", [[<Cmd>wincmd h<CR>]], mode = "t" },
 			{ "<C-W>j", [[<Cmd>wincmd j<CR>]], mode = "t" },
 			{ "<C-W>k", [[<Cmd>wincmd k<CR>]], mode = "t" },

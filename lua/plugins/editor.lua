@@ -91,7 +91,7 @@ return {
 	{
 		"TimUntersberger/neogit",
 		keys = {
-			{ "<leader>gg", "<cmd>Neogit kind=float<CR>", desc = "Open neogit" },
+			{ "<leader>gg", "<cmd>Neogit kind=split<CR>", desc = "Open neogit" },
 		},
 		config = function(_, opts)
 			require("neogit").setup(opts)

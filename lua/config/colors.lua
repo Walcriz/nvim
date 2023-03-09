@@ -174,6 +174,11 @@ require("monokai").setup({
 		TelescopeResultsDiffDelete = {
 			fg = palette.red,
 		},
+
+		-- Which key
+		WhichKeyFloat = {
+			bg = palette.darker_black,
+		},
 	},
 })
 

@@ -13,7 +13,7 @@ return {
 			-- find
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
 			{ "ff", Util.telescope("files"), desc = "Find Files (root dir)" },
-			{ "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+			{ "fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
 			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
 			-- git
 			{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
@@ -97,6 +97,9 @@ return {
 						["<a-h>"] = function()
 							Util.telescope("find_files", { hidden = true })()
 						end,
+						["<a-b>"] = function()
+							Util.telescope("file_browser", { hidden = true })()
+						end,
 						["<C-Down>"] = function(...)
 							return require("telescope.actions").cycle_history_next(...)
 						end,
@@ -135,7 +138,7 @@ return {
 				layout_config = {
 					horizontal = {
 						prompt_position = "bottom",
-						preview_width = 0.55,
+						preview_width = 0.52,
 						results_width = 0.8,
 					},
 					vertical = {
@@ -188,8 +191,10 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		keys = {
-			{ "fn", "<cmd>Telescope file_browser disable_devicons=false<cr>", desc = "File Browser" },
+		keys = { -- Telescope file_browser path=" .. Util.get_root()
+            -- stylua: ignore
+			{ "fn", function() vim.cmd("Telescope file_browser path=" .. Util.get_root() .. " hidden=true") end, desc = "File Browser" },
+			{ "fN", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
 		},
 		lazy = true,
 	},

@@ -1,5 +1,6 @@
 local coc_languages = {
 	"java",
+	"cs",
 	"xml",
 }
 
@@ -56,6 +57,9 @@ return {
 					},
 				},
 			},
+
+			disabled_filetypes = coc_languages,
+
 			-- you can do any additional lsp server setup here
 			-- return true if you don't want this server to be setup with lspconfig
 			---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
@@ -74,7 +78,8 @@ return {
 			-- setup autoformat
 			require("plugins.lsp.format").autoformat = opts.autoformat
 			-- setup formatting and keymaps
-			require("util").on_attach(function(client, buffer)
+			local util = require("util")
+			util.on_attach(function(client, buffer)
 				require("plugins.lsp.format").on_attach(client, buffer)
 				require("plugins.lsp.keymaps").on_attach(client, buffer)
 			end)
@@ -131,6 +136,15 @@ return {
 				end
 			end
 
+			local augroup = util.augroup("Cmp-Disable")
+			util.autocmd("BufEnter", {
+				group = augroup,
+				pattern = "*.cs",
+				callback = function()
+					require("cmp").setup.buffer({ enabled = false })
+				end,
+			})
+
 			require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup_handlers({ setup })
 		end,
@@ -144,7 +158,6 @@ return {
 		build = "yarn install --frozen-lockfile",
 		opts = {
 			ensure_installed = {
-				"coc-diagnostic",
 				"coc-java",
 				"coc-xml",
 				"coc-snippets",
@@ -179,13 +192,6 @@ return {
 				coc_diag_record = {}
 			end
 
-			local group = require("util").augroup("coc")
-			require("util").autocmd("CursorHold", {
-				group = group,
-				command = "silent call CocActionAsync('highlight')",
-				desc = "Highlight symbol under cursor on CursorHold",
-			})
-
 			require("util").autocmd("Filetype", {
 				pattern = coc_languages,
 				group = group,
@@ -214,18 +220,26 @@ return {
 
 					map("n", "<leader>rr", "<Plug>(coc-codeaction-cursor)", { desc = "Do code action" })
 					map("n", "<leader>ra", "<Plug>(coc-codeaction-selected)", { desc = "Do code action for selected" })
-					map(
-						"n",
-						"<leader>ra",
-						"<Plug>(coc-codeaction-selected)",
-						{ desc = "Do code action for selected", mode = "v" }
-					)
+					map("v", "<leader>ra", "<Plug>(coc-codeaction-selected)", { desc = "Do code action for selected" })
 					map("n", "<leader>rs", "<Plug>(coc-codeaction-source)", { desc = "Do code action in whole buffer" })
 					map("n", "<leader>rf", "<Plug>(coc-fix-current)", { desc = "Quickfix" })
 
 					map("n", "<leader>rl", "<Plug>(coc-codelens-action)", { desc = "Do codelens action" })
 
 					map("n", "rr", "<Plug>(coc-rename)", { desc = "Rename variable or function" })
+
+					map(
+						"i",
+						"<C-d>",
+						[[coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"]],
+						{ desc = "Scroll down in float", expr = true, silent = true }
+					)
+					map(
+						"i",
+						"<C-u>",
+						[[coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"]],
+						{ desc = "Scroll up in float", expr = true, silent = true }
+					)
 				end,
 			})
 

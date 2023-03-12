@@ -2,6 +2,10 @@ return {
 	{
 		"OmniSharp/omnisharp-vim",
 		ft = "cs",
+		event = {
+			"BufReadPre *.cs",
+			"BufNewFile *.cs",
+		},
 		config = function()
 			vim.g.omnicomplete_fetch_full_documentation = 1
 			vim.g.OmniSharp_highlighting = 0
@@ -15,8 +19,8 @@ return {
 			}
 
 			local augroup = require("util").augroup("omnisharp")
-			require("util").autocmd("FileType", {
-				pattern = "cs",
+			require("util").autocmd({ "BufEnter" }, {
+				pattern = "*.cs",
 				group = augroup,
 				callback = function()
 					-- Keybinds
@@ -164,6 +168,7 @@ return {
 		dependencies = {
 			"dense-analysis/ale",
 			"junegunn/fzf",
+			"neoclide/coc.nvim",
 		},
 	},
 
@@ -182,5 +187,15 @@ return {
 			vim.g.ale_linters_explicit = 1
 		end,
 		ft = { "cs" },
+	},
+
+	-- Disable built in lsp
+	{
+		"neovim/nvim-lspconfig",
+		opts = function(_, opts)
+			if type(opts.disabled_filetypes) == "table" then
+				vim.list_extend(opts.disabled_filetypes, { "cs" })
+			end
+		end,
 	},
 }

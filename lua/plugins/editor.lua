@@ -90,28 +90,34 @@ return {
 	-- Neogit
 	{
 		"TimUntersberger/neogit",
+		commit = "0af5fc831989320a5c3dcf860c871e77e218085f",
 		keys = {
 			{ "<leader>gg", "<cmd>Neogit kind=split<CR>", desc = "Open neogit" },
 		},
+		opts = {},
 		config = function(_, opts)
 			require("neogit").setup(opts)
 		end,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+		},
 	},
 
 	-- Thoughts
-	{
-		"weizheheng/nvim-workbench",
-		keys = {
-			{ "<leader>dp", "<Plug>ToggleProjectWorkbench", desc = "Toggle Project Thoughts Pad" },
-			{ "<leader>db", "<Plug>ToggleBranchWorkbench", desc = "Toggle Branch Thoughts Pad" },
-		},
-		config = function()
-			require("workbench")
+	-- {
+	-- 	"weizheheng/nvim-workbench",
+	-- 	keys = {
+	-- 		{ "<leader>dp", "<Plug>ToggleProjectWorkbench", desc = "Toggle Project Thoughts Pad" },
+	-- 		{ "<leader>db", "<Plug>ToggleBranchWorkbench", desc = "Toggle Branch Thoughts Pad" },
+	-- 	},
+	-- 	config = function()
+	-- 		require("workbench")
 
-			vim.g.workbench_border = "single"
-		end,
-		event = "VeryLazy",
-	},
+	-- 		vim.g.workbench_border = "single"
+	-- 	end,
+	-- 	event = "VeryLazy",
+	-- },
 
 	-- Undotree
 	{

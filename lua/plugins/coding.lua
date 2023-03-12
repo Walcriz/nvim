@@ -27,206 +27,217 @@ return {
 			{ "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
 		},
 	},
-    -- CMP
-    {
-        "hrsh7th/nvim-cmp",
-        version = false, -- last release is way too old
-        event = "InsertEnter",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "saadparwaiz1/cmp_luasnip",
-        },
-        opts = function()
-            local cmp = require("cmp")
-            return {
-                completion = {
-                    completeopt = "menu,menuone,noinsert",
-                },
-                snippet = {
-                    expand = function(args)
-                        require("luasnip").lsp_expand(args.body)
-                    end,
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-                    ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                    ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<C-e>"] = cmp.mapping.abort(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                    ["<S-CR>"] = cmp.mapping.confirm({
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = true,
-                    }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                }),
-                sources = cmp.config.sources({
-                    { name = "nvim_lsp" },
-                    { name = "luasnip" },
-                    { name = "buffer" },
-                    { name = "path" },
-                }),
-                formatting = {
-                    format = function(_, item)
-                        local icons = require("config").icons.kinds
-                        if icons[item.kind] then
-                            item.kind = icons[item.kind] .. item.kind
-                        end
-                        return item
-                    end,
-                },
-                experimental = {
-                    ghost_text = {
-                        hl_group = "LspCodeLens",
-                    },
-                },
-            }
-        end,
-    },
+	-- CMP
+	{
+		"hrsh7th/nvim-cmp",
+		version = false, -- last release is way too old
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"saadparwaiz1/cmp_luasnip",
+		},
+		opts = function()
+			local cmp = require("cmp")
+			return {
+				completion = {
+					completeopt = "menu,menuone,noinsert",
+				},
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({
+					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-e>"] = cmp.mapping.abort(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+					["<S-CR>"] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true,
+					}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				}),
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+					{ name = "buffer" },
+					{ name = "path" },
+				}),
+				formatting = {
+					format = function(_, item)
+						local icons = require("config").icons.kinds
+						if icons[item.kind] then
+							item.kind = icons[item.kind] .. item.kind
+						end
+						return item
+					end,
+				},
+				experimental = {
+					ghost_text = {
+						hl_group = "LspCodeLens",
+					},
+				},
+			}
+		end,
+	},
 
-    -- auto pairs
-    {
-        "echasnovski/mini.pairs",
-        lazy = false,
-        config = function(_, opts)
-            require("mini.pairs").setup(opts)
-        end,
-    },
+	-- auto pairs
+	{
+		"echasnovski/mini.pairs",
+		lazy = false,
+		opts = {
+			mappings = {
+				["<"] = { action = "open", pair = "<>", neigh_pattern = "[^\\]." },
+				[">"] = { action = "close", pair = "<>", neigh_pattern = "[^\\]." },
+			},
+		},
+		config = function(_, opts)
+			require("mini.pairs").setup(opts)
+		end,
+	},
 
-    -- Commentary
-    { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-    {
-        "tpope/vim-commentary",
-        event = "VeryLazy",
-    },
+	-- Commentary
+	{ "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
+	{
+		"tpope/vim-commentary",
+		event = "VeryLazy",
+	},
 
-    -- better text-objects
-    {
-        "echasnovski/mini.ai",
-        -- keys = {
-        --   { "a", mode = { "x", "o" } },
-        --   { "i", mode = { "x", "o" } },
-        -- },
-        event = "VeryLazy",
-        dependencies = { "nvim-treesitter-textobjects" },
-        opts = function()
-            local ai = require("mini.ai")
-            return {
-                n_lines = 500,
-                custom_textobjects = {
-                    o = ai.gen_spec.treesitter({
-                        a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-                        i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-                    }, {}),
-                    f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
-                    c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
-                },
-            }
-        end,
-        config = function(_, opts)
-            require("mini.ai").setup(opts)
-            -- register all text objects with which-key
-            if require("util").has("which-key.nvim") then
-                ---@type table<string, string|table>
-                local i = {
-                    [" "] = "Whitespace",
-                    ['"'] = 'Balanced "',
-                    ["'"] = "Balanced '",
-                    ["`"] = "Balanced `",
-                    ["("] = "Balanced (",
-                    [")"] = "Balanced ) including white-space",
-                    [">"] = "Balanced > including white-space",
-                    ["<lt>"] = "Balanced <",
-                    ["]"] = "Balanced ] including white-space",
-                    ["["] = "Balanced [",
-                    ["}"] = "Balanced } including white-space",
-                    ["{"] = "Balanced {",
-                    ["?"] = "User Prompt",
-                    _ = "Underscore",
-                    a = "Argument",
-                    b = "Balanced ), ], }",
-                    c = "Class",
-                    f = "Function",
-                    o = "Block, conditional, loop",
-                    q = "Quote `, \", '",
-                    t = "Tag",
-                }
-                local a = vim.deepcopy(i)
-                for k, v in pairs(a) do
-                    a[k] = v:gsub(" including.*", "")
-                end
+	-- better text-objects
+	{
+		"echasnovski/mini.ai",
+		-- keys = {
+		--   { "a", mode = { "x", "o" } },
+		--   { "i", mode = { "x", "o" } },
+		-- },
+		event = "VeryLazy",
+		dependencies = { "nvim-treesitter-textobjects" },
+		opts = function()
+			local ai = require("mini.ai")
+			return {
+				n_lines = 500,
+				custom_textobjects = {
+					o = ai.gen_spec.treesitter({
+						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+					}, {}),
+					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
+					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+				},
+			}
+		end,
+		config = function(_, opts)
+			require("mini.ai").setup(opts)
+			-- register all text objects with which-key
+			if require("util").has("which-key.nvim") then
+				---@type table<string, string|table>
+				local i = {
+					[" "] = "Whitespace",
+					['"'] = 'Balanced "',
+					["'"] = "Balanced '",
+					["`"] = "Balanced `",
+					["("] = "Balanced (",
+					[")"] = "Balanced ) including white-space",
+					[">"] = "Balanced > including white-space",
+					["<lt>"] = "Balanced <",
+					["]"] = "Balanced ] including white-space",
+					["["] = "Balanced [",
+					["}"] = "Balanced } including white-space",
+					["{"] = "Balanced {",
+					["?"] = "User Prompt",
+					_ = "Underscore",
+					a = "Argument",
+					b = "Balanced ), ], }",
+					c = "Class",
+					f = "Function",
+					o = "Block, conditional, loop",
+					q = "Quote `, \", '",
+					t = "Tag",
+				}
+				local a = vim.deepcopy(i)
+				for k, v in pairs(a) do
+					a[k] = v:gsub(" including.*", "")
+				end
 
-                local ic = vim.deepcopy(i)
-                local ac = vim.deepcopy(a)
-                for key, name in pairs({ n = "Next", l = "Last" }) do
-                    i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
-                    a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
-                end
-                require("which-key").register({
-                mode = { "o", "x" },
-                    i = i,
-                    a = a,
-                })
-            end
-        end,
+				local ic = vim.deepcopy(i)
+				local ac = vim.deepcopy(a)
+				for key, name in pairs({ n = "Next", l = "Last" }) do
+					i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
+					a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+				end
+				require("which-key").register({
+					mode = { "o", "x" },
+					i = i,
+					a = a,
+				})
+			end
+		end,
 
-        -- Quick actions and refactorings
-        {
-            "ThePrimeagen/refactoring.nvim",
-            dependencies = {
-                "nvim-lua/plenary.nvim",
-                "nvim-treesitter/nvim-treesitter"
-            },
-            keys = {
-                { "<leader>rk", "<Esc><Cmd>lua require('refactoring').select_refactor()<CR>", desc = "Select refactoring (refactoring.nvim)", mode = "v" },
-            },
-            config = function(_, opts)
-                require("refactoring").setup(opts)
-            end,
-        },
+		-- Quick actions and refactorings
+		{
+			"ThePrimeagen/refactoring.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-treesitter/nvim-treesitter",
+			},
+			keys = {
+				{
+					"<leader>rk",
+					"<Esc><Cmd>lua require('refactoring').select_refactor()<CR>",
+					desc = "Select refactoring (refactoring.nvim)",
+					mode = "v",
+				},
+			},
+			config = function(_, opts)
+				require("refactoring").setup(opts)
+			end,
+		},
 
-        -- references
-        {
-            "RRethy/vim-illuminate",
-            event = { "BufReadPost", "BufNewFile" },
-            opts = { delay = 200 },
-            config = function(_, opts)
-                require("illuminate").configure(opts)
+		-- references
+		{
+			"RRethy/vim-illuminate",
+			event = { "BufReadPost", "BufNewFile" },
+			opts = { delay = 200 },
+			config = function(_, opts)
+				require("illuminate").configure(opts)
 
-                local function map(key, dir, buffer)
-                    vim.keymap.set("n", key, function()
-                        require("illuminate")["goto_" .. dir .. "_reference"](false)
-                    end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
-                end
+				local function map(key, dir, buffer)
+					vim.keymap.set("n", key, function()
+						require("illuminate")["goto_" .. dir .. "_reference"](false)
+					end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+				end
 
-                map("ää", "next")
-                map("åå", "prev")
+				map("ää", "next")
+				map("åå", "prev")
 
-                -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-                vim.api.nvim_create_autocmd("FileType", {
-                    callback = function()
-                        local buffer = vim.api.nvim_get_current_buf()
-                        map("ää", "next", buffer)
-                        map("åå", "prev", buffer)
-                    end,
-                })
-            end,
-            keys = {
-                { "ää", desc = "Next Reference" },
-                { "åå", desc = "Prev Reference" },
-            },
-        },
-    },
+				-- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+				vim.api.nvim_create_autocmd("FileType", {
+					callback = function()
+						local buffer = vim.api.nvim_get_current_buf()
+						map("ää", "next", buffer)
+						map("åå", "prev", buffer)
+					end,
+				})
+			end,
+			keys = {
+				{ "ää", desc = "Next Reference" },
+				{ "åå", desc = "Prev Reference" },
+			},
+		},
+	},
 
-    -- buffer remove
-    {
-        "echasnovski/mini.bufremove",
+	-- buffer remove
+	{
+		"echasnovski/mini.bufremove",
         -- stylua: ignore
         keys = {
             { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
             { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
         },
-    },
+	},
 }

@@ -2,6 +2,7 @@ local coc_languages = {
 	"java",
 	"cs",
 	"xml",
+	"json",
 }
 
 return {
@@ -227,19 +228,6 @@ return {
 					map("n", "<leader>rl", "<Plug>(coc-codelens-action)", { desc = "Do codelens action" })
 
 					map("n", "rr", "<Plug>(coc-rename)", { desc = "Rename variable or function" })
-
-					map(
-						"i",
-						"<C-d>",
-						[[coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"]],
-						{ desc = "Scroll down in float", expr = true, silent = true }
-					)
-					map(
-						"i",
-						"<C-u>",
-						[[coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"]],
-						{ desc = "Scroll up in float", expr = true, silent = true }
-					)
 				end,
 			})
 
@@ -263,12 +251,6 @@ return {
 			autocmd User CocNvimInit call s:InitCoc()
 			autocmd User CocDiagnosticChange call s:DiagnosticNotify()
 			autocmd User CocStatusChange call s:StatusNotify()
-            nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-            nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-            inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-            inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-            vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-            vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 			]])
 		end,
 		dependencies = {

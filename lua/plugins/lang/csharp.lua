@@ -17,6 +17,7 @@ return {
 				[[\.nuget\\]],
 				[[\<AssemblyInfo\.cs\>]],
 			}
+			vim.g.OmniSharp_popup_position = "peek"
 
 			local augroup = require("util").augroup("omnisharp")
 			require("util").autocmd({ "BufEnter" }, {

@@ -19,12 +19,14 @@ return {
 			setup = {
 				omnisharp = function(_, opts)
 					require("util").on_attach(function(client, buffer)
-						vim.keymap.set(
-							"n",
-							"gd",
-							"<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>",
-							{ noremap = false, buffer = buffer, desc = "Goto definition" }
-						)
+						if client.name == "omnisharp" or client.name == "omnisharp_mono" then
+							vim.keymap.set(
+								"n",
+								"gd",
+								"<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>",
+								{ noremap = false, buffer = buffer, desc = "Goto definition" }
+							)
+						end
 					end)
 				end,
 			},

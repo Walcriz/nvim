@@ -92,8 +92,8 @@ return {
 		lazy = false,
 		opts = {
 			mappings = {
-				["<"] = { action = "open", pair = "<>", neigh_pattern = "[^\\]." },
-				[">"] = { action = "close", pair = "<>", neigh_pattern = "[^\\]." },
+				["<"] = { action = "open", pair = "<>", neigh_pattern = "[^ \t].", register = { cr = false } },
+				[">"] = { action = "close", pair = "<>", neigh_pattern = "[^ \t].", register = { cr = false } },
 			},
 		},
 		config = function(_, opts)

@@ -72,6 +72,8 @@ return {
 			rainbow = {
 				enabled = true,
 
+				disable = { "html" },
+
 				hlgroups = {
 					"TSRainbow1",
 					"TSRainbow2",

@@ -170,4 +170,12 @@ return {
 		"NvChad/nvim-colorizer.lua",
 		event = "VeryLazy",
 	},
+
+	-- Scrollbar
+	-- {
+	-- 	"petertriho/nvim-scrollbar",
+	-- 	opts = {},
+	-- 	config = true,
+	-- 	event = "VeryLazy",
+	-- },
 }

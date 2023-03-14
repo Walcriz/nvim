@@ -4,6 +4,10 @@ local map = Util.map
 map("i", "<C-H>", "<C-W>", { desc = "" })
 map("i", "<C-H>", "<C-W>")
 
+-- Go back to previous file
+map("i", "<C-b>", "<C-6>", { desc = "Jump back to previous file" })
+map("n", "<C-b>", "<C-6>", { desc = "Jump back to previous file" })
+
 -- Make CTRL + Backspace work
 map("i", "<C-H>", "<C-W>", { desc = "Make CTRL + Backspace Work" })
 

@@ -1,6 +1,5 @@
 local coc_languages = {
 	"java",
-	"cs",
 	"xml",
 	"json",
 }
@@ -136,15 +135,6 @@ return {
 					end
 				end
 			end
-
-			local augroup = util.augroup("Cmp-Disable")
-			util.autocmd("BufEnter", {
-				group = augroup,
-				pattern = "*.cs",
-				callback = function()
-					require("cmp").setup.buffer({ enabled = false })
-				end,
-			})
 
 			require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup_handlers({ setup })

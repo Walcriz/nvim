@@ -188,9 +188,7 @@ require("monokai").setup({
 })
 
 vim.cmd([[
-hi Normal guibg=NONE ctermbg=NONE
-hi LineNr guibg=NONE ctermbg=NONE
-hi SignColumn guibg=NONE ctermbg=NONE
+    hi Normal guibg=NONE ctermbg=NONE
+    hi LineNr guibg=NONE ctermbg=NONE
+    hi SignColumn guibg=NONE ctermbg=NONE
 ]])
-
--- Configure Rainbow Delimiters

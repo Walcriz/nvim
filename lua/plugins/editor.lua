@@ -14,10 +14,10 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		keys = {
-			{ "<leader>ö", "<cmd>Telescope harpoon marks<cr>", desc = "Search harpoon marks" },
-			{ "<leader>nj", '<cmd>lua require("harpoon").add_file()<cr>', desc = "Create new harpoon file mark" },
-			{ "<leader>nl", '<cmd>lua require("harpoon").nav_next()<cr>', desc = "Go to next harpoon file mark" },
-			{ "<leader>nh", '<cmd>lua require("harpoon").nav_prev()<cr>', desc = "Go to next harpoon file mark" },
+			{ "fö", "<cmd>Telescope harpoon marks<cr>", desc = "Search harpoon marks" },
+			{ "Ö", '<cmd>lua require("harpoon").add_file()<cr>', desc = "Create new harpoon file mark" },
+			{ "Å", '<cmd>lua require("harpoon").nav_next()<cr>', desc = "Go to next harpoon file mark" },
+			{ "Ä", '<cmd>lua require("harpoon").nav_prev()<cr>', desc = "Go to prev harpoon file mark" },
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",

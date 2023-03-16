@@ -1,7 +1,5 @@
 local coc_languages = {
 	"java",
-	"xml",
-	"json",
 }
 
 return {

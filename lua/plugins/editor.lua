@@ -207,4 +207,11 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 	},
+
+	-- GitSigns
+	{
+		"lewis6991/gitsigns.nvim",
+		config = true,
+		event = { "BufNewFile", "BufReadPost" },
+	},
 }

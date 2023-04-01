@@ -1,45 +1,45 @@
 return {
 
-  -- add typescript to treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
-      end
-    end,
-  },
+	-- add typescript to treesitter
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = function(_, opts)
+			if type(opts.ensure_installed) == "table" then
+				vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
+			end
+		end,
+	},
 
-  -- correctly setup lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "jose-elias-alvarez/typescript.nvim" },
-    opts = {
-      -- make sure mason installs the server
-      servers = {
-        ---@type lspconfig.options.tsserver
-        tsserver = {
-          settings = {
-            completions = {
-              completeFunctionCalls = true,
-            },
-          },
-        },
-      },
-      setup = {
-        tsserver = function(_, opts)
-          require("util").on_attach(function(client, buffer)
-            if client.name == "tsserver" then
+	-- correctly setup lspconfig
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = { "jose-elias-alvarez/typescript.nvim" },
+		opts = {
+			-- make sure mason installs the server
+			servers = {
+				---@type lspconfig.options.tsserver
+				tsserver = {
+					settings = {
+						completions = {
+							completeFunctionCalls = true,
+						},
+					},
+				},
+			},
+			setup = {
+				tsserver = function(_, opts)
+					require("util").on_attach(function(client, buffer)
+						if client.name == "tsserver" then
               -- stylua: ignore
               vim.keymap.set("n", "<leader>ro", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
               -- stylua: ignore
               vim.keymap.set("n", "<leader>rR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
-            end
-          end)
-          require("typescript").setup({ server = opts })
-          return true
-        end,
-      },
-    },
-  },
+						end
+					end)
+					require("typescript").setup({ server = opts })
+					return true
+				end,
+			},
+		},
+	},
 }

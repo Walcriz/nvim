@@ -178,4 +178,18 @@ return {
 	-- 	config = true,
 	-- 	event = "VeryLazy",
 	-- },
+
+	-- DAP Ui
+	{
+		"rcarriga/nvim-dap-ui",
+		keys = {
+			{ "<leader>dU", [[<cmd>lua require("dapui").toggle()<cr>]], desc = "Toggle UI" },
+			{ "<leader>de", [[<cmd>lua require("dapui").eval()<cr>]], desc = "Eval Code" },
+			{ "<leader>de", [[<cmd>lua require("dapui").eval()<cr>]], desc = "Eval Code", mode = "v" },
+		},
+		dependencies = {
+			"mfussenegger/nvim-dap",
+		},
+		lazy = true,
+	},
 }

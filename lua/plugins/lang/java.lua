@@ -6,7 +6,7 @@ return {
 
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "mfussenegger/nvim-jdtls" },
+		dependencies = { "mfussenegger/nvim-jdtls", "nvim-lua/plenary.nvim" },
 		opts = {
 			servers = {
 				jdtls = {
@@ -73,12 +73,7 @@ return {
 									},
 									configuration = {
 										updateBuildConfiguration = "interactive",
-										-- runtimes = {
-										--   {
-										--     name = "JavaSE-17",
-										--     path = "/home/jrakhman/.sdkman/candidates/java/17.0.4-oracle",
-										--   },
-										-- },
+										runtimes = require("config").java.runtimes, -- Runtimes are set in lua/config/init.lua
 									},
 									maven = {
 										downloadSources = true,
@@ -112,6 +107,12 @@ return {
 										"java.util.Objects.requireNonNullElse",
 										"org.mockito.Mockito.*",
 									},
+									importOrder = {
+										"java",
+										"javax",
+										"com",
+										"org",
+									},
 								},
 								contentProvider = { preferred = "fernflower" },
 								extendedClientCapabilities = extendedClientCapabilities,
@@ -142,11 +143,12 @@ return {
 
 			setup = {
 				jdtls = function(_, opts)
-					require("util").on_attach(function(client, buffer)
-						if client.name == "jdtls" then
-							require("jdtls").start_or_attach(opts.settings())
-						end
-					end)
+					require("plenary.async").run(function()
+						require("jdtls").start_or_attach(opts.settings())
+						vim.keymap.set("i", "<C-c>", "<esc>", { noremap = true })
+						vim.keymap.set("n", "<C-c>", "<esc>", { noremap = true })
+						vim.keymap.set("v", "<C-c>", "<esc>", { noremap = true })
+					end, function() end)
 				end,
 			},
 		},

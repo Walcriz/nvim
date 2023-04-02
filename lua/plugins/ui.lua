@@ -171,14 +171,6 @@ return {
 		event = "VeryLazy",
 	},
 
-	-- Scrollbar
-	-- {
-	-- 	"petertriho/nvim-scrollbar",
-	-- 	opts = {},
-	-- 	config = true,
-	-- 	event = "VeryLazy",
-	-- },
-
 	-- DAP Ui
 	{
 		"rcarriga/nvim-dap-ui",

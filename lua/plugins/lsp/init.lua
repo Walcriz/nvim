@@ -14,6 +14,7 @@ return {
 					return require("util").has("nvim-cmp")
 				end,
 			},
+			"ray-x/lsp_signature.nvim",
 		},
 		---@class PluginLspOpts
 		opts = {

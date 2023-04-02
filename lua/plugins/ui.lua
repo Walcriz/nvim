@@ -192,4 +192,14 @@ return {
 		},
 		lazy = true,
 	},
+
+	{
+		"ray-x/lsp_signature.nvim",
+		opts = {
+			bind = true,
+		},
+		config = function(_, opts)
+			require("lsp_signature").setup(opts)
+		end,
+	},
 }

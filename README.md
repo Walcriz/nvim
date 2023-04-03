@@ -30,7 +30,6 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 - On windows (right now) to use treesitters [**html** and **yaml** parsers](https://github.com/nvim-treesitter/nvim-treesitter/issues/3587)
 you need to remove the `libstdc++-6.dll`
 file in neovim's installiation files. (This is to make it use the system installed one **MAKE SURE TO HAVE gcc INSTALLED**)
-- The coc-lua extension does not work
 
 ### WSL
 - I would recommend to install [GWSL](https://opticos.github.io/gwsl/) for its clipboard sync feature

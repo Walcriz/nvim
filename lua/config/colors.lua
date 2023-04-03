@@ -7,6 +7,7 @@ palette.popup = "#1d1b1e"
 palette.black = "#242730"
 palette.black2 = "#292c35"
 palette.darker_black = "#1f222b"
+palette.linehighlight = "#2c323d"
 
 require("monokai").setup({
 	palette = palette,
@@ -184,6 +185,14 @@ require("monokai").setup({
 		NormalFloat = {
 			bg = palette.darker_black,
 		},
+
+		-- Tabbar
+		-- LightlineLeft_tabline_tabsel = {
+		-- 	bg = "#020204",
+		-- },
+		-- LightlineRight_tabline_tabsel = {
+		-- 	bg = "#020204",
+		-- },
 	},
 })
 

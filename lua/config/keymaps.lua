@@ -94,12 +94,12 @@ end, { desc = "Terminal (cwd)" })
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- tabs
-map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>k", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>j", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+map("n", "<tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+map("n", "<tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<tab>k", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<tab>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<tab>j", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Snippets
 vim.g.coc_snippet_next = "<TAB>"

@@ -85,8 +85,8 @@ function M.setuptabs()
 
 	local augroup = util.augroup("tabprofiles")
 	for lang, profile in pairs(profiles.lang) do
-		util.autocmd({ "BufReadPre", "BufNewFile" }, {
-			pattern = "*." .. lang,
+		util.autocmd({ "FileType" }, {
+			pattern = lang,
 			group = augroup,
 			callback = function()
 				util.setuptabs(vim.opt_local, profile)

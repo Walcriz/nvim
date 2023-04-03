@@ -42,7 +42,7 @@ return { -- Define custom indentation profiles for specific languages in this fi
 		},
 
 		lua = { -- Lua
-			usetabs = false,
+			usetabs = true,
 			tabsize = 2,
 		},
 	},

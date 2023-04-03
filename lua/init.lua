@@ -23,6 +23,9 @@ function M.init()
 		-- this is needed to make sure options will be correctly applied
 		-- after installing missing plugins
 		M.load("options")
+
+		-- Load Tab Profiles here to make sure they get loaded
+		M.setuptabs()
 	end
 end
 
@@ -71,9 +74,27 @@ function M.load(name) -- Fully taken from https://github.com/LazyVim/LazyVim/blo
 	_load("config." .. name)
 
 	if vim.bo.filetype == "lazy" then
-		-- HACK: WalVim may have overwritten options of the Lazy ui, so reset this here
+		-- HACK: Neovim may have overwritten options of the Lazy ui, so reset this here
 		vim.cmd([[do VimResized]])
 	end
+end
+
+function M.setuptabs()
+	local util = require("util")
+	local profiles = require("config.tabprofiles")
+
+	local augroup = util.augroup("tabprofiles")
+	for lang, profile in pairs(profiles.lang) do
+		util.autocmd({ "BufReadPre", "BufNewFile" }, {
+			pattern = "*." .. lang,
+			group = augroup,
+			callback = function()
+				util.setuptabs(vim.opt_local, profile)
+			end,
+		})
+	end
+
+	util.setuptabs(vim.opt, profiles.default)
 end
 
 return M

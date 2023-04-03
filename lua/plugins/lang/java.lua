@@ -144,7 +144,7 @@ return {
 			setup = {
 				jdtls = function(_, opts)
 					require("plenary.async").run(function()
-						require("jdtls").start_or_attach(opts.settings())
+						-- require("jdtls").start_or_attach(opts.settings())
 						vim.keymap.set("i", "<C-c>", "<esc>", { noremap = true })
 						vim.keymap.set("n", "<C-c>", "<esc>", { noremap = true })
 						vim.keymap.set("v", "<C-c>", "<esc>", { noremap = true })

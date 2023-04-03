@@ -51,11 +51,11 @@ opt.smartcase = true
 -- FILE SETTINGS --
 opt.formatoptions = "jcroqlnt"
 
--- TABS AND SPACES SETTINGS --
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
+-- TABS AND SPACES SETTINGS -- NOTE: NOW SET IN config/tabprofiles.lua
+-- opt.tabstop = 2
+-- opt.softtabstop = 2
+-- opt.shiftwidth = 2
+-- opt.expandtab = true
 
 -- WINDOW SETTINGS --
 opt.splitbelow = true

@@ -154,7 +154,7 @@ function M.toggle_diagnostics()
 end
 
 function M.deprecate(old, new)
-	Util.warn(("`%s` is deprecated. Please use `%s` instead"):format(old, new), { title = "LazyVim" })
+	Util.warn(("`%s` is deprecated. Please use `%s` instead"):format(old, new), { title = "Neovim" })
 end
 
 -- delay notifications till vim.notify was replaced or after 500ms
@@ -206,6 +206,24 @@ end
 
 function M.autocmd(action, opts)
 	return vim.api.nvim_create_autocmd(action, opts)
+end
+
+function M.setuptabs(opt, profile)
+	if profile.usetabs then
+		opt.tabstop = profile.tabsize
+		opt.shiftwidth = profile.tabsize
+
+		opt.softtabstop = 0
+		opt.expandtab = false
+		opt.smarttab = true
+	else
+		opt.shiftwidth = profile.tabsize
+		opt.smarttab = true
+		opt.expandtab = true
+
+		opt.tabstop = profile.tabsize
+		opt.softtabstop = 0
+	end
 end
 
 return M

@@ -194,4 +194,9 @@ return {
 			require("lsp_signature").setup(opts)
 		end,
 	},
+
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	event = "VeryLazy",
+	-- },
 }

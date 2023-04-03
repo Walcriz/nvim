@@ -33,8 +33,6 @@ file in neovim's installiation files. (This is to make it use the system install
 - The coc-lua extension does not work
 
 ### WSL
-- In wsl i would recommend not writing C# code in wsl write that in windows native instead
-(spoiler alert: **It is a pain to set up with [omnisharp.vim](https://github.com/OmniSharp/Omnisharp-vim)**)
 - I would recommend to install [GWSL](https://opticos.github.io/gwsl/) for its clipboard sync feature
 
 ### Neovim 0.9

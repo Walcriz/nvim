@@ -86,6 +86,18 @@ require("monokai").setup({
 			fg = palette.pink,
 			style = "bold",
 		},
+		["@storageclass"] = {
+			fg = palette.pink,
+		},
+		["@punctuation.delimiter"] = {
+			fg = "#838c8c",
+		},
+		["@variable"] = {
+			fg = "#fcfcfa",
+		},
+		["@punctuation.bracket"] = {
+			fg = "#9b9cf1",
+		},
 
 		-- Git
 		GitGutterAdd = {
@@ -193,6 +205,10 @@ require("monokai").setup({
 		-- LightlineRight_tabline_tabsel = {
 		-- 	bg = "#020204",
 		-- },
+
+		IndentBlankline = {
+			fg = "#29272b",
+		},
 	},
 })
 

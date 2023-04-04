@@ -92,7 +92,7 @@ return {
 ⠀⠈⠻⣿⣷⣶⣤⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀
 ⠀⠀⠀⠈⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠉⠙⠛⠿⠿⠿⠿⠿⠛⠋
-      ]]
+			]]
 
 			dashboard.section.header.val = vim.split(logo, "\n")
 			dashboard.section.buttons.val = {
@@ -162,10 +162,10 @@ return {
 	},
 
 	-- Rainbow brackets/delimiters
-	{
-		"HiPhish/nvim-ts-rainbow2",
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	"HiPhish/nvim-ts-rainbow2",
+	-- 	event = "VeryLazy",
+	-- },
 	-- { "p00f/nvim-ts-rainbow", lazy = true}
 
 	-- Colorize colors
@@ -198,11 +198,22 @@ return {
 		end,
 	},
 
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	event = "VeryLazy",
-	-- },
-	--
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("indent_blankline").setup({
+				-- for example, context is off by default, use this to turn it on
+				show_current_context = false,
+				show_current_context_start = false,
+				char_highlight_list = {
+					"IndentBlankline",
+				},
+				show_trailing_blankline_indent = false,
+			})
+		end,
+	},
+
 	{
 		"nanozuki/tabby.nvim",
 		opts = {

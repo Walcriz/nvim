@@ -246,4 +246,20 @@ return {
 		"NMAC427/guess-indent.nvim",
 		config = true,
 	},
+
+	-- Context at top
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter-context",
+	-- 	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	-- 	opts = {
+	-- 		enable = true,
+	-- 		max_lines = 3,
+	-- 		trim_scope = "inner",
+	-- 	},
+	-- 	config = function(_, opts)
+	-- 		require("treesitter-context").setup(opts)
+	-- 		vim.cmd("hi TreesitterContext guibg=NONE ctermbg=NONE")
+	-- 	end,
+	-- 	event = { "BufReadPost", "BufNewFile" },
+	-- },
 }

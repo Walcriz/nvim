@@ -70,9 +70,15 @@ return {
 				},
 			},
 			rainbow = {
-				enabled = true,
+				enable = true,
 
 				disable = { "html" },
+
+				-- colors = {
+				-- 	"#FFD865",
+				-- 	"#AB9DF2",
+				-- 	"#67ACB5",
+				-- },
 
 				hlgroups = {
 					"TSRainbow1",

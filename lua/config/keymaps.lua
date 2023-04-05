@@ -101,6 +101,13 @@ map("n", "<tab>k", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<tab>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<tab>j", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
+map("n", "<tab>1", "<cmd>tabn 1<cr>", { desc = "Goto tab 1" })
+map("n", "<tab>2", "<cmd>tabn 2<cr>", { desc = "Goto tab 2" })
+map("n", "<tab>3", "<cmd>tabn 3<cr>", { desc = "Goto tab 3" })
+map("n", "<tab>4", "<cmd>tabn 4<cr>", { desc = "Goto tab 4" })
+map("n", "<tab>5", "<cmd>tabn 5<cr>", { desc = "Goto tab 5" })
+map("n", "<tab>6", "<cmd>tabn 6<cr>", { desc = "Goto tab 6" })
+
 -- Snippets
 vim.g.coc_snippet_next = "<TAB>"
 vim.g.coc_snippet_prev = "<S-TAB>"

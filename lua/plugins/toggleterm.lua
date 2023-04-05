@@ -14,13 +14,13 @@ return {
 				-- 	toggle_key = "<leader>gg",
 				-- },
 
-				terminal = {
-					term_opts = {
-						cmd = require("config").shell,
-						direction = "horizontal",
-					},
-					toggle_key = "<leader>te",
-				},
+				-- terminal = {
+				-- 	term_opts = {
+				-- 		cmd = require("config").shell,
+				-- 		direction = "horizontal",
+				-- 	},
+				-- 	toggle_key = "<leader>te",
+				-- },
 
 				float_terminal = {
 					term_opts = {

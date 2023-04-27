@@ -5,8 +5,8 @@ This neovim configuration was heavly inspired by the [LazyVim](https://github.co
 - The [💤lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
 
 ## Autocompletion
-This config uses the built in lsp as its autocompletion with luasnip for snippets. Some languages also
-use [coc.nvim](https://github.com/neoclide/coc.nvim) instead.
+This config uses the built in lsp as its autocompletion with luasnip for snippets. ~~Some languages also
+use [coc.nvim](https://github.com/neoclide/coc.nvim) instead.~~
 
 ### Special languages
 ```

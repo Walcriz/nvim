@@ -68,7 +68,6 @@ return {
 				["<leader>f"] = { name = "+file/find" },
 				["<leader>g"] = { name = "+git" },
 				["<leader>gh"] = { name = "+hunks" },
-				["<leader>q"] = { name = "+quit/session" },
 				["<leader>s"] = { name = "+search" },
 				["<leader>u"] = { name = "+ui" },
 				["<leader>w"] = { name = "+windows" },
@@ -90,7 +89,7 @@ return {
 	-- Neogit
 	{
 		"TimUntersberger/neogit",
-		commit = "0af5fc831989320a5c3dcf860c871e77e218085f",
+		-- commit = "0af5fc831989320a5c3dcf860c871e77e218085f",
 		keys = {
 			{ "<leader>gg", "<cmd>Neogit kind=split<CR>", desc = "Open neogit" },
 		},

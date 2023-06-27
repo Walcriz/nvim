@@ -1,6 +1,12 @@
 local Util = require("util")
 local map = Util.map
 
+-- Fix Tab being C-I
+vim.cmd([[
+let &t_TI = "\<Esc>[>4;2m"
+let &t_TE = "\<Esc>[>4;m"
+]])
+
 map("i", "<C-H>", "<C-W>", { desc = "" })
 map("i", "<C-H>", "<C-W>")
 
@@ -13,7 +19,7 @@ map("i", "<C-H>", "<C-W>", { desc = "Make CTRL + Backspace Work" })
 
 -- Better buffer navigation
 map("i", "<A-j>", "<cmd>bp", { desc = "Go to previous buffer" })
-map("i", "<A-j>", "<cmd>bn", { desc = "Go to next buffer" })
+map("i", "<A-k>", "<cmd>bn", { desc = "Go to next buffer" })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
@@ -58,7 +64,7 @@ map("v", "<Tab>", "<gv")
 map("v", "<S-Tab>", ">gv")
 
 -- lazy
-map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>dp", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -94,19 +100,19 @@ end, { desc = "Terminal (cwd)" })
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- tabs
-map("n", "<tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-map("n", "<tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-map("n", "<tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<tab>k", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<tab>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<tab>j", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<Space>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+map("n", "<Space>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+map("n", "<Space><Space>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<Space>k", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<Space>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<Space>j", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
-map("n", "<tab>1", "<cmd>tabn 1<cr>", { desc = "Goto tab 1" })
-map("n", "<tab>2", "<cmd>tabn 2<cr>", { desc = "Goto tab 2" })
-map("n", "<tab>3", "<cmd>tabn 3<cr>", { desc = "Goto tab 3" })
-map("n", "<tab>4", "<cmd>tabn 4<cr>", { desc = "Goto tab 4" })
-map("n", "<tab>5", "<cmd>tabn 5<cr>", { desc = "Goto tab 5" })
-map("n", "<tab>6", "<cmd>tabn 6<cr>", { desc = "Goto tab 6" })
+map("n", "<Space>1", "<cmd>tabn 1<cr>", { desc = "Goto tab 1" })
+map("n", "<Space>2", "<cmd>tabn 2<cr>", { desc = "Goto tab 2" })
+map("n", "<Space>3", "<cmd>tabn 3<cr>", { desc = "Goto tab 3" })
+map("n", "<Space>4", "<cmd>tabn 4<cr>", { desc = "Goto tab 4" })
+map("n", "<Space>5", "<cmd>tabn 5<cr>", { desc = "Goto tab 5" })
+map("n", "<Space>6", "<cmd>tabn 6<cr>", { desc = "Goto tab 6" })
 
 -- Snippets
 vim.g.coc_snippet_next = "<TAB>"

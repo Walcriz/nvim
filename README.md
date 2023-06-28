@@ -43,7 +43,3 @@ file in neovim's installiation files. (This is to make it use the system install
 - `git clone` this repository into your neovim config path (Linux: `~/.config/nvim`, Windows: `C:\Users\[Your Name]\AppData\Local\nvim`)
 - Start neovim and wait
 - 🎉 Congratulations you now have my configuration installed!
-
-## TODO
-- [ ] Fix toggleterm terminals (they are weird right now)
-- [ ] Fix jdtls

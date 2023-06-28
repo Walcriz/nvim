@@ -34,16 +34,9 @@ file in neovim's installiation files. (This is to make it use the system install
 ### WSL
 - I would recommend to install [GWSL](https://opticos.github.io/gwsl/) for its clipboard sync feature
 
-### Neovim 0.9
-- In neovim the `nvim/lua/plugins/nvim07.lua` file is not needed and is safe to [delete](https://github.com/gpanders/editorconfig.nvim)
-
 ## Installation
 
 - Make a backup of your prevous config
 - `git clone` this repository into your neovim config path (Linux: `~/.config/nvim`, Windows: `C:\Users\[Your Name]\AppData\Local\nvim`)
 - Start neovim and wait
 - 🎉 Congratulations you now have my configuration installed!
-
-## TODO
-- [ ] Fix toggleterm terminals (they are weird right now)
-- [ ] Fix jdtls

@@ -1,5 +1,30 @@
 return {
 
+	{
+		"Walcriz/action-lists.nvim",
+		dependencies = {
+			"stevearc/dressing.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		opts = {
+			lists = {
+				code_insert = {
+					-- Defined elsewhere
+				},
+				build = {
+					-- Defined elsewhere
+				},
+				test = {
+					-- Defined elsewhere
+				},
+			},
+		},
+		config = true,
+		keys = {
+			{ "<M-Insert>", ":OpenActionList code_insert<CR>", desc = "Open code insert action list" },
+		},
+	},
+
 	-- snippets
 	{
 		"L3MON4D3/LuaSnip",

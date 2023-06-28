@@ -26,6 +26,9 @@ function M.init()
 
 		-- Load Tab Profiles here to make sure they get loaded
 		M.setuptabs()
+
+		-- Add missing filetypes
+		M.add_filetypes()
 	end
 end
 
@@ -95,6 +98,14 @@ function M.setuptabs()
 	end
 
 	util.setuptabs(vim.opt, profiles.default)
+end
+
+function M.add_filetypes()
+	vim.filetype.add({
+		extension = {
+			astro = "astro",
+		},
+	})
 end
 
 return M

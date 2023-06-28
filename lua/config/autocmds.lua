@@ -98,14 +98,3 @@ autocmd("BufReadPre", {
 		vim.keymap.set("i", "<A-x>", "<C-o><Plug>WorkbenchToggleCheckbox", { desc = "Check" })
 	end,
 })
-
--- More file types
-local fileTypeGroup = augroup("auto_file_type")
-
-autocmd({ "BufRead", "BufEnter" }, {
-	pattern = "*.astro",
-	group = fileTypeGroup,
-	callback = function()
-		vim.cmd("set filetype=astro")
-	end,
-})

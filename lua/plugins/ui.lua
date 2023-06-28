@@ -96,11 +96,11 @@ return {
 
 			dashboard.section.header.val = vim.split(logo, "\n")
 			dashboard.section.buttons.val = {
-				dashboard.button("f", " " .. " Find file", ":Telescope find_files<CR>"),
-				dashboard.button("n", " " .. " File browser", ":Telescope file_browser hidden=true<CR>"),
-				dashboard.button("p", " " .. " Open project", ":Telescope project<CR>"),
-				dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles<CR>"),
-				dashboard.button("g", " " .. " Find text", ":Telescope live_grep disable_devicons=true<CR>"),
+				dashboard.button("ff", " " .. " Find file", ":Telescope find_files<CR>"),
+				dashboard.button("fn", " " .. " File browser", ":Telescope file_browser hidden=true<CR>"),
+				dashboard.button("fp", " " .. " Open project", ":Telescope project<CR>"),
+				dashboard.button("fr", " " .. " Recent files", ":Telescope oldfiles<CR>"),
+				dashboard.button("fg", " " .. " Find text", ":Telescope live_grep disable_devicons=true<CR>"),
 				dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
 				dashboard.button(
 					"s",
@@ -108,6 +108,7 @@ return {
 					[[:lua require("persistence").load({ last = true }) <cr>]]
 				),
 				dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
+				dashboard.button("m", "󰢛 " .. " Mason", ":Mason<CR>"),
 			}
 			for _, button in ipairs(dashboard.section.buttons.val) do
 				button.opts.hl = "AlphaButtons"
@@ -186,6 +187,12 @@ return {
 			"mfussenegger/nvim-dap",
 		},
 		lazy = true,
+	},
+
+	-- DAP virutal text (very nice)
+	{
+		"theHamsta/nvim-dap-virtual-text",
+		ft = { "go", "gomod" },
 	},
 
 	{

@@ -61,7 +61,12 @@ autocmd("FileType", {
 autocmd("BufWritePre", {
 	group = augroup("del_whitespace_line"),
 	callback = function()
-		vim.cmd([[%s/\(\s*\n\)\+\%$//ge]])
+		vim.cmd([[
+		let l = line(".")
+		let c = col(".")
+		%s/\(\s*\n\)\+\%$//ge
+		call cursor(l, c)
+		]])
 	end,
 })
 
@@ -69,7 +74,12 @@ autocmd("BufWritePre", {
 autocmd("BufWritePre", {
 	group = augroup("whitespace_replace"),
 	callback = function()
-		vim.cmd([[%s/\(\s*\n\)\{3,}/\r\r/ge]])
+		vim.cmd([[
+		let l = line(".")
+    let c = col(".")
+		%s/\(\s*\n\)\{3,}/\r\r/ge
+		call cursor(l, c)
+		]])
 	end,
 })
 
@@ -77,7 +87,12 @@ autocmd("BufWritePre", {
 autocmd("BufWritePre", {
 	group = augroup("del_whitespace_trailing"),
 	callback = function()
-		vim.cmd([[%s/\s\+$//ge]])
+		vim.cmd([[
+		let l = line(".")
+		let c = col(".")
+		%s/\s\+$//ge
+		call cursor(l, c)
+		]])
 	end,
 })
 

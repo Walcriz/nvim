@@ -134,7 +134,7 @@ map("i", "<RightMouse>", "<Left><C-o>p")
 map("n", "<RightMouse>", "p")
 
 -- Fix TAB in insert
-map("i", "<Tab>", "<Tab>")
+map("i", "<Tab>", "<Tab>", { noremap = true })
 
 -- Surround in visual mode
 -- Group 1: Spaces/Tabs in the beginning \([ \t]*\)

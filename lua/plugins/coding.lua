@@ -44,6 +44,7 @@ return {
 			{
 				"<tab>",
 				function()
+					require("util").map("i", "<Tab>", "<Tab>", { noremap = true })
 					return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
 				end,
 				expr = true, silent = true, mode = "i",

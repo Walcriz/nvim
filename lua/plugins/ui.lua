@@ -46,6 +46,15 @@ return {
 					},
 				},
 			},
+			input = {
+				border = "none",
+				max_width = { 140, 0.9 },
+				min_width = { 20, 0.1 },
+				win_options = {
+					listchars = "precedes:<,extends:>",
+					sidescrolloff = 2,
+				},
+			},
 		},
 		init = function()
 			---@diagnostic disable-next-line: duplicate-set-field

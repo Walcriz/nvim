@@ -30,6 +30,23 @@ return {
 	{
 		"stevearc/dressing.nvim",
 		lazy = true,
+		opts = {
+			select = {
+				telescope = {
+					sorting_strategy = "ascending",
+					results_title = false,
+					layout_strategy = "center",
+					borderchars = {
+						results = { " " },
+						prompt = { "▄", "▌", "▀", "▐", "▗", "▖", "▘", "▝" },
+					},
+					layout_config = {
+						width = 0.35,
+						height = 0.35,
+					},
+				},
+			},
+		},
 		init = function()
 			---@diagnostic disable-next-line: duplicate-set-field
 			vim.ui.select = function(...)

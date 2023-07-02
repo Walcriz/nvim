@@ -271,6 +271,7 @@ return {
 	{
 		"NMAC427/guess-indent.nvim",
 		config = true,
+		event = "VeryLazy",
 	},
 
 	-- Context at top

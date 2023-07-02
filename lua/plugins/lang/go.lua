@@ -32,8 +32,11 @@ return {
 						ft = { "go" },
 						actions = {
 							Comment = "GoCmt",
-							["Tag Rm"] = "GoAddTag",
-							["Tag Add"] = "GoRmTag",
+							["Tag Add"] = "GoAddTag",
+							["Tag Rm"] = "GoRmTag",
+							func = function()
+								print("Hello from lua")
+							end,
 						},
 					},
 				},

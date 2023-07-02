@@ -88,7 +88,7 @@ return {
 
 	-- Neogit
 	{
-		"TimUntersberger/neogit",
+		"NeogitOrg/neogit",
 		-- commit = "0af5fc831989320a5c3dcf860c871e77e218085f",
 		keys = {
 			{ "<leader>gg", "<cmd>Neogit kind=split<CR>", desc = "Open neogit" },

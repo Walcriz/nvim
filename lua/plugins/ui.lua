@@ -127,7 +127,7 @@ return {
 				dashboard.button("fp", " " .. " Open project", ":Telescope project<CR>"),
 				dashboard.button("fr", " " .. " Recent files", ":Telescope oldfiles<CR>"),
 				dashboard.button("fg", " " .. " Find text", ":Telescope live_grep disable_devicons=true<CR>"),
-				dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+				dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>:cd %:h<CR>"),
 				dashboard.button(
 					"s",
 					" " .. " Restore Session",

@@ -137,13 +137,34 @@ map("n", "<RightMouse>", "p")
 map("i", "<Tab>", "<Tab>", { noremap = true })
 
 -- Surround in visual mode
--- Group 1: Spaces/Tabs in the beginning \([ \t]*\)
--- Group 2: The rest \(.*\)
--- Group 3: The last character in selection \(.\)
-map("v", "(", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1(\2\3)<cr>:noh<cr><esc>`<]])
-map("v", "{", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1{\2\3}<cr>:noh<cr><esc>`<]])
-map("v", '"', [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1"\2\3"<cr>:noh<cr><esc>`<]])
-map("v", "'", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1'\2\3'<cr>:noh<cr><esc>`<]])
-map("v", "[", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1[\2\3]<cr>::noh<cr><esc>`<]])
-map("v", "`", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1`\2\3`<cr>:noh<cr><esc>`<]])
-map("v", "<", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1<\2\3><cr>:noh<cr><esc>`<]])
+local surroundPairs = {
+	{ "(", ")" },
+	{ "{", "}" },
+	{ '"', '"' },
+	{ "'", "'" },
+	{ "[", "]" },
+	{ "`", "`" },
+	{ "<", ">" },
+}
+
+---@diagnostic disable-next-line: unused-local
+for i, pair in ipairs(surroundPairs) do
+	local open = pair[1]
+	local close = pair[2]
+
+	-- Group 1: Spaces/Tabs in the beginning \([ \t]*\)
+	-- Group 2: The rest \(.*\)
+	-- Group 3: The last character in selection \(.\)
+	map("v", open, [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1]] .. open .. [[\2\3]] .. close .. [[<cr>:noh<cr><esc>`<]])
+
+	-- Also map s to close and open
+	map("s", open, open .. close .. "<Left>")
+end
+
+-- map("v", "(", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1(\2\3)<cr>:noh<cr><esc>`<]])
+-- map("v", "{", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1{\2\3}<cr>:noh<cr><esc>`<]])
+-- map("v", '"', [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1"\2\3"<cr>:noh<cr><esc>`<]])
+-- map("v", "'", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1'\2\3'<cr>:noh<cr><esc>`<]])
+-- map("v", "[", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1[\2\3]<cr>::noh<cr><esc>`<]])
+-- map("v", "`", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1`\2\3`<cr>:noh<cr><esc>`<]])
+-- map("v", "<", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1<\2\3><cr>:noh<cr><esc>`<]])

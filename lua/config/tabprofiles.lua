@@ -45,5 +45,10 @@ return { -- Define custom indentation profiles for specific languages in this fi
 			usetabs = true,
 			tabsize = 2,
 		},
+
+		go = { -- GO
+			usetabs = false,
+			tabsize = 2,
+		},
 	},
 }

@@ -20,6 +20,8 @@ return {
 				omnisharp = function(_, opts)
 					require("util").on_attach(function(client, buffer)
 						if client.name == "omnisharp" or client.name == "omnisharp_mono" then
+							client.server_capabilities.semanticTokensProvider = nil
+
 							vim.keymap.set(
 								"n",
 								"gd",

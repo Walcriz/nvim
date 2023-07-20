@@ -18,7 +18,7 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 [monokai.nvim](https://github.com/tanvirtin/monokai.nvim) vim colorscheme.
 
 ## Requirements
-- Neovim >= **0.8.0**
+- Neovim >= **0.9.0**
 - Git >= **2.19.0**
 - [RipGrep](https://github.com/BurntSushi/ripgrep)
 - [fzf](https://github.com/junegunn/fzf)

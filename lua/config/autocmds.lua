@@ -116,6 +116,8 @@ autocmd("BufReadPre", {
 
 autocmd("BufRead", {
 	callback = function()
-		vim.cmd("nmap <nowait> <unique> gu gR")
+		vim.cmd([[
+			nmap <nowait> gu gR
+		]])
 	end,
 })

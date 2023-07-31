@@ -13,7 +13,7 @@ function M.get()
 			{ "<leader>dd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
 			{ "<leader>dl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
 			{ "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
-			-- { "gu", "<cmd>Telescope lsp_references<cr>", desc = "References", { unique = true }},
+			{ "gR", "<cmd>Telescope lsp_references<cr>", desc = "References"},
 			{ "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
 			{ "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
 			{ "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },

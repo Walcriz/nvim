@@ -114,8 +114,8 @@ autocmd("BufReadPre", {
 	end,
 })
 
-autocmd("BufReadPre", {
+autocmd("BufRead", {
 	callback = function()
-		vim.cmd("nnoremap <nowait> <unique> gu <cmd>Telescope lsp_references<CR>")
+		vim.cmd("nmap <nowait> <unique> gu gR")
 	end,
 })

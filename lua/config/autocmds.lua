@@ -113,3 +113,9 @@ autocmd("BufReadPre", {
 		vim.keymap.set("i", "<A-x>", "<C-o><Plug>WorkbenchToggleCheckbox", { desc = "Check" })
 	end,
 })
+
+autocmd("BufReadPre", {
+	callback = function()
+		vim.cmd("nnoremap <nowait> <unique> gu <cmd>Telescope lsp_references<CR>")
+	end,
+})

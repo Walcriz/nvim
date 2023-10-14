@@ -9,8 +9,12 @@ require("lazy").setup({
 		lazy = true,
 		version = false,
 	},
-	install = { colorscheme = { "monokai"} },
-	checker = { enabled = true }, -- Auto check for plugin updates
+	install = { colorscheme = { "monokai" } },
+	checker = {
+		enabled = true,
+		concurrency = 1,
+		notify = false,
+	}, -- Auto check for plugin updates
 	performance = {
 		rtp = {
 			disabled_plugins = {
@@ -23,6 +27,6 @@ require("lazy").setup({
 				"tutor",
 				"zipPlugin",
 			},
-		}
-	}
+		},
+	},
 })

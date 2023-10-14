@@ -23,22 +23,22 @@ return { -- Define custom indentation profiles for specific languages in this fi
 
 		javascript = { -- Javascript
 			usetabs = false,
-			tabsize = 2,
+			tabsize = 4,
 		},
 
 		typescript = { -- Typescript
 			usetabs = false,
-			tabsize = 2,
+			tabsize = 4,
 		},
 
 		javascriptreact = { -- Javascript (jsx)
 			usetabs = false,
-			tabsize = 2,
+			tabsize = 4,
 		},
 
 		typescriptreact = { -- Typescriptreact (tsx)
 			usetabs = false,
-			tabsize = 2,
+			tabsize = 4,
 		},
 
 		lua = { -- Lua

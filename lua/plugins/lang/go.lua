@@ -34,9 +34,6 @@ return {
 							Comment = "GoCmt",
 							["Tag Add"] = "GoAddTag",
 							["Tag Rm"] = "GoRmTag",
-							func = function()
-								print("Hello from lua")
-							end,
 						},
 					},
 				},

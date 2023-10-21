@@ -244,14 +244,23 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("indent_blankline").setup({
+			require("ibl").setup({
 				-- for example, context is off by default, use this to turn it on
-				show_current_context = false,
-				show_current_context_start = false,
-				char_highlight_list = {
-					"IndentBlankline",
+				-- show_current_context = false,
+				-- show_current_context_start = false,
+
+				whitespace = {
+					remove_blankline_trail = true,
+					highlight = "IndentBlankline",
 				},
-				show_trailing_blankline_indent = false,
+
+				indent = {
+					smart_indent_cap = true,
+				},
+
+				scope = {
+					enabled = false,
+				},
 			})
 		end,
 	},

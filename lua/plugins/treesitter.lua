@@ -45,7 +45,6 @@ return {
 				"bash",
 				"java",
 				"c",
-				"help",
 				"javascript",
 				"json",
 				"lua",

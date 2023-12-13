@@ -17,8 +17,8 @@ return { -- Define custom indentation profiles for specific languages in this fi
 		},
 
 		python = { -- Python
-			usetabs = true,
-			tabsize = 2,
+			usetabs = false,
+			tabsize = 4,
 		},
 
 		javascript = { -- Javascript

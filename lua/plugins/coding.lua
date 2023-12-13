@@ -273,6 +273,10 @@ return {
 	-- Guess Indent
 	{
 		"NMAC427/guess-indent.nvim",
+		opts = {
+			auto_cmd = false,
+			override_editorconfig = false,
+		},
 		config = true,
 		event = "VeryLazy",
 	},

@@ -88,11 +88,12 @@ function M.setuptabs()
 
 	local augroup = util.augroup("tabprofiles")
 	for lang, profile in pairs(profiles.lang) do
-		util.autocmd({ "FileType" }, {
+		util.autocmd({ "BufReadPost" }, {
 			pattern = lang,
 			group = augroup,
 			callback = function()
 				util.setuptabs(vim.opt_local, profile)
+				require("guess-indent").guess_from_buffer()
 			end,
 		})
 	end

@@ -32,7 +32,13 @@ opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 
 -- UNDO SETTINGS --
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+local sysname = vim.loop.os_uname().sysname
+if sysname:find("Windows") and true or false then
+	opt.undodir = os.getenv("USERPROFILE") .. "/.vim/undodir"
+else
+	opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+end
+
 opt.undofile = true
 opt.history = 1000
 opt.undolevels = 10000

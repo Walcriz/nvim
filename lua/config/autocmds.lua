@@ -71,17 +71,17 @@ autocmd("BufWritePre", {
 })
 
 -- Repace groups of empty or whitespaces-only lines with one empty line
-autocmd("BufWritePre", {
-	group = augroup("whitespace_replace"),
-	callback = function()
-		vim.cmd([[
-		let l = line(".")
-    let c = col(".")
-		%s/\(\s*\n\)\{3,}/\r\r/ge
-		call cursor(l, c)
-		]])
-	end,
-})
+-- autocmd("BufWritePre", {
+-- 	group = augroup("whitespace_replace"),
+-- 	callback = function()
+-- 		vim.cmd([[
+-- 		let l = line(".")
+--     let c = col(".")
+-- 		%s/\(\s*\n\)\{3,}/\r\r/ge
+-- 		call cursor(l, c)
+-- 		]])
+-- 	end,
+-- })
 
 -- Delete trailing whitespaces
 autocmd("BufWritePre", {
@@ -93,24 +93,6 @@ autocmd("BufWritePre", {
 		%s/\s\+$//ge
 		call cursor(l, c)
 		]])
-	end,
-})
-
--- Bufferline
-autocmd({ "BufWritePost", "TextChanged", "TextChangedI" }, {
-	group = augroup("update_line"),
-	callback = function()
-		vim.cmd([[call lightline#update()]])
-	end,
-})
-
--- Checkboxes markdown
-autocmd("BufReadPre", {
-	pattern = "*.md",
-	group = augroup("checkbox_markdown"),
-	callback = function()
-		vim.keymap.set("n", "<leader><CR>", "<Plug>WorkbenchToggleCheckbox", { desc = "Check" })
-		vim.keymap.set("i", "<A-x>", "<C-o><Plug>WorkbenchToggleCheckbox", { desc = "Check" })
 	end,
 })
 

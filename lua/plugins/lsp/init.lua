@@ -136,33 +136,13 @@ return {
 		end,
 	},
 
-	-- formatters
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "mason.nvim" },
-		opts = function()
-			local nls = require("null-ls")
-			return {
-				sources = {
-					-- nls.builtins.formatting.prettierd,
-					nls.builtins.formatting.stylua,
-					nls.builtins.diagnostics.flake8,
-				},
-			}
-		end,
-	},
-
 	-- Install lsp and stuff
 	{
 		"williamboman/mason.nvim",
 		cmd = "Mason",
 		keys = { { "<leader>dm", "<cmd>Mason<cr>", desc = "Mason" } },
 		opts = {
-			ensure_installed = {
-				"stylua",
-				"flake8",
-			},
+			ensure_installed = {},
 		},
 		---@param opts MasonSettings | {ensure_installed: string[]}
 		config = function(plugin, opts)

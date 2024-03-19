@@ -34,9 +34,9 @@ opt.grepprg = "rg --vimgrep"
 -- UNDO SETTINGS --
 local sysname = vim.loop.os_uname().sysname
 if sysname:find("Windows") and true or false then
-	opt.undodir = os.getenv("USERPROFILE") .. "/.vim/undodir"
+  opt.undodir = os.getenv("USERPROFILE") .. "/.vim/undodir"
 else
-	opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+  opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 end
 
 opt.undofile = true
@@ -55,7 +55,7 @@ opt.incsearch = true
 opt.smartcase = true
 
 -- FILE SETTINGS --
-opt.formatoptions = "jcroqlnt"
+-- opt.formatoptions = "jcroqlnt"
 
 -- TABS AND SPACES SETTINGS -- NOTE: NOW SET IN config/tabprofiles.lua
 -- opt.tabstop = 2

@@ -172,29 +172,40 @@ return {
 			})
 
 			telescope.load_extension("project")
-			telescope.load_extension("file_browser")
-			telescope.load_extension("harpoon")
+			-- telescope.load_extension("file_browser")
+			-- telescope.load_extension("harpoon")
 		end,
 
 		dependencies = {
-			"nvim-telescope/telescope-file-browser.nvim",
+			-- "nvim-telescope/telescope-file-browser.nvim",
 			"nvim-telescope/telescope-project.nvim",
-			"ThePrimeagen/harpoon",
+			-- "ThePrimeagen/harpoon",
 		},
 	},
 
 	-- File browser
+	-- {
+	-- 	"nvim-telescope/telescope-file-browser.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	keys = { -- Telescope file_browser path=" .. Util.get_root()
+            -- -- stylua: ignore
+	-- 		{ "fn", function() vim.cmd("Telescope file_browser path=" .. Util.get_root() .. " hidden=true") end, desc = "File Browser" },
+	-- 		{ "fN", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
+	-- 	},
+	-- 	lazy = true,
+	-- },
+
 	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
+		'stevearc/oil.nvim',
+		opts = {},
+		keys = {
+			{ "fn", "<cmd>Oil<CR>", desc = "File browser" },
+			{ "fN", "<cmd>Oil %:p:h<CR>", desc = "File browser" },
 		},
-		keys = { -- Telescope file_browser path=" .. Util.get_root()
-            -- stylua: ignore
-			{ "fn", function() vim.cmd("Telescope file_browser path=" .. Util.get_root() .. " hidden=true") end, desc = "File Browser" },
-			{ "fN", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
-		},
-		lazy = true,
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 
 	{

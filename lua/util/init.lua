@@ -211,6 +211,27 @@ function M.lazy_notify()
 	timer:start(500, 0, replay)
 end
 
+function M.set_indent(indentation)
+	local function set_buffer_opt(buffer, name, value)
+		-- Setting an option takes *significantly* more time than reading it.
+		-- This wrapper function only sets the option if the new value differs
+		-- from the current value.
+		local current = vim.api.nvim_buf_get_option(buffer, name)
+		if value ~= current then
+			vim.api.nvim_buf_set_option(buffer, name, value)
+		end
+	end
+
+	if indentation == "tabs" then
+		set_buffer_opt(0, "expandtab", false)
+	elseif type(indentation) == "number" and indentation > 0 then
+		set_buffer_opt(0, "expandtab", true)
+		set_buffer_opt(0, "tabstop", indentation)
+		set_buffer_opt(0, "softtabstop", indentation)
+		set_buffer_opt(0, "shiftwidth", indentation)
+	end
+end
+
 function M.map(mode, lhs, rhs, opts)
 	opts = opts or {}
 	opts.silent = opts.silent ~= false

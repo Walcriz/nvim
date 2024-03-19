@@ -101,13 +101,14 @@ autocmd("BufWritePre", {
 local profiles = require("config.tabprofiles")
 autocmd({ "BufRead" }, {
   callback = function()
-    if require("guess-indent").guess_from_buffer() == nil then
+    local guess = require("guess-indent").guess_from_buffer()
+    if guess == nil then
       local profile = profiles.lang[vim.bo.filetype]
       if not profile == nil then
         setuptabs(vim.opt_local, profile)
       end
     else
-      require("guess-indent").set_from_buffer()
+      require("util").set_indent(guess)
     end
   end,
 })

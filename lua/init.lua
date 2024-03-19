@@ -86,19 +86,18 @@ function M.setuptabs()
   local util = require("util")
   local profiles = require("config.tabprofiles")
 
-  local augroup = util.augroup("tabprofiles")
-  util.autocmd({ "FileReadPost" }, {
-    group = augroup,
-    callback = function()
-      vim.notify("test")
-      if require("guess-indent").guess_from_buffer() == nil then
-        local profile = profiles.lang[vim.bo.filetype]
-        if not profile == nil then
-          util.setuptabs(vim.opt_local, profile)
-        end
-      end
-    end,
-  })
+  -- local augroup = util.augroup("tabprofiles")
+  -- util.autocmd({ "FileReadPost" }, {
+  --   group = augroup,
+  --   callback = function()
+  --     if require("guess-indent").guess_from_buffer() == nil then
+  --       local profile = profiles.lang[vim.bo.filetype]
+  --       if not profile == nil then
+  --         util.setuptabs(vim.opt_local, profile)
+  --       end
+  --     end
+  --   end,
+  -- })
 
   util.setuptabs(vim.opt, profiles.default)
 end

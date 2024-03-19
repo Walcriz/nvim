@@ -172,7 +172,7 @@ return {
       dashboard.section.header.val = vim.split(logo, "\n")
       dashboard.section.buttons.val = {
         dashboard.button("ff", " " .. " Find file", ":Telescope find_files<CR>"),
-        dashboard.button("fn", " " .. " File browser", ":Telescope file_browser hidden=true<CR>"),
+        dashboard.button("fn", " " .. " File browser", "<cmd>Oil<CR>"),
         dashboard.button("fp", " " .. " Open project", ":Telescope project<CR>"),
         dashboard.button("fr", " " .. " Recent files", ":Telescope oldfiles<CR>"),
         dashboard.button("fg", " " .. " Find text", ":Telescope live_grep disable_devicons=true<CR>"),
@@ -219,6 +219,9 @@ return {
         end,
       })
     end,
+    dependencies = {
+      "stevearc/oil.nvim",
+    }
   },
 
   -- icons

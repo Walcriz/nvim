@@ -11,8 +11,14 @@ return {
 			servers = {
 				omnisharp = {
 					mason = false,
-					enable_import_completion = false,
-					organize_imports_on_format = true,
+					settings = {
+						FormattingOptions = {
+							OrganizeImports = true,
+						},
+					}
+					-- These were changed in lsp config here: https://github.com/neovim/nvim-lspconfig/commit/2054452352d69fa1c38696434163ede26e48d5b8
+					-- enable_import_completion = false,
+					-- organize_imports_on_format = true,
 				},
 			},
 

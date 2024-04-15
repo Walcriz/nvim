@@ -101,6 +101,11 @@ autocmd("BufWritePre", {
 local profiles = require("config.tabprofiles")
 autocmd({ "BufRead" }, {
   callback = function()
+    local editorconfig = vim.b.editorconfig
+    if editorconfig and (editorconfig.indent_style or editorconfig.indent_size or editorconfig.tab_width) then
+      return
+    end
+
     local guess = require("guess-indent").guess_from_buffer()
     if guess == nil then
       local profile = profiles.lang[vim.bo.filetype]

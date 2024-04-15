@@ -11,7 +11,7 @@ return {
 			-- find
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
 			{ "ff", Util.telescope("files"), desc = "Find Files (root dir)" },
-			{ "fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+			{ "FF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
 			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
 			-- git
 			{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
@@ -199,10 +199,18 @@ return {
 
 	{
 		'stevearc/oil.nvim',
-		opts = {},
+		opts = {
+			skip_confirm_for_simple_edits = true,
+			view_options = {
+				show_hidden = true,
+				is_always_hidden = function(name, bufnr)
+					return vim.startswith(name, '..')
+				end
+			},
+		},
 		keys = {
 			{ "fn", "<cmd>Oil<CR>", desc = "File browser" },
-			{ "fN", "<cmd>Oil %:p:h<CR>", desc = "File browser" },
+			{ "FN", "<cmd>Oil %:p:h<CR>", desc = "File browser" },
 		},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },

@@ -1,6 +1,10 @@
 return {
 	leader = " ",
 
+	snippet_ignore_filetypes = {
+		"oil",
+	},
+
 	shell = "powershell",
 
 	java = {

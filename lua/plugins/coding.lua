@@ -109,7 +109,12 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "luasnip" },
+          {
+            name = "luasnip",
+            entry_filter = function (_, ctx)
+              return not vim.tbl_contains(require("config").snippet_ignore_filetypes, ctx.filetype)
+            end
+          },
           { name = "buffer" },
           { name = "path" },
           { name = "codeium" }

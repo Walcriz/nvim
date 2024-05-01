@@ -12,6 +12,10 @@ palette.linehighlight = "#2c323d"
 require("monokai").setup({
 	palette = palette,
 	custom_hlgroups = {
+		-- General
+		Delimiter = {
+			fg = "#939293",
+		},
 		-- Treesitter
 		["@keyword.function"] = {
 			fg = palette.pink,

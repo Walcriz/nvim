@@ -108,6 +108,11 @@ function M.add_filetypes()
       astro = "astro",
     },
   })
+  vim.filetype.add({
+    extension = {
+      htc = "htc",
+    },
+  })
 end
 
 return M

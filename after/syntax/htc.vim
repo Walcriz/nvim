@@ -46,6 +46,9 @@ syn match htcValue "\v[^:]*$" contains=htcString,htcNumber,htcOperator,htcClass,
 syntax region htcTable matchgroup=htcDelimiter start='{' end='}' fold transparent
 syntax region htcMap matchgroup=htcDelimiter start='\[' end='\]' fold transparent
 
+" Vim commentary support
+setlocal commentstring=#\ %s
+
 syntax sync fromstart
 
 hi def link htcComment Comment

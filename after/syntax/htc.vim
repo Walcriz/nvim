@@ -9,8 +9,8 @@ syn match htcComment '#.*$'
 
 syntax match htcStringEscape '\v\\%([abfnrtv'"\\]|x[[0-9a-fA-F]]\{2}|25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9])' contained
 
-syntax region htcString start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=htcStringEscape,@Spell,htcStringInterp
-syntax region htcString start=/'/ skip=/\\\\\|\\'/ end=/'/ contains=htcStringEscape,@Spell,htcStringInterp
+syntax region htcString start=/"/ skip=/\\\\\|\\"/ end=/["^\n]/ excludenl contains=htcStringEscape,@Spell,htcStringInterp
+syntax region htcString start=/'/ skip=/\\\\\|\\'/ end=/['^\n]/ excludenl contains=htcStringEscape,@Spell,htcStringInterp
 
 syntax match htcNumber "\v\c<[-+]?\d*\.?\d*%([eE][-+]?\d+)?>"
 syntax match htcNumber "\v\c<[-+]?0x[0-9A-F]*\.?[0-9A-F]*>"

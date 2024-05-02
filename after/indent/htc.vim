@@ -29,7 +29,7 @@ let s:block_regex = '\%({\)\s*\%(|\%([*@]\=\h\w*,\=\s*\)\%(,\s*[*@]\=\h\w*\)*|\)
 " 2. Auxiliary Functions {{{1
 " ======================
 
-" Check if the character at lnum:col is inside a string.
+" Check if the character at lnum:col is inside a string. or inside comment
 function s:IsInString(lnum, col)
   return synIDattr(synID(a:lnum, a:col, 1), 'name') == 'jsonString'
 endfunction
@@ -40,7 +40,7 @@ function s:PrevNonBlankNonString(lnum)
   while lnum > 0
     " If the line isn't empty or in a string, end search.
     let line = getline(lnum)
-    if !(s:IsInString(lnum, 1) && s:IsInString(lnum, strlen(line)))
+    if line !~#'^\s*$' && !(s:IsInString(lnum, 1) && s:IsInString(lnum, strlen(line)))
       break
     endif
     let lnum = prevnonblank(lnum - 1)

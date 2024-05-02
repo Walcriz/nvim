@@ -41,7 +41,7 @@ syn region htcKeyValuePair start="^\s*\w\+:" end="$" contains=htcKey,htcValue tr
 syn match htcKey "\v^\s*\w+:"
 
 " Define a syntax group for the value part (anything after the key part)
-syn match htcValue "\v[^:]*$" contains=htcString,htcNumber,htcOperator,htcClass,htcComment,htcBoolean
+syn match htcValue "\v[^:]*$" contains=htcString,htcNumber,htcOperator,htcClass,htcComment,htcBoolean,htcKeyValuePair,htcDelimiter
 
 syntax region htcTable matchgroup=htcDelimiter start='{' end='}' fold transparent
 syntax region htcMap matchgroup=htcDelimiter start='\[' end='\]' fold transparent

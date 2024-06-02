@@ -171,11 +171,11 @@ return {
 
       dashboard.section.header.val = vim.split(logo, "\n")
       dashboard.section.buttons.val = {
-        dashboard.button("ff", " " .. " Find file", ":Telescope find_files<CR>"),
+        dashboard.button("ff", " " .. " Find file", ":Telescope find_files<CR>"),
         dashboard.button("fn", " " .. " File browser", "<cmd>Oil<CR>"),
-        dashboard.button("fp", " " .. " Open project", ":Telescope project<CR>"),
-        dashboard.button("fr", " " .. " Recent files", ":Telescope oldfiles<CR>"),
-        dashboard.button("fg", " " .. " Find text", ":Telescope live_grep disable_devicons=true<CR>"),
+        dashboard.button("fp", " " .. " Open project", ":Telescope project<CR>"),
+        dashboard.button("fr", " " .. " Recent files", ":Telescope oldfiles<CR>"),
+        dashboard.button("fg", "󰮗 " .. " Find text", ":Telescope live_grep disable_devicons=true<CR>"),
         dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>:cd %:h<CR>"),
         dashboard.button(
           "s",
@@ -241,11 +241,20 @@ return {
   -- },
 
   -- Rainbow brackets/delimiters
-  -- {
-  -- 	"HiPhish/nvim-ts-rainbow2",
-  -- 	event = "VeryLazy",
-  -- },
-  -- { "p00f/nvim-ts-rainbow", lazy = true}
+  {
+    "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+    event = "VimEnter",
+    opts = {
+      highlight = {
+        'TSRainbow1',
+        'TSRainbow2',
+        'TSRainbow3',
+      },
+    },
+    config = function(_, opts)
+      require("rainbow-delimiters.setup").setup(opts)
+    end,
+  },
 
   -- Colorize colors
   -- {

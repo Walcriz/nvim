@@ -26,8 +26,6 @@ return {
 				end,
 			},
 
-			{ "HiPhish/nvim-ts-rainbow2" },
-
 			{ "nvim-treesitter/playground" },
 		},
 

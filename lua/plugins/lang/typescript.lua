@@ -7,8 +7,8 @@ return {
 		opts = {
 			-- make sure mason installs the server
 			servers = {
-				---@type lspconfig.options.tsserver
-				tsserver = {
+				ts_ls = {
+					---@type lspconfig.options.ts_ls
 					settings = {
 						completions = {
 							completeFunctionCalls = true,

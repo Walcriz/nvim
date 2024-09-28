@@ -159,6 +159,16 @@ return {
 
 		config = function(_, opts)
 			local telescope = require("telescope")
+
+			local defaults = {}
+			if vim.fn.has("win32") ~= 1 then
+				local images = require("util").telescope_image_preview()
+				defaults = {
+					file_previewer = images.file_previewer,
+					buffer_previewer_maker = images.buffer_previewer_maker,
+				}
+			end
+
 			telescope.setup({
 				extensions = {
 					file_browser = {
@@ -168,7 +178,7 @@ return {
 					harpoon = {},
 					project = {},
 				},
-				defaults = opts.defaults,
+				defaults = vim.tbl_extend('force', opts.defaults, defaults),
 			})
 
 			telescope.load_extension("project")

@@ -113,6 +113,11 @@ function M.add_filetypes()
       htc = "htc",
     },
   })
+  vim.filetype.add({
+    extension = {
+      rs = "rust",
+    }
+  })
 end
 
 return M

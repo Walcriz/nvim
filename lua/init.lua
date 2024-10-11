@@ -1,9 +1,7 @@
 local M = {}
 
 local config = require("config")
-
-M.did_init = false
-function M.init()
+M.did_init = false function M.init()
   if not M.did_init then
     M.did_init = true
 
@@ -117,6 +115,9 @@ function M.add_filetypes()
     extension = {
       rs = "rust",
     }
+  })
+  vim.filetype.add({
+    pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
   })
 end
 

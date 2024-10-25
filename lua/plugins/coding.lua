@@ -145,7 +145,8 @@ return {
       mappings = {
         ["<"] = { action = "open", pair = "<>", neigh_pattern = "[^ \t].", register = { cr = false } },
         [">"] = { action = "close", pair = "<>", neigh_pattern = "[^ \t].", register = { cr = false } },
-        ['"'] = { action = "close" }
+        ['"'] = { action = "close" },
+        ["'"] = { action = "close" }
       },
     },
     config = function(_, opts)

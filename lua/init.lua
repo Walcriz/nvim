@@ -97,6 +97,14 @@ function M.setuptabs()
   --   end,
   -- })
 
+  vim.cmd([[
+  " settab command
+  command! SetTab lua require("util").set_tab()
+  command! Tab lua require("util").set_tab()
+  command! -nargs=? SetSpace lua require("util").set_space(<f-args>)
+  command! -nargs=? Space lua require("util").set_space(<f-args>)
+  ]])
+
   util.setuptabs(vim.opt, profiles.default)
 end
 

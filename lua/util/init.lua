@@ -251,6 +251,19 @@ function M.get_indent_lualine()
 	}
 end
 
+function M.set_tab()
+	vim.opt_local.expandtab = false
+end
+
+function M.set_space(size)
+	size = tonumber(size)
+	size = size or 2
+	vim.opt_local.expandtab = true
+	vim.opt_local.tabstop = size
+	vim.opt_local.softtabstop = size
+	vim.opt_local.shiftwidth = size
+end
+
 function M.map(mode, lhs, rhs, opts)
 	opts = opts or {}
 	opts.silent = opts.silent ~= false

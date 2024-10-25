@@ -158,7 +158,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     keys = {
-      { "<leader>dt", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
+      { "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
       { "<leader>ds", "<cmd>lua require'dap'.continue()<cr>",          desc = "Start/Continue" },
       { "<leader>do", "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Over" },
       { "<leader>di", "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Into" },

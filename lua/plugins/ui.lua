@@ -266,13 +266,15 @@ return {
   {
     "rcarriga/nvim-dap-ui",
     keys = {
-      { "<leader>dU", [[<cmd>lua require("dapui").toggle()<cr>]], desc = "Toggle UI" },
+      { "<leader>dD", [[<cmd>lua require("dapui").toggle()<cr>]], desc = "Toggle DAP UI" },
       { "<leader>de", [[<cmd>lua require("dapui").eval()<cr>]],   desc = "Eval Code" },
       { "<leader>de", [[<cmd>lua require("dapui").eval()<cr>]],   desc = "Eval Code", mode = "v" },
     },
     dependencies = {
       "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio"
     },
+    config = true,
     lazy = true,
   },
 

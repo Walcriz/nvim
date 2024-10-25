@@ -97,7 +97,7 @@ return {
           lualine_b = { 'filename' },
           lualine_c = { require("lsp-progress").progress },
           lualine_x = { { 'diagnostics', on_click = function() require("dapui").toggle() end, icons_enabled = true },
-            'fileformat', 'filetype' },
+             require("util").get_indent_lualine(), 'fileformat', 'filetype' },
           lualine_y = { 'progress' },
           lualine_z = { 'location' }
         },

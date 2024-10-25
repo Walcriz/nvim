@@ -232,6 +232,25 @@ function M.set_indent(indentation)
 	end
 end
 
+function M.get_indent_lualine()
+	return {
+		function()
+			-- Get indentation settings
+			local expandtab = vim.bo.expandtab
+			local shiftwidth = vim.bo.shiftwidth
+			local tabstop = vim.bo.tabstop
+
+			if expandtab then
+				return 'spc ' .. shiftwidth
+			else
+				return 'tab ' .. tabstop
+			end
+		end,
+		-- icon = '⇥',  -- Optional icon for style
+		-- color = { fg = '#ffffff', gui = 'bold' }  -- Optional styling
+	}
+end
+
 function M.map(mode, lhs, rhs, opts)
 	opts = opts or {}
 	opts.silent = opts.silent ~= false

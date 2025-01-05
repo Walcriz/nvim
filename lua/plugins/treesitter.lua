@@ -27,8 +27,6 @@ return {
 					end
 				end,
 			},
-
-			{ "nvim-treesitter/playground" },
 		},
 
 		keys = {

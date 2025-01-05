@@ -28,6 +28,14 @@ autocmd("BufReadPost", {
   end,
 })
 
+autocmd("BufWinEnter", {
+  group = augroup("format_options"),
+  callback = function()
+    -- FILE SETTINGS --
+    vim.opt.formatoptions = "jcrqlnt"
+  end
+})
+
 -- close some filetypes with <q>
 autocmd("FileType", {
   group = augroup("close_with_q"),

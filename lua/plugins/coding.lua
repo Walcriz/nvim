@@ -138,7 +138,7 @@ return {
   },
 
   -- auto pairs
-  {
+  { -- Possibly use https://github.com/windwp/nvim-autopairs instead
     "echasnovski/mini.pairs",
     lazy = false,
     opts = {

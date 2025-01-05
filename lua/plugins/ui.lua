@@ -380,6 +380,13 @@ return {
     event = "VeryLazy",
   },
 
+  -- Scrollbar
+  {
+    "dstein64/nvim-scrollview",
+    event = "VeryLazy",
+  },
+
+
   {
     "3rd/image.nvim",
     opts = {

@@ -10,21 +10,6 @@ return {
         },
 	},
 
-	-- Super fast file movements
-	-- {
-	-- 	"ThePrimeagen/harpoon",
-	-- 	keys = {
-	-- 		{ "fö", "<cmd>Telescope harpoon marks<cr>", desc = "Search harpoon marks" },
-	-- 		{ "ö", '<cmd>lua require("harpoon.mark").add_file()<cr>', desc = "Create new harpoon file mark" },
-	-- 		{ "<C-u>", '<cmd>lua require("harpoon.ui").nav_next()<cr>', desc = "Go to next harpoon file mark" },
-	-- 		{ "<C-d>", '<cmd>lua require("harpoon.ui").nav_prev()<cr>', desc = "Go to prev harpoon file mark" },
-	-- 	},
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 	},
-	-- 	lazy = true,
-	-- },
-
 	-- Visual multi (multi cursors)
 	{
 		"mg979/vim-visual-multi",
@@ -106,21 +91,6 @@ return {
 		},
 	},
 
-	-- Thoughts
-	-- {
-	-- 	"weizheheng/nvim-workbench",
-	-- 	keys = {
-	-- 		{ "<leader>dp", "<Plug>ToggleProjectWorkbench", desc = "Toggle Project Thoughts Pad" },
-	-- 		{ "<leader>db", "<Plug>ToggleBranchWorkbench", desc = "Toggle Branch Thoughts Pad" },
-	-- 	},
-	-- 	config = function()
-	-- 		require("workbench")
-
-	-- 		vim.g.workbench_border = "single"
-	-- 	end,
-	-- 	event = "VeryLazy",
-	-- },
-
 	-- Undotree
 	{
 		"mbbill/undotree",
@@ -173,6 +143,20 @@ return {
 		},
 	},
 
+	-- Template files
+	{
+		"cvigilv/esqueleto.nvim",
+		opts = {
+			templates = {
+				"cs",
+				"java",
+				"LICENSE",
+				"go",
+			},
+		},
+		event = { "BufNewFile" },
+	},
+
 	-- Color picker
 	-- {
 	-- 	"nvim-colortils/colortils.nvim",
@@ -180,33 +164,6 @@ return {
 	-- 	config = true,
 	-- 	keys = {
 	-- 		{ "<leader>rc", "<Cmd>Colortils picker<cr>", desc = "Pick color" },
-	-- 	},
-	-- },
-
-	-- Neorg
-	-- {
-	-- 	"nvim-neorg/neorg",
-	-- 	build = ":Neorg sync-parsers",
-	-- 	keys = {
-	-- 		{ "<leader>tn", "<cmd>Neorg workspace<CR>", desc = "Open Neorg workspace" },
-	-- 	},
-	-- 	opts = {
-	-- 		load = {
-	-- 			["core.defaults"] = {}, -- Loads default behaviour
-	-- 			["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
-	-- 			["core.norg.dirman"] = { -- Manages Neorg workspaces
-	-- 				config = {
-	-- 					workspaces = {
-	-- 						notes = "~/notes",
-	-- 					},
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 	},
-
-	-- 	dependencies = {
-	-- 		"nvim-treesitter/nvim-treesitter",
-	-- 		"nvim-lua/plenary.nvim",
 	-- 	},
 	-- },
 

@@ -2,7 +2,9 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = false, -- last release is way too old and doesn't work on Windows
-		build = "TSUpdate",
+		build = function ()
+			require("nvim-treesitter.install").update()
+		end,
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			{

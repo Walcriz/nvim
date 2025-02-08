@@ -8,7 +8,7 @@ return {
 		},
 		config = true,
 		ft = { "go", "gomod" },
-		build = ':lua require("go.install").update_all_sync()',
+		build = function() require("go.install").update_all() end
 	},
 
 	{

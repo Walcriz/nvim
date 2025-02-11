@@ -152,9 +152,10 @@ return {
 				"java",
 				"LICENSE",
 				"go",
+				"gitignore"
 			},
 		},
-		event = { "BufNewFile" },
+		event = { "BufNewFile", "BufReadPost" },
 	},
 
 	-- Color picker

@@ -10,8 +10,8 @@ return {
 			{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
 			-- find
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-			{ "ff", Util.telescope("files"), desc = "Find Files (root dir)" },
-			{ "FF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+			{ "ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+			{ "FF", Util.telescope("files"), desc = "Find Files (root dir)" },
 			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
 			-- git
 			{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },

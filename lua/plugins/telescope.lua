@@ -228,6 +228,10 @@ return {
 	},
 
 	{
+
+	},
+
+	{
 		"nvim-telescope/telescope-project.nvim",
 		keys = {
 			{ "<leader>sp", "<cmd>Telescope project<cr>", desc = "Project Browser" },

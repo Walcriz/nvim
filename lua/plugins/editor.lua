@@ -137,7 +137,9 @@ return {
 		version = '^1.0.0',
 		event = "VeryLazy",
 		opts = {
-			enabled = true
+			enabled = true,
+			debounce_delay = 200,
+			write_all_buffers = true,
 		}
 	},
 }

@@ -11,16 +11,16 @@ M.did_init = false function M.init()
     -- Bootstrap lazy.nvim
     require("bootstrap")
 
+    -- load options here, before lazy init while sourcing plugin modules
+    -- this is needed to make sure options will be correctly applied
+    -- after installing missing plugins
+    M.load("options")
+
     -- Setup lazy.nvim
     require("config.lazysetup")
 
     -- delay notifications till vim.notify was replaced or after 500ms
     require("util").lazy_notify()
-
-    -- load options here, before lazy init while sourcing plugin modules
-    -- this is needed to make sure options will be correctly applied
-    -- after installing missing plugins
-    M.load("options")
 
     -- Load Tab Profiles here to make sure they get loaded
     M.setuptabs()
@@ -47,9 +47,6 @@ function M.after()
     M.load("autocmds")
     M.load("keymaps")
   end
-
-  -- Configure colorscheme/colors
-  require("config.colors")
 
   -- Treesitter trickery
   require("nvim-treesitter.configs").setup({ rainbow = { enable = true } })

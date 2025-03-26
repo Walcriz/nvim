@@ -173,14 +173,13 @@ return {
       dashboard.section.buttons.val = {
         dashboard.button("ff", " " .. " Find file", ":Telescope find_files<CR>"),
         dashboard.button("fn", " " .. " File browser", "<cmd>Oil<CR>"),
-        dashboard.button("fp", " " .. " Open project", ":Telescope project<CR>"),
         dashboard.button("fr", " " .. " Recent files", ":Telescope oldfiles<CR>"),
         dashboard.button("fg", "󰮗 " .. " Find text", ":Telescope live_grep disable_devicons=true<CR>"),
         dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>:cd %:h<CR>"),
         dashboard.button(
-          "s",
+          "p",
           " " .. " Restore Session",
-          [[:lua require("persistence").load({ last = true }) <cr>]]
+          [[:lua require("persistence").select() <cr>]]
         ),
         dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
         dashboard.button("m", "󰢛 " .. " Mason", ":Mason<CR>"),
@@ -228,9 +227,6 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     lazy = true,
-    opts = {
-      color_icons = false,
-    },
     config = true,
   },
 

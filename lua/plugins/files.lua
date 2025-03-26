@@ -176,12 +176,10 @@ return {
 						hijack_netrw = true,
 					},
 					harpoon = {},
-					project = {},
 				},
 				defaults = vim.tbl_extend('force', opts.defaults, defaults),
 			})
 
-			telescope.load_extension("project")
 			-- telescope.load_extension("file_browser")
 			-- telescope.load_extension("harpoon")
 		end,
@@ -217,14 +215,34 @@ return {
 					return vim.startswith(name, '..')
 				end
 			},
+			columns = {},
+			win_options = {
+				signcolumn = "yes",
+			},
 		},
 		keys = {
-			{ "fn", "<cmd>Oil<CR>", desc = "File browser" },
+			-- { "fn", "<cmd>Oil<CR>", desc = "File browser" },
 			{ "FN", "<cmd>Oil %:p:h<CR>", desc = "File browser" },
 		},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
+	},
+
+	{
+		"echasnovski/mini.files",
+		keys = {
+			{ "fn", function() MiniFiles.open() end, desc = "File browser" },
+		},
+		opts = {
+			mappings = {
+				go_in = "<enter>",
+				go_out = "<C-o>"
+			}
+		},
+    config = function(_, opts)
+      require("mini.files").setup(opts)
+    end,
 	},
 
 	{
@@ -267,13 +285,5 @@ return {
 			local api = require("nvim-tree.api")
 			api.events.subscribe(api.events.Event.FileCreated, function(file) vim.cmd("edit " .. file.fname) end)
 		end
-	},
-
-	{
-		"nvim-telescope/telescope-project.nvim",
-		keys = {
-			{ "<leader>sp", "<cmd>Telescope project<cr>", desc = "Project Browser" },
-		},
-		lazy = true,
 	},
 }

@@ -130,4 +130,14 @@ return {
 		config = true,
 		event = { "BufNewFile", "BufReadPost" },
 	},
+
+	-- Auto save
+	{
+		"okuuva/auto-save.nvim",
+		version = '^1.0.0',
+		event = "VeryLazy",
+		opts = {
+			enabled = true
+		}
+	},
 }

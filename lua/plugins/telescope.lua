@@ -1,5 +1,7 @@
 local Util = require("util")
 
+local last_search_type = nil
+
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -98,10 +100,10 @@ return {
 						["<a-n>"] = function()
 							Util.telescope_extensions("file_browser", { hidden = true })()
 						end,
-						["<C-Down>"] = function(...)
+						["<C-j>"] = function(...)
 							return require("telescope.actions").cycle_history_next(...)
 						end,
-						["<C-Up>"] = function(...)
+						["<C-k>"] = function(...)
 							return require("telescope.actions").cycle_history_prev(...)
 						end,
 						["<C-f>"] = function(...)
@@ -153,6 +155,11 @@ return {
 				borderchars = { "▄", "▌", "▀", "▐", "▗", "▖", "▘", "▝" },
 				color_devicons = true,
 				set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+
+				cache_picker = {
+					num_pickers = 50,
+					ignore_empty_prompt = true,
+				}
 			},
 			highlight = { enable = true },
 		},

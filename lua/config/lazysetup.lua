@@ -15,6 +15,9 @@ require("lazy").setup({
 		concurrency = 1,
 		notify = false,
 	}, -- Auto check for plugin updates
+	change_detection = {
+		enabled = false,
+	},
 	performance = {
 		rtp = {
 			disabled_plugins = {

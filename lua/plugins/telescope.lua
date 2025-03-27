@@ -112,6 +112,9 @@ return {
 						["<C-b>"] = function(...)
 							return require("telescope.actions").preview_scrolling_up(...)
 						end,
+						["<C-BS>"] = function()
+							vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-W>', true, true, true), "i", true)
+						end
 					},
 					n = {
 						["q"] = function(...)
@@ -168,7 +171,7 @@ return {
 			local telescope = require("telescope")
 
 			local defaults = {}
-			if vim.fn.has("win32") ~= 1 then
+			if vim.fn.has("win32") ~= 1 and vim.fn.has("gui_running") ~= 1 then
 				local images = require("util").telescope_image_preview()
 				defaults = {
 					file_previewer = images.file_previewer,
@@ -213,30 +216,6 @@ return {
 	-- 	},
 	-- 	lazy = true,
 	-- },
-
-	{
-		'stevearc/oil.nvim',
-		opts = {
-			skip_confirm_for_simple_edits = true,
-			view_options = {
-				show_hidden = true,
-				is_always_hidden = function(name, bufnr)
-					return vim.startswith(name, '..')
-				end
-			},
-		},
-		keys = {
-			{ "fn", "<cmd>Oil<CR>", desc = "File browser" },
-			{ "FN", "<cmd>Oil %:p:h<CR>", desc = "File browser" },
-		},
-		-- Optional dependencies
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		lazy = false,
-	},
-
-	{
-
-	},
 
 	{
 		"nvim-telescope/telescope-project.nvim",

@@ -46,7 +46,6 @@ opt.updatetime = 200
 
 -- COLUMN SETTINGS --
 opt.signcolumn = "yes"
-opt.colorcolumn = "100"
 
 -- SEARCH SETTINGS --
 opt.hlsearch = false

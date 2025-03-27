@@ -8,7 +8,7 @@ local map = Util.map
 -- ]])
 
 -- map("i", "<C-H>", "<C-W>", { desc = "" })
--- map("i", "<C-H>", "<C-W>")
+map("i", "<C-BS>", "<C-W>", { noremap = true, silent = true })
 
 -- Go back to previous file
 map("i", "<C-b>", "<C-6>", { desc = "Jump back to previous file" })
@@ -120,14 +120,6 @@ map("n", "<Space>6", "<cmd>tabn 6<cr>", { desc = "Goto tab 6" })
 
 -- Backspace delete in visual
 map("v", "<BS>", "s")
-
--- Copy with right mouse
-map("v", "<RightMouse>", "y")
-
--- Paste with mouse
-map("c", "<RightMouse>", "<C-r>*")
-map("i", "<RightMouse>", "<Left><C-o>p")
-map("n", "<RightMouse>", "p")
 
 -- Fix TAB in insert
 -- map("i", "<Tab>", "<Tab>", { noremap = true })

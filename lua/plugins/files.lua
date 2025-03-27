@@ -224,6 +224,18 @@ return {
 			-- { "fn", "<cmd>Oil<CR>", desc = "File browser" },
 			{ "FN", "<cmd>Oil %:p:h<CR>", desc = "File browser" },
 		},
+		config = function(_, opts)
+			require("oil").setup(opts)
+
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "OilActionsPost",
+				callback = function(event)
+					if event.data.actions.type == "move" then
+						Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+					end
+				end,
+			})
+		end,
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
@@ -242,6 +254,13 @@ return {
 		},
     config = function(_, opts)
       require("mini.files").setup(opts)
+
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "MiniFilesActionRename",
+				callback = function(event)
+					Snacks.rename.on_rename_file(event.data.from, event.data.to)
+				end,
+			})
     end,
 	},
 

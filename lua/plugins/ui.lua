@@ -28,47 +28,92 @@ return {
 
   -- better vim.ui
   {
-    "stevearc/dressing.nvim",
-    lazy = true,
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    --- @type snacks.Config
     opts = {
-      select = {
-        telescope = {
-          sorting_strategy = "ascending",
-          results_title = false,
-          layout_strategy = "center",
-          borderchars = {
-            results = { " " },
-            prompt = { "▄", "▌", "▀", "▐", "▗", "▖", "▘", "▝" },
-          },
-          layout_config = {
-            width = 0.35,
-            height = 0.35,
-          },
-        },
+      bigfile = { enabled = true },
+      indent = {
+        enabled = true,
+        char = "▎",
+        animate = { enabled = false },
+        scope = { enabled = false },
       },
-      input = {
-        border = "none",
-        max_width = { 140, 0.9 },
-        min_width = { 20, 0.1 },
-        win_options = {
-          listchars = "precedes:<,extends:>",
-          sidescrolloff = 2,
-        },
+      input = { enabled = true },
+      picker = {
+        enabled = true,
+        win = {
+          input = {
+            keys = {
+              ["<C-BS>"] = { "<c-s-w>", mode = { "i" }, expr = true }
+            }
+          },
+        }
       },
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = true },
+      styles = {
+        input = {
+          border = "rounded",
+          relative = "cursor",
+          row = -3,
+          col = 0,
+          width = 40,
+          keys = {
+            ["<C-BS>"] = { "<c-s-w>", mode = { "i" }, expr = true }
+          }
+        }
+      }
     },
-    init = function()
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
+    config = function(_, opts)
+      require("snacks").setup(opts)
+    end
+
   },
+
+  --{
+  --  "stevearc/dressing.nvim",
+  --  lazy = true,
+  --  opts = {
+  --    select = {
+  --      telescope = {
+  --        sorting_strategy = "ascending",
+  --        results_title = false,
+  --        layout_strategy = "center",
+  --        borderchars = {
+  --          results = { " " },
+  --          prompt = { "▄", "▌", "▀", "▐", "▗", "▖", "▘", "▝" },
+  --        },
+  --        layout_config = {
+  --          width = 0.35,
+  --          height = 0.35,
+  --        },
+  --      },
+  --    },
+  --    input = {
+  --      border = "none",
+  --      max_width = { 140, 0.9 },
+  --      min_width = { 20, 0.1 },
+  --      win_options = {
+  --        listchars = "precedes:<,extends:>",
+  --        sidescrolloff = 2,
+  --      },
+  --    },
+  --  },
+  --  init = function()
+  --    ---@diagnostic disable-next-line: duplicate-set-field
+  --    vim.ui.select = function(...)
+  --      require("lazy").load({ plugins = { "dressing.nvim" } })
+  --      return vim.ui.select(...)
+  --    end
+  --    ---@diagnostic disable-next-line: duplicate-set-field
+  --    vim.ui.input = function(...)
+  --      require("lazy").load({ plugins = { "dressing.nvim" } })
+  --      return vim.ui.input(...)
+  --    end
+  --  end,
+  --},
 
   {
     "linrongbin16/lsp-progress.nvim",
@@ -300,31 +345,6 @@ return {
   },
 
   {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("ibl").setup({
-        -- for example, context is off by default, use this to turn it on
-        -- show_current_context = false,
-        -- show_current_context_start = false,
-
-        whitespace = {
-          remove_blankline_trail = true,
-          highlight = "IndentBlankline",
-        },
-
-        indent = {
-          smart_indent_cap = true,
-        },
-
-        scope = {
-          enabled = false,
-        },
-      })
-    end,
-  },
-
-  {
     "nanozuki/tabby.nvim",
     opts = {
       theme = {
@@ -420,7 +440,7 @@ return {
       hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
     },
     cond = function()
-      return vim.fn.has 'win32' ~= 1
+      return vim.fn.has 'win32' ~= 1 and vim.fn.has 'gui_running' ~= 1
     end,
     dependencies = {
       'leafo/magick',

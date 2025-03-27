@@ -13,7 +13,6 @@ return {
   {
     "Walcriz/action-lists.nvim",
     dependencies = {
-      "stevearc/dressing.nvim",
       "nvim-telescope/telescope.nvim",
     },
     opts = {

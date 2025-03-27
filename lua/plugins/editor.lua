@@ -138,8 +138,13 @@ return {
 		event = "VeryLazy",
 		opts = {
 			enabled = true,
-			debounce_delay = 200,
+			debounce_delay = 600,
+			condition = function(buf)
+				-- Only save if buffer is modified
+				return vim.api.nvim_buf_get_option(buf, "modified")
+			end,
 			write_all_buffers = true,
+			noautocmd = true
 		}
 	},
 }

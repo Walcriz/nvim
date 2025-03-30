@@ -22,7 +22,7 @@ return {
     },
     init = function()
       vim.opt.termguicolors = true
-      vim.notify = require("notify")
+      vim.notify = vim.schedule_wrap(require("notify"))
     end,
   },
 
@@ -49,10 +49,12 @@ return {
               ["<C-BS>"] = { "<c-s-w>", mode = { "i" }, expr = true }
             }
           },
+        },
+        matcher = {
+          history_bonus = true
         }
       },
       quickfile = { enabled = true },
-      statuscolumn = { enabled = true },
       styles = {
         input = {
           border = "rounded",
@@ -69,51 +71,7 @@ return {
     config = function(_, opts)
       require("snacks").setup(opts)
     end
-
   },
-
-  --{
-  --  "stevearc/dressing.nvim",
-  --  lazy = true,
-  --  opts = {
-  --    select = {
-  --      telescope = {
-  --        sorting_strategy = "ascending",
-  --        results_title = false,
-  --        layout_strategy = "center",
-  --        borderchars = {
-  --          results = { " " },
-  --          prompt = { "▄", "▌", "▀", "▐", "▗", "▖", "▘", "▝" },
-  --        },
-  --        layout_config = {
-  --          width = 0.35,
-  --          height = 0.35,
-  --        },
-  --      },
-  --    },
-  --    input = {
-  --      border = "none",
-  --      max_width = { 140, 0.9 },
-  --      min_width = { 20, 0.1 },
-  --      win_options = {
-  --        listchars = "precedes:<,extends:>",
-  --        sidescrolloff = 2,
-  --      },
-  --    },
-  --  },
-  --  init = function()
-  --    ---@diagnostic disable-next-line: duplicate-set-field
-  --    vim.ui.select = function(...)
-  --      require("lazy").load({ plugins = { "dressing.nvim" } })
-  --      return vim.ui.select(...)
-  --    end
-  --    ---@diagnostic disable-next-line: duplicate-set-field
-  --    vim.ui.input = function(...)
-  --      require("lazy").load({ plugins = { "dressing.nvim" } })
-  --      return vim.ui.input(...)
-  --    end
-  --  end,
-  --},
 
   {
     "linrongbin16/lsp-progress.nvim",

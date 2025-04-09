@@ -53,18 +53,15 @@ return {
         "<tab>",
         function()
           local status = vim.fn["codeium#GetStatusString"]()
-          if not status == "0" and not status == "*" then
-            vim.notify("codeium: " .. vim.fn["codeium#GetStatusString"]())
+          if status ~= "0" and status ~= "*" then
             return vim.fn["codeium#Accept"]()
           end
 
           local luasnip = require("luasnip")
           if luasnip.locally_jumpable(1) then
-            vim.notify("Snippets available")
             luasnip.jump(1)
             return ""
           else
-            vim.notify("Normal")
             return "<tab>"
           end
         end,
@@ -161,9 +158,10 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = {
-
-    }
+    config = function(_, opts)
+      require("nvim-autopairs").setup(opts)
+      require("config.autopairs")
+    end
   },
 
   {

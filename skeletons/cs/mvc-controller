@@ -1,0 +1,21 @@
+using Microsoft.AspNetCore.Mvc;
+
+namespace ${cs_namespace};
+
+[ApiController]
+[Route("api/[controller]")]
+public class ${filename} : ControllerBase
+{
+    public ${filename}()
+    {
+        ${cursor}
+    }
+
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok();
+    }
+
+    // TODO: Add additional actions (POST, PUT, DELETE, etc.)
+}

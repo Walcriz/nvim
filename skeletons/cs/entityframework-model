@@ -1,0 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace ${cs_namespace};
+
+public class ${filename}
+{
+    ${cursor}
+}

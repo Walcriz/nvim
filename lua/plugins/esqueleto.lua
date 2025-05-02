@@ -2,6 +2,7 @@ return {
 	-- Template files
 	{
 		"cvigilv/esqueleto.nvim",
+		lazy = false,
 		opts = {
 			templates = {
 				"cs",

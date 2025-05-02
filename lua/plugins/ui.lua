@@ -43,6 +43,7 @@ return {
       input = { enabled = true },
       picker = {
         enabled = true,
+        ui_select = false,
         win = {
           input = {
             keys = {
@@ -68,6 +69,26 @@ return {
     },
     config = function(_, opts)
       require("snacks").setup(opts)
+
+      --- @param items table   the list of entries to choose from
+      --- @param opts  table   opts.prompt, opts.format_item, etc; we’ll also read opts.delay
+      --- @param on_choice function(item, idx)  callback
+      vim.ui.select = function(items, opts, on_choice)
+        -- allow users to pass in a custom delay ms via opts.delay; default to 100ms
+        local delay = (opts and opts.delay) or 0
+        if opts and opts.prompt and opts.prompt:find("skeleton") then
+          delay = 100
+        end
+
+        -- Check if the title is Select skeleton to use
+        if delay > 0 then
+          vim.defer_fn(function()
+            Snacks.picker.select(items, opts, on_choice)
+          end, delay)
+        else
+          Snacks.picker.select(items, opts, on_choice)
+        end
+      end
     end
 
   },

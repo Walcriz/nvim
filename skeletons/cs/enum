@@ -1,0 +1,6 @@
+namespace ${cs_namespace};
+
+public enum ${filename}
+{
+    ${cursor}
+}

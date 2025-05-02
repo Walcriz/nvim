@@ -34,17 +34,6 @@ function M.format()
 end
 
 function M.on_attach(client, buf)
-  local guess = require("guess-indent").guess_from_buffer()
-  if guess == nil then
-    local profiles = require("config.tabprofiles")
-    local profile = profiles.lang[vim.bo.filetype]
-    if not profile == nil then
-      require("util").setuptabs(vim.opt_local, profile)
-    end
-  else
-    require("util").set_indent(guess)
-  end
-
   -- dont format if client disabled it
   if
       client.config
@@ -53,6 +42,10 @@ function M.on_attach(client, buf)
   then
     return
   end
+
+  vim.cmd([[
+  command! Format execute 'lua vim.lsp.buf.format({ async = true })'
+  ]])
 
   -- if client.supports_method("textDocument/formatting") then
   --   vim.api.nvim_create_autocmd("BufWritePre", {

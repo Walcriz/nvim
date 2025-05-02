@@ -1,6 +1,6 @@
 return {
   {
-    "Exafunction/codeium.vim",
+    "Exafunction/windsurf.vim",
     keys = {
       -- { "<Tab>", "<Cmd>call codeium#Accept()<CR>", desc = "code", mode = "i" }
     },

@@ -262,7 +262,7 @@ return {
 
   -- Rainbow brackets/delimiters
   {
-    "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+    "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",
     event = "VimEnter",
     opts = {
       highlight = {

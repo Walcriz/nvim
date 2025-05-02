@@ -96,21 +96,6 @@ return {
 		},
 	},
 
-	-- Template files
-	{
-		"cvigilv/esqueleto.nvim",
-		opts = {
-			templates = {
-				"cs",
-				"java",
-				"LICENSE",
-				"go",
-				"gitignore"
-			},
-		},
-		event = { "BufNewFile", "BufReadPost" },
-	},
-
 	-- Color picker
 	-- {
 	-- 	"nvim-colortils/colortils.nvim",

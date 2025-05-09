@@ -96,16 +96,6 @@ return {
 		},
 	},
 
-	-- Color picker
-	-- {
-	-- 	"nvim-colortils/colortils.nvim",
-	-- 	cmd = "Colortils",
-	-- 	config = true,
-	-- 	keys = {
-	-- 		{ "<leader>rc", "<Cmd>Colortils picker<cr>", desc = "Pick color" },
-	-- 	},
-	-- },
-
 	-- GitSigns
 	{
 		"lewis6991/gitsigns.nvim",
@@ -119,7 +109,7 @@ return {
 		version = '^1.0.0',
 		event = "VeryLazy",
 		opts = {
-			enabled = true,
+			enabled = false,
 			debounce_delay = 1000,
 			condition = function(buf)
 				-- Only save if buffer is modified

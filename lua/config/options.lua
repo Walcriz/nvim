@@ -5,6 +5,8 @@ opt.ruler = true
 opt.showmatch = true
 opt.showmode = true
 
+opt.termguicolors = true
+
 -- LINE NUMBERS --
 opt.number = true
 opt.relativenumber = true

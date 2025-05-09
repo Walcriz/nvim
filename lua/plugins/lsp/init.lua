@@ -76,11 +76,19 @@ return {
         require("plugins.lsp.keymaps").on_attach(client, buffer)
       end)
 
-      -- diagnostics
-      for name, icon in pairs(require("config").icons.diagnostics) do
-        name = "DiagnosticSign" .. name
-        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-      end
+      -- Insert into opts.diagnostics
+      local icons = require("config").icons.diagnostics
+      vim.tbl_deep_extend("force", opts.diagnostics, {
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.Error,
+            [vim.diagnostic.severity.WARN]  = icons.Warn,
+            [vim.diagnostic.severity.INFO]  = icons.Info,
+            [vim.diagnostic.severity.HINT]  = icons.Hint,
+          }
+        }
+      })
+
       vim.diagnostic.config(opts.diagnostics)
 
       local servers = opts.servers

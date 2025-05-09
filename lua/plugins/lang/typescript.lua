@@ -7,14 +7,14 @@ return {
 		opts = {
 			-- make sure mason installs the server
 			servers = {
-				ts_ls = {
-					---@type lspconfig.options.ts_ls
-					settings = {
-						completions = {
-							completeFunctionCalls = true,
-						},
-					},
-				},
+				--ts_ls = {
+				--	---@type lspconfig.options.ts_ls
+				--	settings = {
+				--		completions = {
+				--			completeFunctionCalls = true,
+				--		},
+				--	},
+				--},
 			},
 			setup = {
 				tsserver = function(_, opts)

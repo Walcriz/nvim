@@ -156,7 +156,6 @@ return {
 				border = {},
 				-- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 				borderchars = { "▄", "▌", "▀", "▐", "▗", "▖", "▘", "▝" },
-				color_devicons = true,
 				set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 
 				cache_picker = {

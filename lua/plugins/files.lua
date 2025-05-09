@@ -151,7 +151,6 @@ return {
 				border = {},
 				-- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 				borderchars = { "▄", "▌", "▀", "▐", "▗", "▖", "▘", "▝" },
-				color_devicons = true,
 				set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 			},
 			highlight = { enable = true },
@@ -237,7 +236,6 @@ return {
 			})
 		end,
 		-- Optional dependencies
-		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
 	},
 

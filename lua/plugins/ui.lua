@@ -21,7 +21,6 @@ return {
       background_colour = "#000000",
     },
     init = function()
-      vim.opt.termguicolors = true
       vim.notify = vim.schedule_wrap(require("notify"))
     end,
   },
@@ -140,38 +139,6 @@ return {
     event = "VeryLazy"
   },
 
-  -- statusline
-  -- {
-  --   "itchyny/lightline.vim",
-  --   config = function()
-  --     vim.g.lightline = {
-  --       colorscheme = "one",
-  --       enable = {
-  --         tabline = false,
-  --       },
-  --       active = {
-  --         left = {
-  --           { "mode",     "paste" },
-  --           { "readonly", "filename" },
-  --           { "lsp_info", "lsp_hints", "lsp_errors", "lsp_warnings", "lsp_ok", "lsp_status" },
-  --         },
-  --       },
-  --     }
-  --   end,
-  --   lazy = false,
-  --   -- dependencies = { "josa42/nvim-lightline-lsp" },
-  -- },
-
-  -- {
-  --   "josa42/nvim-lightline-lsp",
-  --   config = function()
-  --     vim.cmd("call lightline#lsp#register()")
-  --   end,
-  --   dependencies = {
-  --     "itchyny/lightline.vim"
-  --   }
-  -- },
-
   -- Dashboard
   {
     "goolord/alpha-nvim",
@@ -277,10 +244,14 @@ return {
   },
 
   -- Colorize colors
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   event = "VeryLazy",
-  -- },
+  {
+    "NvChad/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {
+      '*',
+      '!.vim'
+    }
+  },
 
   -- DAP Ui
   {

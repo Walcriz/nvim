@@ -287,27 +287,93 @@ return {
 	},
 
 	{
-		"dinhhuy258/sfm.nvim",
-		opts = {
-			mappings = {
-				custom_only = false,
-				list = {
-					{
-						key = "tt",
-						action = function ()
-							require("sfm.api").explorer.close()
-						end
-					},
-					{
-						key = "<space>",
-						action = function () end
-					}
-				}
-			}
+		"nvim-tree/nvim-tree.lua",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
 		},
+
 		keys = {
-			{ "<leader>tt", "<cmd>SFMToggle<cr>", desc = "File Browser" }
+			{ "<leader>tt", function() require("nvim-tree.api").tree.open() end, desc = "File browser" },
 		},
-		config = true
-	}
+
+		opts = {
+			reload_on_bufenter = true,
+			filters = {
+				custom = { "^.git$" }
+			},
+			actions = {
+				open_file = {
+					resize_window = false, -- don't resize window when opening file
+				},
+			},
+			update_focused_file = {
+				enable = true,
+				update_root = true,
+			},
+		},
+
+		config = function(_, opts)
+			require("nvim-tree").setup(opts)
+
+			vim.api.nvim_create_autocmd("QuitPre", {
+				callback = function()
+					local invalid_win = {}
+					local wins = vim.api.nvim_list_wins()
+					for _, w in ipairs(wins) do
+						local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
+						if bufname:match("NvimTree_") ~= nil then
+							table.insert(invalid_win, w)
+						end
+					end
+					if #invalid_win == #wins - 1 then
+						-- Should quit, so we close all invalid windows.
+						for _, w in ipairs(invalid_win) do vim.api.nvim_win_close(w, true) end
+					end
+				end
+			})
+
+			vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+				pattern = 'NvimTree*',
+				callback = function()
+					local api = require('nvim-tree.api')
+					local view = require('nvim-tree.view')
+
+					if not view.is_visible() then
+						api.tree.open()
+					end
+				end,
+			})
+
+			local api = require("nvim-tree.api")
+			local view = require('nvim-tree.view')
+			local augroup = vim.api.nvim_create_augroup
+			local autocmd = vim.api.nvim_create_autocmd
+
+			-- save nvim-tree window width on WinResized event
+			augroup('save_nvim_tree_width', { clear = true })
+			autocmd('WinResized', {
+				group = 'save_nvim_tree_width',
+				pattern = '*',
+				callback = function()
+					local filetree_winnr = view.get_winnr()
+					if filetree_winnr ~= nil and vim.tbl_contains(vim.v.event['windows'], filetree_winnr) then
+						vim.t['filetree_width'] = vim.api.nvim_win_get_width(filetree_winnr)
+					end
+				end,
+			})
+
+			-- restore window size when openning nvim-tree
+			api.events.subscribe(api.events.Event.TreeOpen, function()
+				if vim.t['filetree_width'] ~= nil then
+					view.resize(vim.t['filetree_width'])
+				end
+			end)
+
+			vim.keymap.set('n', '<leader>e', function()
+				api.tree.find_file({ open = true, focus = true })
+			end)
+
+			api.events.subscribe(api.events.Event.FileCreated, function(file) vim.cmd("edit " .. file.fname) end)
+		end
+	},
 }

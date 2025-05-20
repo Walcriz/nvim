@@ -121,36 +121,33 @@ map("n", "<Space>6", "<cmd>tabn 6<cr>", { desc = "Goto tab 6" })
 -- Backspace delete in visual
 map("v", "<BS>", "s")
 
--- Fix TAB in insert
--- map("i", "<Tab>", "<Tab>", { noremap = true })
+local function smart_window_nav(direction)
+  local initial_win = vim.api.nvim_get_current_win()
 
--- Surround in visual mode
-local surroundPairs = {
-  -- { '"', '"' },
-  -- { "'", "'" },
-  -- { "[", "]" },
-  -- { "`", "`" },
-  -- { "<", ">" },
-}
+  -- Try to move in Neovim
+  vim.cmd('wincmd ' .. direction)
 
----@diagnostic disable-next-line: unused-local
-for i, pair in ipairs(surroundPairs) do
-  local open = pair[1]
-  local close = pair[2]
+  local new_win = vim.api.nvim_get_current_win()
 
-  -- Group 1: Spaces/Tabs in the beginning \([ \t]*\)
-  -- Group 2: The rest \(.*\)
-  -- Group 3: The last character in selection \(.\)
-  map("v", open, [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1]] .. open .. [[\2\3]] .. close .. [[<cr>:noh<cr><esc>`<]])
-
-  -- Also map s to close and open
-  map("s", open, open .. close .. "<Left>")
+  -- If window didn't change, fallback to Hyprland
+  if new_win == initial_win then
+    -- Only try this if on Hyprland
+    if os.getenv("XDG_SESSION_DESKTOP") == "Hyprland" then
+      local hypr_dir_map = {
+        h = "l", -- Hyprland directions are reversed compared to vim
+        j = "u",
+        k = "d",
+        l = "r",
+      }
+      local hypr_dir = hypr_dir_map[direction]
+      if hypr_dir then
+        vim.fn.jobstart("hyprctl dispatch movefocus " .. hypr_dir)
+      end
+    end
+  end
 end
 
--- map("v", "(", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1(\2\3)<cr>:noh<cr><esc>`<]])
--- map("v", "{", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1{\2\3}<cr>:noh<cr><esc>`<]])
--- map("v", '"', [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1"\2\3"<cr>:noh<cr><esc>`<]])
--- map("v", "'", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1'\2\3'<cr>:noh<cr><esc>`<]])
--- map("v", "[", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1[\2\3]<cr>::noh<cr><esc>`<]])
--- map("v", "`", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1`\2\3`<cr>:noh<cr><esc>`<]])
--- map("v", "<", [[:s/\%V\([ \t]*\)\(.*\)\%V\(.\)/\1<\2\3><cr>:noh<cr><esc>`<]])
+local directions = { h = "h", j = "j", k = "k", l = "l" }
+for key, dir in pairs(directions) do
+  vim.keymap.set('n', '<C-w>' .. key, function() smart_window_nav(dir) end, { noremap = true, silent = true })
+end

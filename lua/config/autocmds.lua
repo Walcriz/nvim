@@ -8,14 +8,6 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   command = "checktime",
 })
 
--- resize splits if window got resized
-autocmd({ "VimResized" }, {
-  group = augroup("resize_splits"),
-  callback = function()
-    vim.cmd("tabdo wincmd =")
-  end,
-})
-
 -- go to last loc when opening a buffer
 autocmd("BufReadPost", {
   group = augroup("last_loc"),

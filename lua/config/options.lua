@@ -75,3 +75,5 @@ opt.clipboard = "unnamedplus"
 -- MOUSE SETTINGS --
 opt.mousefocus = true
 opt.mouse:append("a")
+
+vim.o.sessionoptions="buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

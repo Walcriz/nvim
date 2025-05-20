@@ -58,32 +58,6 @@ autocmd("FileType", {
   end,
 })
 
--- Delete empty lines at end of file
--- autocmd("BufWritePre", {
--- 	group = augroup("del_whitespace_line"),
--- 	callback = function()
--- 		vim.cmd([[
--- 		let l = line(".")
--- 		let c = col(".")
--- 		%s/\(\s*\n\)\+\%$//ge
--- 		call cursor(l, c)
--- 		]])
--- 	end,
--- })
-
--- Repace groups of empty or whitespaces-only lines with one empty line
--- autocmd("BufWritePre", {
--- 	group = augroup("whitespace_replace"),
--- 	callback = function()
--- 		vim.cmd([[
--- 		let l = line(".")
---     let c = col(".")
--- 		%s/\(\s*\n\)\{3,}/\r\r/ge
--- 		call cursor(l, c)
--- 		]])
--- 	end,
--- })
-
 -- Delete trailing whitespaces
 autocmd("BufWritePre", {
   group = augroup("del_whitespace_trailing"),
@@ -97,25 +71,17 @@ autocmd("BufWritePre", {
   end,
 })
 
-
-local profiles = require("config.tabprofiles")
-autocmd({ "BufRead" }, {
-  callback = function()
-    local editorconfig = vim.b.editorconfig
-    if editorconfig and (editorconfig.indent_style or editorconfig.indent_size or editorconfig.tab_width) then
-      return
+autocmd("BufReadPre", {
+  callback = function(args)
+    local file = args.file
+    local line_count = tonumber(vim.fn.system("wc -l < " .. vim.fn.shellescape(file)))
+    if line_count and line_count > 20000 then
+      vim.schedule(function()
+        vim.cmd("bd!") -- force close buffer
+        vim.notify("Closed large file (>100k lines): " .. file, vim.log.levels.WARN)
+      end)
     end
-
-    local guess = require("guess-indent").guess_from_buffer()
-    if guess == nil then
-      local profile = profiles.lang[vim.bo.filetype]
-      if not profile == nil then
-        setuptabs(vim.opt_local, profile)
-      end
-    else
-      require("util").set_indent(guess)
-    end
-  end,
+  end
 })
 
 autocmd("BufRead", {

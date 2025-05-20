@@ -103,6 +103,13 @@ return {
 		event = { "BufNewFile", "BufReadPost" },
 	},
 
+	-- Runner
+	{
+		"stevearc/overseer.nvim",
+		event = "VeryLazy",
+		config = true
+	},
+
 	-- Auto save
 	{
 		"okuuva/auto-save.nvim",

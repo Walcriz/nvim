@@ -20,6 +20,10 @@ return {
       { "<leader>rl", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
       { "<leader>rd", function() require("persistence").stop() end,                desc = "Don't Save Current Session" },
     },
+
+    config = function(_, opts)
+      require("persistence").setup(opts)
+    end,
   },
 
   -- library used by other plugins

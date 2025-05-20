@@ -91,12 +91,6 @@ map("n", "<leader>dp", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 -- end, { desc = "Toggle Conceal" })
 
 -- floating terminal
-map("n", "tT", function()
-  Util.float_term(nil, { cwd = Util.get_root() })
-end, { desc = "Terminal (root dir)" })
-map("n", "tt", function()
-  Util.float_term()
-end, { desc = "Terminal (cwd)" })
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- tabs

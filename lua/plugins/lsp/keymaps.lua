@@ -26,7 +26,7 @@ function M.get()
 			{ "åe", M.diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
 			{ "äw", M.diagnostic_goto(true, "WARN"), desc = "Next Warning" },
 			{ "åw", M.diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
-			{ "<M-CR>", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
+			{ "<M-CR>", "<cmd>lua require('fastaction').code_action()<cr>", desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
 			{ "<leader>r=", format, desc = "Format Document", has = "documentFormatting" },
 			{ "<leader>r=", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
 		}

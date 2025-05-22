@@ -4,8 +4,8 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf",                                config = true },
-      { "folke/neodev.nvim",  opts = { experimental = { pathStrict = true } } },
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+      { "folke/lazydev.nvim",  opts = {} },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       {
@@ -15,6 +15,7 @@ return {
         end,
       },
       "ray-x/lsp_signature.nvim",
+      "Chaitanyabsprip/fastaction.nvim",
     },
     ---@class PluginLspOpts
     opts = {
@@ -117,8 +118,7 @@ return {
       for server, server_opts in pairs(servers) do
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
-          -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-          if server_opts.mason == false or not vim.tbl_contains(available, server) then
+          if not vim.tbl_contains(available, server) then
             setup(server)
           end
         end

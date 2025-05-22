@@ -265,7 +265,11 @@ return {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio"
     },
-    config = true,
+    cmd = { "Debug" },
+    config = function (_, opts)
+      require("dapui").setup(opts)
+      vim.api.nvim_create_user_command("Debug", function() require("dapui").toggle() end, {})
+    end,
     lazy = true,
   },
 

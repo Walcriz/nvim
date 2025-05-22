@@ -161,7 +161,11 @@ return {
       { "<F8>",       "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Over" },
       { "<F6>",       "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Into" },
     },
-    config = function(_, opts) end,
+    config = function(_, opts)
+      vim.api.nvim_create_user_command("Breakpoint", function() require("dap").toggle_breakpoint() end, {})
+      vim.cmd("hi DapBreakpointColor guifg=#fa4848")
+      vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpointColor", linehl = "", numhl = "" })
+    end,
     lazy = true,
   },
 }

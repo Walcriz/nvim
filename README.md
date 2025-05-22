@@ -1,5 +1,5 @@
 # My Personal Neovim Configuration
-This neovim configuration was heavly inspired by the [LazyVim](https://github.com/LazyVim/LazyVim) neovim configuration.
+This neovim configuration was at first inspired by [LazyVim](https://github.com/LazyVim/LazyVim) for nvim 0.8 so a lot of the directory structure is the same. But that was a long time ago now so there is really nothing in common between them anymore.
 
 ## Showcase
 | ![image](https://github.com/user-attachments/assets/6c19955c-6fac-49f3-85c4-1daca11fd8a7) | ![image](https://github.com/user-attachments/assets/9df6d93f-6afa-46ed-98bb-47d8ab263344) |
@@ -17,11 +17,11 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 [monokai.nvim](https://github.com/tanvirtin/monokai.nvim) vim colorscheme.
 
 ## Requirements
-- Neovim >= **0.10.0**
+- Neovim >= **0.11.0**
 - Git
 - [RipGrep](https://github.com/BurntSushi/ripgrep)
 - [fzf](https://github.com/junegunn/fzf)
-- [Jetbrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono) **(optional)**
+- [Jetbrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono) (You can use any Nerd Font font)
 
 ## Notes
 

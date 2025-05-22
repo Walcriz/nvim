@@ -116,7 +116,7 @@ return {
 		version = '^1.0.0',
 		event = "VeryLazy",
 		opts = {
-			enabled = false,
+			enabled = true,
 			debounce_delay = 1000,
 			condition = function(buf)
 				-- Only save if buffer is modified

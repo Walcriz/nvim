@@ -4,13 +4,8 @@ return {
 		"cvigilv/esqueleto.nvim",
 		lazy = false,
 		opts = {
-			templates = {
-				"cs",
-				"java",
-				"LICENSE",
-				"go",
-				"gitignore"
-			},
+			autouse = true,
+
 			wildcards = {
 				expand = true,
 				lookup = {
@@ -63,6 +58,21 @@ return {
 				},
 			}
 		},
+
+		config = function(_, opts)
+			require("esqueleto").setup(opts)
+
+			vim.cmd [[
+			augroup esqueleto
+			autocmd!
+			augroup END
+			]]
+
+			vim.api.nvim_create_user_command("Fill", function()
+				vim.cmd("EsqueletoInsert")
+			end, { nargs = 0 })
+		end,
+
 		event = { "BufNewFile", "BufReadPost" },
 	},
 }

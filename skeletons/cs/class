@@ -1,11 +1,6 @@
-using System;
-
 namespace ${cs_namespace};
 
 public class ${filename}
 {
-    public ${filename}()
-    {
-        ${cursor}
-    }
+    ${cursor}
 }

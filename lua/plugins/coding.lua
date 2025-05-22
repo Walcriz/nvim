@@ -19,6 +19,13 @@ return {
       lists = {
         code_insert = {
           -- Defined elsewhere
+          all = {
+            actions = {
+              document = function ()
+                require("neogen").generate()
+              end
+            },
+          },
         },
         build = {
           -- Defined elsewhere
@@ -30,8 +37,14 @@ return {
     },
     config = true,
     keys = {
-      { "<M-Insert>", ":OpenActionList code_insert<CR>", desc = "Open code insert action list" },
+      -- { "<M-Insert>", ":OpenActionList code_insert<CR>", desc = "Open code insert action list" },
     },
+  },
+
+  {
+    "Chaitanyabsprip/fastaction.nvim",
+    config = true,
+    event = "VeryLazy",
   },
 
   -- snippets
@@ -257,5 +270,11 @@ return {
     config = function(_, opts)
       require("bigfile").setup(opts)
     end
+  },
+
+  -- Annotations
+  {
+    "danymat/neogen",
+    config = true,
   }
 }

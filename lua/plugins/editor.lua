@@ -107,7 +107,13 @@ return {
 	{
 		"stevearc/overseer.nvim",
 		event = "VeryLazy",
-		config = true
+		config = function (_, opts)
+			require("overseer").setup(opts)
+
+			vim.api.nvim_create_user_command("Run", function()
+				vim.cmd("OverseerRun")
+			end, { nargs = 0 })
+		end
 	},
 
 	-- Auto save

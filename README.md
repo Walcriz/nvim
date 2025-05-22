@@ -1,6 +1,11 @@
 # My Personal Neovim Configuration
 This neovim configuration was heavly inspired by the [LazyVim](https://github.com/LazyVim/LazyVim) neovim configuration.
 
+## Showcase
+| ![image](https://github.com/user-attachments/assets/6c19955c-6fac-49f3-85c4-1daca11fd8a7) | ![image](https://github.com/user-attachments/assets/9df6d93f-6afa-46ed-98bb-47d8ab263344) |
+|:------------------:|:---------------:|
+| ![image](https://github.com/user-attachments/assets/d304e0b6-43df-47d8-8bd9-b5eaa46d208f) | ![image](https://github.com/user-attachments/assets/a6efaecf-bf43-4e31-8eca-76de1700e65b) |
+
 ## Plugin Manager
 - The [💤lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
 

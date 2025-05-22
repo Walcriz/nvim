@@ -113,6 +113,10 @@ return {
 			vim.api.nvim_create_user_command("Run", function()
 				vim.cmd("OverseerRun")
 			end, { nargs = 0 })
+
+			vim.api.nvim_create_user_command("Output", function()
+				vim.cmd("OverseerToggle")
+			end, { nargs = 0 })
 		end
 	},
 

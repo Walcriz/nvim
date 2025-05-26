@@ -2,6 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = false, -- last release is way too old and doesn't work on Windows
+		branch = "main",
 		build = function ()
 			require("nvim-treesitter.install").update()
 		end,
@@ -62,10 +63,5 @@ return {
 				},
 			},
 		},
-
-		---@param opts TSConfig
-		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
-		end,
 	},
 }

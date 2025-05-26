@@ -47,9 +47,6 @@ function M.after()
     M.load("autocmds")
     M.load("keymaps")
   end
-
-  -- Treesitter trickery
-  require("nvim-treesitter.configs").setup({ rainbow = { enable = true } })
 end
 
 function M.load(name) -- Fully taken from https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/init.lua

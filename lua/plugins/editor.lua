@@ -114,7 +114,15 @@ return {
 				vim.cmd("OverseerRun")
 			end, { nargs = 0 })
 
+			vim.api.nvim_create_user_command("Build", function()
+				vim.cmd("OverseerRun")
+			end, { nargs = 0 })
+
 			vim.api.nvim_create_user_command("Output", function()
+				vim.cmd("OverseerToggle")
+			end, { nargs = 0 })
+
+			vim.api.nvim_create_user_command("BuildOutput", function()
 				vim.cmd("OverseerToggle")
 			end, { nargs = 0 })
 		end

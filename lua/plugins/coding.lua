@@ -177,12 +177,6 @@ return {
     end
   },
 
-  {
-    "brianhuster/nvim-treesitter-endwise",
-    ft = {'ruby', 'lua', 'vim', 'bash', 'elixir', 'fish', 'julia'},
-    event = "InsertEnter",
-  },
-
   -- Commentary
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {

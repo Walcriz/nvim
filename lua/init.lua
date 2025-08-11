@@ -80,6 +80,27 @@ function M.setuptabs()
 
   vim.api.nvim_create_autocmd("BufReadPost", {
     callback = function(args)
+      local buf = args.buf
+
+      -- 1. Check for EditorConfig properties on this buffer
+      --    Neovim parses .editorconfig and stores the result in b:editorconfig (a table) if enabled :contentReference[oaicite:0]{index=0}
+      local ec = vim.b[buf].editorconfig
+      if ec and type(ec) == "table" then
+        -- EditorConfig uses 'indent_size' (or 'tab_width') and 'indent_style'
+        local size = tonumber(ec.indent_size or ec.tab_width)
+        local style = ec.indent_style  -- "tab" or "space"
+
+        if size then
+          -- Convert EditorConfig style into expandtab setting
+          local expand = (style == "space")
+          -- Apply both tabstop & shiftwidth to the same size
+          vim.opt_local.tabstop = size
+          vim.opt_local.shiftwidth = size
+          vim.opt_local.expandtab = expand
+          return
+        end
+      end
+
       local guess = require("guess-indent").guess_from_buffer(args.buf)
       if guess == nil then
         local filetype = vim.api.nvim_buf_get_option(args.buf, "filetype")

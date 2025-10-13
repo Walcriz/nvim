@@ -103,10 +103,12 @@ function M.setuptabs()
 
       local guess = require("guess-indent").guess_from_buffer(args.buf)
       if guess == nil then
-        local filetype = vim.api.nvim_buf_get_option(args.buf, "filetype")
+        local filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
         local profile = profiles.lang[filetype]
         if profile ~= nil then
           require("util").setuptabs(vim.opt_local, profile)
+        else
+          require("util").setuptabs(vim.opt_local, profiles.default)
         end
       else
         require("util").set_indent(guess)

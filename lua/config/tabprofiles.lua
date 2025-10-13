@@ -6,6 +6,16 @@ return {               -- Define custom indentation profiles for specific langua
   },
 
   lang = { -- Define the indentation profiles here
+    c = { -- C
+      usetabs = false,
+      tabsize = 2,
+    },
+
+    cpp = { -- C++
+      usetabs = false,
+      tabsize = 2,
+    },
+
     cs = { -- C#
       usetabs = false,
       tabsize = 4,
@@ -17,28 +27,28 @@ return {               -- Define custom indentation profiles for specific langua
     },
 
     python = { -- Python
-      usetabs = false,
+      usetabs = true,
       tabsize = 4,
     },
 
     javascript = { -- Javascript
       usetabs = false,
-      tabsize = 4,
+      tabsize = 2,
     },
 
     typescript = { -- Typescript
       usetabs = false,
-      tabsize = 4,
+      tabsize = 2,
     },
 
     javascriptreact = { -- Javascript (jsx)
       usetabs = false,
-      tabsize = 4,
+      tabsize = 2,
     },
 
     typescriptreact = { -- Typescriptreact (tsx)
       usetabs = false,
-      tabsize = 4,
+      tabsize = 2,
     },
 
     lua = { -- Lua

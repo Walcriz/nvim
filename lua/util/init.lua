@@ -291,7 +291,11 @@ function M.setuptabs(opt, profile)
     opt.smarttab = true
     opt.expandtab = true
 
-    opt.tabstop = profile.tabsize
+    if profile.visualtabsize then
+      opt.tabstop = profile.visualtabsize
+    else
+      opt.tabstop = 3 -- Default to some awakward value
+    end
     opt.softtabstop = 0
   end
 end

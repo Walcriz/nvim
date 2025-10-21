@@ -240,7 +240,7 @@ return {
 	},
 
 	{
-		"echasnovski/mini.files",
+		"nvim-mini/mini.files",
 		keys = {
 			{ "fn", function() MiniFiles.open() end, desc = "File browser" },
 		},

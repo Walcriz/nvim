@@ -19,6 +19,7 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 ## Requirements
 - Neovim >= **0.11.0**
 - Git
+- tree-sitter-cli
 - [RipGrep](https://github.com/BurntSushi/ripgrep)
 - [fzf](https://github.com/junegunn/fzf)
 - [Jetbrains Mono](https://www.jetbrains.com/lp/mono/) [Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono) (You can use any Nerd Font font)
@@ -34,3 +35,4 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 - `git clone` this repository into your neovim config path (Linux: `~/.config/nvim`, Windows: `C:\Users\[Your Name]\AppData\Local\nvim`)
 - Start neovim and wait
 - 🎉 Congratulations you now have my configuration installed!
+

@@ -85,8 +85,15 @@ return {
             lang = vim.fn.fnamemodify(vim.fn.expand("%"), ":e")
           end
 
+          -- Skip if no filetype
+          if not lang or lang == "" then return end
+
           if lang == "cs" then
             lang = "c_sharp"
+          elseif lang == "javascriptreact" then
+            lang = "javascript"
+          elseif lang == "typescriptreact" then
+            lang = "typescript"
           end
 
           -- Skip if Treesitter has no config for this filetype

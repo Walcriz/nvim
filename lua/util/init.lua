@@ -92,7 +92,7 @@ function M.get_clients(opts)
     if opts and opts.method then
       ---@param client lsp.Client
       ret = vim.tbl_filter(function(client)
-        return client.supports_method(opts.method, { bufnr = opts.bufnr })
+        return require("util").client_supports_method(client, opts.method, opts.bufnr)
       end, ret)
     end
   end
@@ -419,6 +419,33 @@ function M.telescope_image_preview()
   end
 
   return { buffer_previewer_maker = buffer_previewer_maker, file_previewer = file_previewer.new }
+end
+
+-- Utility function to check if a client supports a method
+function M.client_supports_method(client, method, bufnr)
+  -- Prefix method if needed
+  method = method:find("/") and method or "textDocument/" .. method
+
+  -- Look up capability based on method
+  local capability_map = {
+    ["textDocument/hover"] = "hoverProvider",
+    ["textDocument/definition"] = "definitionProvider",
+    ["textDocument/completion"] = "completionProvider",
+    ["textDocument/signatureHelp"] = "signatureHelpProvider",
+    ["textDocument/references"] = "referencesProvider",
+    ["textDocument/rename"] = "renameProvider",
+    ["textDocument/codeAction"] = "codeActionProvider",
+    ["textDocument/formatting"] = "documentFormattingProvider",
+    ["textDocument/rangeFormatting"] = "documentRangeFormattingProvider",
+    ["textDocument/onTypeFormatting"] = "documentOnTypeFormattingProvider",
+  }
+
+  local cap = capability_map[method]
+  if not cap then
+    -- fallback: check if method exists in dynamicCapabilities
+    return client.server_capabilities[method] ~= nil
+  end
+  return client.server_capabilities[cap] ~= nil
 end
 
 return M

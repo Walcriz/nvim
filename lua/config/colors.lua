@@ -213,6 +213,16 @@ require("monokai").setup({
 		IndentBlankline = {
 			fg = "#29272b",
 		},
+
+		["lsp.type.function"] = {
+			fg = palette.green,
+		},
+		["lsp.type.method"] = {
+			fg = palette.green,
+		},
+		-- also add TS groups
+		TSField = { fg = palette.green },
+		TSProperty = { fg = palette.green },
 	},
 })
 

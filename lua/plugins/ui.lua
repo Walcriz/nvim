@@ -360,6 +360,7 @@ return {
   {
     "3rd/image.nvim",
     opts = {
+      processor = "magick_cli",
       backend = "kitty",
       integrations = {
         markdown = {
@@ -368,13 +369,6 @@ return {
           download_remote_images = true,
           only_render_image_at_cursor = false,
           filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
-        },
-        neorg = {
-          enabled = true,
-          clear_in_insert_mode = false,
-          download_remote_images = true,
-          only_render_image_at_cursor = false,
-          filetypes = { "norg" },
         },
         html = {
           enabled = false,
@@ -399,6 +393,7 @@ return {
     dependencies = {
       'leafo/magick',
     },
+    build = false
   },
 
   {

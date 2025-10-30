@@ -223,21 +223,25 @@ function M.set_indent(buf, indentation)
   end
 
   if indentation == "tabs" then
-    M.set_preset_indentation(buf)
+    M.set_preset_indentation(buf, { usetabs = true })
     set_buffer_opt("expandtab", false)
   elseif type(indentation) == "number" and indentation > 0 then
     M.set_preset_indentation(buf)
-    set_buffer_opt("expandtab", true)
-    set_buffer_opt("tabstop", 10)
-    set_buffer_opt("softtabstop", indentation)
-    set_buffer_opt("shiftwidth", indentation)
+    M.setuptabs(buf, {
+      usetabs = false,
+      tabsize = indentation,
+    })
   end
 end
 
-function M.set_preset_indentation(buf)
+function M.set_preset_indentation(buf, overrides)
+  overrides = overrides or {}
   local profiles = require("config.tabprofiles")
   local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
   local profile = profiles.lang[filetype]
+
+  profile = vim.tbl_extend("force", profile, overrides)
+
   if profile ~= nil then
     M.setuptabs(buf, profile)
   else
@@ -312,6 +316,8 @@ function M.setuptabs(buf, profile)
 
     vim.api.nvim_set_option_value("softtabstop", 0, { buf = buf })
   end
+
+  M.highlight_bad_indent(buf, profile.usetabs)
 end
 
 function M.telescope_image_preview()

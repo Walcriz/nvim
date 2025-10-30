@@ -93,12 +93,11 @@ function M.setuptabs()
         if size then
           vim.notify("Using Editorconfig: " .. size .. " " .. style, vim.log.levels.INFO)
           -- Convert EditorConfig style into expandtab setting
-          local expand = (style == "space")
-          -- Apply both tabstop & shiftwidth to the same size
-          vim.api.nvim_set_option_value("tabstop", size, { buf = buf })
-          vim.api.nvim_set_option_value("shiftwidth", size, { buf = buf })
-          vim.api.nvim_set_option_value("expandtab", expand, { buf = buf })
-          vim.api.nvim_set_option_value("softtabstop", size, { buf = buf })
+          -- build a profile
+          util.setuptabs(buf, {
+            tabsize = size,
+            usetabs = (style == "tab"),
+          })
           return
         end
       end
@@ -106,10 +105,10 @@ function M.setuptabs()
       local guess = require("guess-indent").guess_from_buffer(buf)
       if guess == nil then
         vim.notify("Using preset indentation for " .. vim.api.nvim_get_option_value("filetype", { buf = buf }), vim.log.levels.INFO)
-        require("util").set_preset_indentation(buf)
+        util.set_preset_indentation(buf)
       else
         vim.notify("Using Indent Guess " .. guess, vim.log.levels.INFO)
-        require("util").set_indent(buf, guess)
+        util.set_indent(buf, guess)
       end
     end,
   })

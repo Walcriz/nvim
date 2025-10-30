@@ -91,53 +91,58 @@ function M.setuptabs()
         local style = ec.indent_style  -- "tab" or "space"
 
         if size then
+          vim.notify("Using Editorconfig: " .. size .. " " .. style, vim.log.levels.INFO)
           -- Convert EditorConfig style into expandtab setting
           local expand = (style == "space")
           -- Apply both tabstop & shiftwidth to the same size
-          vim.opt_local.tabstop = size
-          vim.opt_local.shiftwidth = size
-          vim.opt_local.expandtab = expand
+          vim.api.nvim_set_option_value("tabstop", size, { buf = buf })
+          vim.api.nvim_set_option_value("shiftwidth", size, { buf = buf })
+          vim.api.nvim_set_option_value("expandtab", expand, { buf = buf })
+          vim.api.nvim_set_option_value("softtabstop", size, { buf = buf })
           return
         end
       end
 
-      local guess = require("guess-indent").guess_from_buffer(args.buf)
+      local guess = require("guess-indent").guess_from_buffer(buf)
       if guess == nil then
-        local filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
-        local profile = profiles.lang[filetype]
-        if profile ~= nil then
-          require("util").setuptabs(vim.opt_local, profile)
-        else
-          require("util").setuptabs(vim.opt_local, profiles.default)
-        end
+        vim.notify("Using preset indentation for " .. vim.api.nvim_get_option_value("filetype", { buf = buf }), vim.log.levels.INFO)
+        require("util").set_preset_indentation(buf)
       else
-        require("util").set_indent(guess)
+        vim.notify("Using Indent Guess " .. guess, vim.log.levels.INFO)
+        require("util").set_indent(buf, guess)
       end
     end,
   })
 
-  -- local augroup = util.augroup("tabprofiles")
-  -- util.autocmd({ "FileReadPost" }, {
-  --   group = augroup,
-  --   callback = function()
-  --     if require("guess-indent").guess_from_buffer() == nil then
-  --       local profile = profiles.lang[vim.bo.filetype]
-  --       if not profile == nil then
-  --         util.setuptabs(vim.opt_local, profile)
-  --       end
-  --     end
-  --   end,
-  -- })
-
   vim.cmd([[
   " settab command
-  command! SetTab lua require("util").set_tab()
-  command! Tab lua require("util").set_tab()
+  command! -nargs=? SetTab lua require("util").set_tab(<f-args>)
+  command! -nargs=? Tab lua require("util").set_tab(<f-args>)
   command! -nargs=? SetSpace lua require("util").set_space(<f-args>)
   command! -nargs=? Space lua require("util").set_space(<f-args>)
   ]])
 
-  util.setuptabs(vim.opt, profiles.default)
+  local opt = vim.opt
+  local profile = profiles.default
+  if profile.usetabs then
+    opt.tabstop = profile.tabsize
+    opt.shiftwidth = profile.tabsize
+
+    opt.softtabstop = 0
+    opt.expandtab = false
+  else
+    opt.shiftwidth = profile.tabsize
+    opt.expandtab = true
+
+    if profile.visualtabsize then
+      opt.tabstop = profile.visualtabsize
+    else
+      opt.tabstop = 10 -- Default to some awakward value
+    end
+    opt.softtabstop = 0
+  end
+
+  opt.smarttab = true
 end
 
 function M.add_filetypes()

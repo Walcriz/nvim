@@ -165,7 +165,7 @@ function M.toggle_diagnostics()
     vim.diagnostic.enable()
     Util.info("Enabled diagnostics", { title = "Diagnostics" })
   else
-    vim.diagnostic.disable()
+    vim.diagnostic.enable(false)
     Util.warn("Disabled diagnostics", { title = "Diagnostics" })
   end
 end
@@ -211,24 +211,37 @@ function M.lazy_notify()
   timer:start(500, 0, replay)
 end
 
-function M.set_indent(indentation)
-  local function set_buffer_opt(buffer, name, value)
+function M.set_indent(buf, indentation)
+  local function set_buffer_opt(name, value)
     -- Setting an option takes *significantly* more time than reading it.
     -- This wrapper function only sets the option if the new value differs
     -- from the current value.
-    local current = vim.api.nvim_buf_get_option(buffer, name)
+    local current = vim.api.nvim_get_option_value(name, { buf = buf })
     if value ~= current then
-      vim.api.nvim_buf_set_option(buffer, name, value)
+      vim.api.nvim_set_option_value(name, value, { buf = buf })
     end
   end
 
   if indentation == "tabs" then
-    set_buffer_opt(0, "expandtab", false)
+    M.set_preset_indentation(buf)
+    set_buffer_opt("expandtab", false)
   elseif type(indentation) == "number" and indentation > 0 then
-    set_buffer_opt(0, "expandtab", true)
-    set_buffer_opt(0, "tabstop", indentation)
-    set_buffer_opt(0, "softtabstop", indentation)
-    set_buffer_opt(0, "shiftwidth", indentation)
+    M.set_preset_indentation(buf)
+    set_buffer_opt("expandtab", true)
+    set_buffer_opt("tabstop", 10)
+    set_buffer_opt("softtabstop", indentation)
+    set_buffer_opt("shiftwidth", indentation)
+  end
+end
+
+function M.set_preset_indentation(buf)
+  local profiles = require("config.tabprofiles")
+  local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
+  local profile = profiles.lang[filetype]
+  if profile ~= nil then
+    M.setuptabs(buf, profile)
+  else
+    M.setuptabs(buf, profiles.default)
   end
 end
 
@@ -251,8 +264,11 @@ function M.get_indent_lualine()
   }
 end
 
-function M.set_tab()
+function M.set_tab(size)
+  size = size or 2
+
   vim.opt_local.expandtab = false
+  vim.opt_local.tabstop = size
 end
 
 function M.set_space(size)
@@ -278,25 +294,23 @@ function M.autocmd(action, opts)
   return vim.api.nvim_create_autocmd(action, opts)
 end
 
-function M.setuptabs(opt, profile)
+function M.setuptabs(buf, profile)
   if profile.usetabs then
-    opt.tabstop = profile.tabsize
-    opt.shiftwidth = profile.tabsize
-
-    opt.softtabstop = 0
-    opt.expandtab = false
-    opt.smarttab = true
+    vim.api.nvim_set_option_value("tabstop", profile.tabsize, { buf = buf })
+    vim.api.nvim_set_option_value("shiftwidth", profile.tabsize, { buf = buf })
+    vim.api.nvim_set_option_value("softtabstop", 0, { buf = buf })
+    vim.api.nvim_set_option_value("expandtab", false, { buf = buf })
   else
-    opt.shiftwidth = profile.tabsize
-    opt.smarttab = true
-    opt.expandtab = true
+    vim.api.nvim_set_option_value("shiftwidth", profile.tabsize, { buf = buf })
+    vim.api.nvim_set_option_value("expandtab", true, { buf = buf })
 
     if profile.visualtabsize then
-      opt.tabstop = profile.visualtabsize
+      vim.api.nvim_set_option_value("tabstop", profile.visualtabsize, { buf = buf })
     else
-      opt.tabstop = 3 -- Default to some awakward value
+      vim.api.nvim_set_option_value("tabstop", 10, { buf = buf })
     end
-    opt.softtabstop = 0
+
+    vim.api.nvim_set_option_value("softtabstop", 0, { buf = buf })
   end
 end
 

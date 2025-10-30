@@ -10,50 +10,18 @@ return {
     end,
     event = { "BufReadPost", "BufNewFile" },
 
-    keys = {
-      { "<c-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Schrink selection", mode = "x" },
-    },
-
     ---@type TSConfig
     opts = {
-    highlight = { enable = true },
-    playground = { enable = true },
-    indent = { enable = true, disable = { "python" } },
-    context_commentstring = { enable = true, enable_autocmd = false },
-    ensure_installed = {
-      "bash",
-      "java",
-      "c",
-      "javascript",
-      "json",
-      "lua",
-      "markdown",
-      "markdown_inline",
-      "python",
-      "query",
-      "regex",
-      "tsx",
-      "typescript",
-      "vim",
-      "c_sharp",
-      "css",
-      "scss",
-      "html",
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<C-space>",
-        node_incremental = "<C-space>",
-      },
-    },
-    rainbow = {
-      enable = true,
+      highlight = { enable = true },
+      playground = { enable = true },
+      indent = { enable = true, disable = { "python" } },
+      context_commentstring = { enable = true, enable_autocmd = false },
+      rainbow = {
+        enable = true,
 
-      disable = { "html" },
+        disable = { "html" },
 
-      -- colors = {
+        -- colors = {
         -- 	"#FFD865",
         -- 	"#AB9DF2",
         -- 	"#67ACB5",
@@ -91,9 +59,9 @@ return {
           if lang == "cs" then
             lang = "c_sharp"
           elseif lang == "javascriptreact" then
-            lang = "javascript"
+            lang = "jsx"
           elseif lang == "typescriptreact" then
-            lang = "typescript"
+            lang = "tsx"
           end
 
           -- Skip if Treesitter has no config for this filetype
@@ -140,9 +108,9 @@ return {
                 vim.notify("Skipping Tree-sitter installation for " .. lang, vim.log.levels.WARN)
               end
             end)
-          end, 100)
+          end, 300)
         end,
       })
     end,
-  }
+  },
 }

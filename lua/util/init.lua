@@ -316,8 +316,6 @@ function M.setuptabs(buf, profile)
 
     vim.api.nvim_set_option_value("softtabstop", 0, { buf = buf })
   end
-
-  M.highlight_bad_indent(buf, profile.usetabs)
 end
 
 function M.telescope_image_preview()

@@ -153,122 +153,122 @@ return {
 
   -- auto pairs
   -- { -- Possibly use https://github.com/windwp/nvim-autopairs instead
-  --   "echasnovski/mini.pairs",
-  --   lazy = false,
-  --   opts = {
-  --     mappings = {
-  --       ["<"] = { action = "open", pair = "<>", neigh_pattern = "[^ \t].", register = { cr = false } },
-  --       [">"] = { action = "close", pair = "<>", neigh_pattern = "[^ \t].", register = { cr = false } },
-  --       ['"'] = { action = "close" },
-  --       ["'"] = { action = "close" }
-  --     },
-  --   },
-  --   config = function(_, opts)
-  --     require("mini.pairs").setup(opts)
-  --   end,
-  -- },
+    --   "echasnovski/mini.pairs",
+    --   lazy = false,
+    --   opts = {
+      --     mappings = {
+        --       ["<"] = { action = "open", pair = "<>", neigh_pattern = "[^ \t].", register = { cr = false } },
+        --       [">"] = { action = "close", pair = "<>", neigh_pattern = "[^ \t].", register = { cr = false } },
+        --       ['"'] = { action = "close" },
+        --       ["'"] = { action = "close" }
+        --     },
+        --   },
+        --   config = function(_, opts)
+          --     require("mini.pairs").setup(opts)
+          --   end,
+          -- },
 
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = function(_, opts)
-      require("nvim-autopairs").setup(opts)
-      require("config.autopairs")
-    end
-  },
+          {
+            "windwp/nvim-autopairs",
+            event = "InsertEnter",
+            config = function(_, opts)
+              require("nvim-autopairs").setup(opts)
+              require("config.autopairs")
+            end
+          },
 
-  -- Commentary
-  { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-  {
-    "tpope/vim-commentary",
-    event = "VeryLazy",
-  },
+          -- Commentary
+          { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
+          {
+            "tpope/vim-commentary",
+            event = "VeryLazy",
+          },
 
-  -- Quick actions and refactorings
-  {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    keys = {
-      {
-        "<leader>rk",
-        "<Esc><Cmd>lua require('refactoring').select_refactor()<CR>",
-        desc = "Select refactoring (refactoring.nvim)",
-        mode = "v",
-      },
-    },
-    config = function(_, opts)
-      require("refactoring").setup(opts)
-    end,
-  },
+          -- Quick actions and refactorings
+          {
+            "ThePrimeagen/refactoring.nvim",
+            dependencies = {
+              "nvim-lua/plenary.nvim",
+              "nvim-treesitter/nvim-treesitter",
+            },
+            keys = {
+              {
+                "<leader>rk",
+                "<Esc><Cmd>lua require('refactoring').select_refactor()<CR>",
+                desc = "Select refactoring (refactoring.nvim)",
+                mode = "v",
+              },
+            },
+            config = function(_, opts)
+              require("refactoring").setup(opts)
+            end,
+          },
 
-  -- references
-  {
-    "RRethy/vim-illuminate",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = { delay = 200 },
-    config = function(_, opts)
-      require("illuminate").configure(opts)
+          -- references
+          {
+            "RRethy/vim-illuminate",
+            event = { "BufReadPost", "BufNewFile" },
+            opts = { delay = 200 },
+            config = function(_, opts)
+              require("illuminate").configure(opts)
 
-      local function map(key, dir, buffer)
-        vim.keymap.set("n", key, function()
-          require("illuminate")["goto_" .. dir .. "_reference"](false)
-        end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
-      end
+              local function map(key, dir, buffer)
+                vim.keymap.set("n", key, function()
+                  require("illuminate")["goto_" .. dir .. "_reference"](false)
+                end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+              end
 
-      map("ää", "next")
-      map("åå", "prev")
+              map("ää", "next")
+              map("åå", "prev")
 
-      -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          local buffer = vim.api.nvim_get_current_buf()
-          map("ää", "next", buffer)
-          map("åå", "prev", buffer)
-        end,
-      })
-    end,
-    keys = {
-      { "ää", desc = "Next Reference" },
-      { "åå", desc = "Prev Reference" },
-    },
-  },
+              -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+              vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                  local buffer = vim.api.nvim_get_current_buf()
+                  map("ää", "next", buffer)
+                  map("åå", "prev", buffer)
+                end,
+              })
+            end,
+            keys = {
+              { "ää", desc = "Next Reference" },
+              { "åå", desc = "Prev Reference" },
+            },
+          },
 
-  -- buffer remove
-  {
-    "nvim-mini/mini.bufremove",
-    -- stylua: ignore
-    keys = {
-      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
-      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
-    },
-  },
+          -- buffer remove
+          {
+            "nvim-mini/mini.bufremove",
+            -- stylua: ignore
+            keys = {
+              { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
+              { "<leader>bD", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
+            },
+          },
 
-  -- Guess Indent
-  {
-    "NMAC427/guess-indent.nvim",
-    opts = {
-      auto_cmd = false,
-      override_editorconfig = true,
-    },
-    config = true,
-    event = "VeryLazy",
-  },
+          -- Guess Indent
+          {
+            "NMAC427/guess-indent.nvim",
+            opts = {
+              auto_cmd = false,
+              override_editorconfig = true,
+            },
+            config = true,
+            event = "VeryLazy",
+          },
 
-  -- Bigfile
-  {
-    "LunarVim/bigfile.nvim",
-    opts = {},
-    config = function(_, opts)
-      require("bigfile").setup(opts)
-    end
-  },
+          -- Bigfile
+          {
+            "LunarVim/bigfile.nvim",
+            opts = {},
+            config = function(_, opts)
+              require("bigfile").setup(opts)
+            end
+          },
 
-  -- Annotations
-  {
-    "danymat/neogen",
-    config = true,
-  }
-}
+          -- Annotations
+          {
+            "danymat/neogen",
+            config = true,
+          }
+        }

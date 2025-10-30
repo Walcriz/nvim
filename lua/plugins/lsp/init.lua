@@ -58,115 +58,115 @@ return {
       setup = {
         -- example to setup with typescript.nvim
         -- tsserver = function(_, opts)
-        --   require("typescript").setup({ server = opts })
-        --   return true
-        -- end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
+          --   require("typescript").setup({ server = opts })
+          --   return true
+          -- end,
+          -- Specify * to use this function as a fallback for any server
+          -- ["*"] = function(server, opts) end,
+        },
       },
-    },
-    ---@param opts PluginLspOpts
-    config = function(plugin, opts)
-      -- setup autoformat
-      require("plugins.lsp.format").autoformat = opts.autoformat
-      -- setup formatting and keymaps
-      local util = require("util")
-      util.on_attach(function(client, buffer)
-        require("plugins.lsp.format").on_attach(client, buffer)
-        require("plugins.lsp.keymaps").on_attach(client, buffer)
-      end)
+      ---@param opts PluginLspOpts
+      config = function(plugin, opts)
+        -- setup autoformat
+        require("plugins.lsp.format").autoformat = opts.autoformat
+        -- setup formatting and keymaps
+        local util = require("util")
+        util.on_attach(function(client, buffer)
+          require("plugins.lsp.format").on_attach(client, buffer)
+          require("plugins.lsp.keymaps").on_attach(client, buffer)
+        end)
 
-      -- Insert into opts.diagnostics
-      local icons = require("config").icons.diagnostics
-      vim.tbl_deep_extend("force", opts.diagnostics, {
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = icons.Error,
-            [vim.diagnostic.severity.WARN]  = icons.Warn,
-            [vim.diagnostic.severity.INFO]  = icons.Info,
-            [vim.diagnostic.severity.HINT]  = icons.Hint,
+        -- Insert into opts.diagnostics
+        local icons = require("config").icons.diagnostics
+        vim.tbl_deep_extend("force", opts.diagnostics, {
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = icons.Error,
+              [vim.diagnostic.severity.WARN]  = icons.Warn,
+              [vim.diagnostic.severity.INFO]  = icons.Info,
+              [vim.diagnostic.severity.HINT]  = icons.Hint,
+            }
           }
-        }
-      })
+        })
 
-      vim.diagnostic.config(opts.diagnostics)
+        vim.diagnostic.config(opts.diagnostics)
 
-      local servers = opts.servers
-      local capabilities =
-          require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+        local servers = opts.servers
+        local capabilities =
+        require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-      local function setup(server)
-        local server_opts = vim.tbl_deep_extend("force", {
-          capabilities = vim.deepcopy(capabilities),
-        }, servers[server] or {})
+        local function setup(server)
+          local server_opts = vim.tbl_deep_extend("force", {
+            capabilities = vim.deepcopy(capabilities),
+          }, servers[server] or {})
 
-        if opts.setup[server] then
-          if opts.setup[server](server, server_opts) then
-            return
+          if opts.setup[server] then
+            if opts.setup[server](server, server_opts) then
+              return
+            end
+          elseif opts.setup["*"] then
+            if opts.setup["*"](server, server_opts) then
+              return
+            end
           end
-        elseif opts.setup["*"] then
-          if opts.setup["*"](server, server_opts) then
-            return
+          vim.lsp.config(server, server_opts)
+          vim.lsp.enable(server)
+        end
+
+        local mlsp = require("mason-lspconfig")
+        local available = mlsp.get_available_servers()
+
+        for server, server_opts in pairs(servers) do
+          if server_opts then
+            server_opts = server_opts == true and {} or server_opts
+            if not vim.tbl_contains(available, server) then
+              setup(server)
+            end
           end
         end
-        vim.lsp.config(server, server_opts)
-        vim.lsp.enable(server)
-      end
 
-      local mlsp = require("mason-lspconfig")
-      local available = mlsp.get_available_servers()
-
-      for server, server_opts in pairs(servers) do
-        if server_opts then
-          server_opts = server_opts == true and {} or server_opts
-          if not vim.tbl_contains(available, server) then
-            setup(server)
-          end
-        end
-      end
-
-      mlsp.setup({ automatic_enable = true })
-    end,
-  },
-
-  -- Install lsp and stuff
-  {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    keys = { { "<leader>dm", "<cmd>Mason<cr>", desc = "Mason" } },
-    opts = {
-      ensure_installed = {},
+        mlsp.setup({ automatic_enable = true })
+      end,
     },
-    ---@param opts MasonSettings | {ensure_installed: string[]}
-    config = function(plugin, opts)
-      require("mason").setup(opts)
-      local mr = require("mason-registry")
-      for _, tool in ipairs(opts.ensure_installed) do
-        local p = mr.get_package(tool)
-        if not p:is_installed() then
-          p:install()
-        end
-      end
-    end,
-  },
 
-  -- DAP
-  {
-    "mfussenegger/nvim-dap",
-    keys = {
-      { "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
-      { "<leader>ds", "<cmd>lua require'dap'.continue()<cr>",          desc = "Start/Continue" },
-      { "<leader>do", "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Over" },
-      { "<leader>di", "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Into" },
-      { "<F7>",       "<cmd>lua require'dap'.continue()<cr>",          desc = "Start/Continue" },
-      { "<F8>",       "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Over" },
-      { "<F6>",       "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Into" },
+    -- Install lsp and stuff
+    {
+      "williamboman/mason.nvim",
+      cmd = "Mason",
+      keys = { { "<leader>dm", "<cmd>Mason<cr>", desc = "Mason" } },
+      opts = {
+        ensure_installed = {},
+      },
+      ---@param opts MasonSettings | {ensure_installed: string[]}
+      config = function(plugin, opts)
+        require("mason").setup(opts)
+        local mr = require("mason-registry")
+        for _, tool in ipairs(opts.ensure_installed) do
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            p:install()
+          end
+        end
+      end,
     },
-    config = function(_, opts)
-      vim.api.nvim_create_user_command("Breakpoint", function() require("dap").toggle_breakpoint() end, {})
-      vim.cmd("hi DapBreakpointColor guifg=#fa4848")
-      vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpointColor", linehl = "", numhl = "" })
-    end,
-    lazy = true,
-  },
-}
+
+    -- DAP
+    {
+      "mfussenegger/nvim-dap",
+      keys = {
+        { "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
+        { "<leader>ds", "<cmd>lua require'dap'.continue()<cr>",          desc = "Start/Continue" },
+        { "<leader>do", "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Over" },
+        { "<leader>di", "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Into" },
+        { "<F7>",       "<cmd>lua require'dap'.continue()<cr>",          desc = "Start/Continue" },
+        { "<F8>",       "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Over" },
+        { "<F6>",       "<cmd>lua require'dap'.continue()<cr>",          desc = "Step Into" },
+      },
+      config = function(_, opts)
+        vim.api.nvim_create_user_command("Breakpoint", function() require("dap").toggle_breakpoint() end, {})
+        vim.cmd("hi DapBreakpointColor guifg=#fa4848")
+        vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpointColor", linehl = "", numhl = "" })
+      end,
+      lazy = true,
+    },
+  }

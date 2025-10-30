@@ -63,11 +63,11 @@ autocmd("BufWritePre", {
   group = augroup("del_whitespace_trailing"),
   callback = function()
     vim.cmd([[
-		let l = line(".")
-		let c = col(".")
-		%s/\s\+$//ge
-		call cursor(l, c)
-		]])
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//ge
+    call cursor(l, c)
+    ]])
   end,
 })
 
@@ -87,7 +87,7 @@ autocmd("BufReadPre", {
 autocmd("BufRead", {
   callback = function()
     vim.cmd([[
-			nmap <nowait> gu gR
-		]])
+    nmap <nowait> gu gR
+    ]])
   end,
 })

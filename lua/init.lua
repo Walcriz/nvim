@@ -55,23 +55,23 @@ function M.load(name) -- Fully taken from https://github.com/LazyVim/LazyVim/blo
     Util.try(function()
       require(mod)
     end, {
-      msg = "Failed loading " .. mod,
-      on_error = function(msg)
-        local modpath = require("lazy.core.cache").find(mod)
-        if modpath then
-          Util.error(msg)
-        end
-      end,
-    })
-  end
+    msg = "Failed loading " .. mod,
+    on_error = function(msg)
+      local modpath = require("lazy.core.cache").find(mod)
+      if modpath then
+        Util.error(msg)
+      end
+    end,
+  })
+end
 
-  -- Load config
-  _load("config." .. name)
+-- Load config
+_load("config." .. name)
 
-  if vim.bo.filetype == "lazy" then
-    -- HACK: Neovim may have overwritten options of the Lazy ui, so reset this here
-    vim.cmd([[do VimResized]])
-  end
+if vim.bo.filetype == "lazy" then
+  -- HACK: Neovim may have overwritten options of the Lazy ui, so reset this here
+  vim.cmd([[do VimResized]])
+end
 end
 
 function M.setuptabs()

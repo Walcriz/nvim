@@ -2,7 +2,7 @@ return {
   {
     "Exafunction/windsurf.vim",
     keys = {
-      -- { "<Tab>", "<Cmd>call codeium#Accept()<CR>", desc = "code", mode = "i" }
+      { "§", function () return vim.fn['codeium#Accept']() end, expr = true, silent = true, desc = "code", mode = "i" },
     },
     config = function()
       vim.g.codeium_disable_bindings = 1
@@ -62,26 +62,26 @@ return {
     },
     -- stylua: ignore
     keys = {
-      {
-        "<tab>",
-        function()
-          local status = vim.fn["codeium#GetStatusString"]()
-          if status ~= "0" and status ~= "*" then
-            return vim.fn["codeium#Accept"]()
-          end
+      -- {
+      --   "<tab>",
+      --   function()
+      --     local status = vim.fn["codeium#GetStatusString"]()
+      --     if status ~= "0" and status ~= "*" then
+      --       return vim.fn["codeium#Accept"]()
+      --     end
 
-          local luasnip = require("luasnip")
-          if luasnip.locally_jumpable(1) then
-            luasnip.jump(1)
-            return ""
-          else
-            return "<tab>"
-          end
-        end,
-        expr = true,
-        silent = true,
-        mode = "i",
-      },
+      --     local luasnip = require("luasnip")
+      --     if luasnip.locally_jumpable(1) then
+      --       luasnip.jump(1)
+      --       return ""
+      --     else
+      --       return "<tab>"
+      --     end
+      --   end,
+      --   expr = true,
+      --   silent = true,
+      --   mode = "i",
+      -- },
       { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
       { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },

@@ -256,29 +256,29 @@ require("monokai").setup({
 
     -- Tabbar
     -- LightlineLeft_tabline_tabsel = {
-      -- 	bg = "#020204",
-      -- },
-      -- LightlineRight_tabline_tabsel = {
-        -- 	bg = "#020204",
-        -- },
+    -- 	bg = "#020204",
+    -- },
+    -- LightlineRight_tabline_tabsel = {
+    -- 	bg = "#020204",
+    -- },
 
-        IndentBlankline = {
-          fg = "#29272b",
-        },
+    IndentBlankline = {
+      fg = "#29272b",
+    },
 
-        ["lsp.type.function"] = {
-          fg = palette.green,
-        },
-        ["lsp.type.method"] = {
-          fg = palette.green,
-        },
-        -- also add TS groups
-        TSField = { fg = palette.green },
-        TSProperty = { fg = palette.green },
-      },
-    })
+    ["lsp.type.function"] = {
+      fg = palette.green,
+    },
+    ["lsp.type.method"] = {
+      fg = palette.green,
+    },
+    -- also add TS groups
+    TSField = { fg = palette.green },
+    TSProperty = { fg = palette.green },
+  },
+})
 
-    vim.cmd([[
+vim.cmd([[
     hi Normal guibg=NONE ctermbg=NONE
     hi LineNr guibg=NONE ctermbg=NONE
     hi SignColumn guibg=NONE ctermbg=NONE

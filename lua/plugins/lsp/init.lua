@@ -8,12 +8,7 @@ return {
       { "folke/lazydev.nvim",  opts = {} },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      {
-        "hrsh7th/cmp-nvim-lsp",
-        enable = function()
-          return require("util").has("nvim-cmp")
-        end,
-      },
+      "saghen/blink.cmp",
       "ray-x/lsp_signature.nvim",
       "Chaitanyabsprip/fastaction.nvim",
     },
@@ -92,8 +87,7 @@ return {
         vim.diagnostic.config(opts.diagnostics)
 
         local servers = opts.servers
-        local capabilities =
-        require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+        local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
         local function setup(server)
           local server_opts = vim.tbl_deep_extend("force", {

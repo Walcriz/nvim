@@ -142,6 +142,58 @@ require("monokai").setup({
       bg = palette.popup,
     },
 
+    BlinkCmpKindVariable = {
+      fg = palette.pink,
+    },
+
+    BlinkCmpKindFunction = {
+      fg = palette.green,
+    },
+
+    BlinkCmpKindMethod = {
+      fg = palette.green,
+    },
+
+    BlinkCmpKindConstructor = {
+      fg = palette.green,
+    },
+
+    BlinkCmpKindClass = {
+      fg = palette.purple,
+    },
+
+    BlinkCmpKindInterface = {
+      fg = palette.aqua,
+    },
+
+    BlinkCmpKindModule = {
+      fg = palette.const,
+    },
+
+    BlinkCmpKindProperty = {
+      fg = palette.aqua,
+    },
+
+    BlinkCmpKindField = {
+      fg = palette.param,
+    },
+
+    BlinkCmpKindSnippet = {
+      fg = palette.yellow,
+    },
+
+    BlinkCmpKindKeyword = {
+      fg = palette.white,
+    },
+
+    BlinkCmpKindEnum = {
+      fg = palette.orange,
+    },
+
+    BlinkCmpKind = {
+      fg = palette.white,
+    },
+
     -- Telescope
     TelescopeBorder = {
       fg = palette.darker_black,

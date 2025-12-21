@@ -466,4 +466,25 @@ function M.client_supports_method(client, method, bufnr)
   return client.server_capabilities[cap] ~= nil
 end
 
+function M.print_r(tbl, indent)
+  indent = indent or 0
+  if type(tbl) ~= "table" then
+    print(tbl)
+    return
+  end
+
+  local formatting = string.rep("  ", indent)
+  print("{")
+  for k, v in pairs(tbl) do
+    local key = tostring(k)
+    if type(v) == "table" then
+      io.write(formatting .. "  " .. key .. " = ")
+      M.print_r(v, indent + 1)
+    else
+      print(formatting .. "  " .. key .. " = " .. tostring(v))
+    end
+  end
+  print(formatting .. "}")
+end
+
 return M

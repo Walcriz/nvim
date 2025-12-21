@@ -63,6 +63,19 @@ function M.load(name) -- Fully taken from https://github.com/LazyVim/LazyVim/blo
       end
     end,
   })
+
+  local original_print = print
+
+  function print(...)
+    local args = {...}
+    for i, v in ipairs(args) do
+      if type(v) == "table" then
+        require("util").print_r(v)
+      else
+        original_print(v)
+      end
+    end
+end
 end
 
 -- Load config

@@ -2,7 +2,7 @@
 This neovim configuration was at first inspired by [LazyVim](https://github.com/LazyVim/LazyVim) for nvim 0.8 so a lot of the directory structure is the same. But that was a long time ago now so there is really nothing in common between them anymore.
 
 ## Showcase
-| ![image](https://github.com/user-attachments/assets/6c19955c-6fac-49f3-85c4-1daca11fd8a7) | ![image](https://github.com/user-attachments/assets/9df6d93f-6afa-46ed-98bb-47d8ab263344) |
+| ![image](https://github.com/user-attachments/assets/7949af9f-3d3c-4087-b7e1-e7f532264ac5) | ![image](https://github.com/user-attachments/assets/e8a802ae-49c3-48b0-890e-8918170abdd3) |
 |:------------------:|:---------------:|
 | ![image](https://github.com/user-attachments/assets/d304e0b6-43df-47d8-8bd9-b5eaa46d208f) | ![image](https://github.com/user-attachments/assets/a6efaecf-bf43-4e31-8eca-76de1700e65b) |
 
@@ -35,4 +35,5 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 - `git clone` this repository into your neovim config path (Linux: `~/.config/nvim`, Windows: `C:\Users\[Your Name]\AppData\Local\nvim`)
 - Start neovim and wait
 - 🎉 Congratulations you now have my configuration installed!
+
 

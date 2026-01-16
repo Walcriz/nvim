@@ -240,12 +240,14 @@ function M.set_preset_indentation(buf, overrides)
   local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
   local profile = profiles.lang[filetype]
 
+  if profile == nil then
+    profile = profiles.default
+  end
+
   profile = vim.tbl_extend("force", profile, overrides)
 
   if profile ~= nil then
     M.setuptabs(buf, profile)
-  else
-    M.setuptabs(buf, profiles.default)
   end
 end
 

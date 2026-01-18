@@ -4,7 +4,7 @@ This neovim configuration was at first inspired by [LazyVim](https://github.com/
 ## Showcase
 | ![image](https://github.com/user-attachments/assets/7949af9f-3d3c-4087-b7e1-e7f532264ac5) | ![image](https://github.com/user-attachments/assets/e8a802ae-49c3-48b0-890e-8918170abdd3) |
 |:------------------:|:---------------:|
-| ![image](https://github.com/user-attachments/assets/d304e0b6-43df-47d8-8bd9-b5eaa46d208f) | ![image](https://github.com/user-attachments/assets/a6efaecf-bf43-4e31-8eca-76de1700e65b) |
+| ![image](https://github.com/user-attachments/assets/c4362510-727c-4a70-87c0-f15ea0f3ca6e) | ![image](https://github.com/user-attachments/assets/fa167140-282c-40ca-a12d-12ecf862068f) |
 
 ## Plugin Manager
 - The [💤lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
@@ -35,5 +35,6 @@ I am using a modified [monokai pro](https://monokai.pro/) theme based from the
 - `git clone` this repository into your neovim config path (Linux: `~/.config/nvim`, Windows: `C:\Users\[Your Name]\AppData\Local\nvim`)
 - Start neovim and wait
 - 🎉 Congratulations you now have my configuration installed!
+
 
 

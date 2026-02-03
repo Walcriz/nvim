@@ -24,11 +24,11 @@ return {
     config = true,
     -- stylua: ignore
     keys = {
-      { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
-      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+      { "]t",         function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+      { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+      { "<leader>xt", "<cmd>TodoTrouble<cr>",                              desc = "Todo (Trouble)" },
+      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",      desc = "Todo/Fix/Fixme (Trouble)" },
+      { "<leader>st", "<cmd>TodoTelescope<cr>",                            desc = "Todo" },
     },
   },
 
@@ -107,7 +107,7 @@ return {
   {
     "stevearc/overseer.nvim",
     event = "VeryLazy",
-    config = function (_, opts)
+    config = function(_, opts)
       require("overseer").setup(opts)
 
       vim.api.nvim_create_user_command("Run", function()
@@ -125,23 +125,25 @@ return {
       vim.api.nvim_create_user_command("BuildOutput", function()
         vim.cmd("OverseerToggle")
       end, { nargs = 0 })
-    end
+    end,
   },
 
   -- Auto save
   {
     "okuuva/auto-save.nvim",
-    version = '^1.0.0',
+    version = "^1.0.0",
     event = "VeryLazy",
     opts = {
       enabled = true,
       debounce_delay = 1000,
       condition = function(buf)
-        -- Only save if buffer is modified
-        return vim.api.nvim_buf_get_option(buf, "modified")
+        -- Only save if buffer is modified and is not a git commit and is not read only
+        return vim.api.nvim_get_option_value("modified", { buf = buf })
+          and not vim.api.nvim_get_option_value("readonly", { buf = buf })
+          and vim.api.nvim_get_option_value("filetype", { buf = buf }) ~= "gitcommit"
       end,
-      write_all_buffers = true,
-      noautocmd = true
-    }
+      write_all_buffers = false,
+      noautocmd = true,
+    },
   },
 }

@@ -71,19 +71,6 @@ autocmd("BufWritePre", {
   end,
 })
 
-autocmd("BufReadPre", {
-  callback = function(args)
-    local file = args.file
-    local line_count = tonumber(vim.fn.system("wc -l < " .. vim.fn.shellescape(file)))
-    if line_count and line_count > 20000 then
-      vim.schedule(function()
-        vim.cmd("bd!") -- force close buffer
-        vim.notify("Closed large file (>100k lines): " .. file, vim.log.levels.WARN)
-      end)
-    end
-  end
-})
-
 autocmd("BufRead", {
   callback = function()
     vim.cmd([[

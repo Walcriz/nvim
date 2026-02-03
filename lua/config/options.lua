@@ -32,7 +32,6 @@ opt.wrap = false
 
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
-
 -- UNDO SETTINGS --
 local sysname = vim.loop.os_uname().sysname
 if sysname:find("Windows") and true or false then

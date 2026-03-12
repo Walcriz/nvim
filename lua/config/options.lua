@@ -54,15 +54,6 @@ opt.ignorecase = true
 opt.incsearch = true
 opt.smartcase = true
 
--- FILE SETTINGS --
--- opt.formatoptions = "jcroqlnt"
-
--- TABS AND SPACES SETTINGS -- NOTE: NOW SET IN config/tabprofiles.lua
--- opt.tabstop = 2
--- opt.softtabstop = 2
--- opt.shiftwidth = 2
--- opt.expandtab = true
-
 -- WINDOW SETTINGS --
 opt.splitbelow = true
 opt.splitright = true

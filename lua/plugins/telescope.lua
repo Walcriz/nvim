@@ -113,8 +113,8 @@ return {
               return require("telescope.actions").preview_scrolling_up(...)
             end,
             ["<C-BS>"] = function()
-              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-W>', true, true, true), "i", true)
-            end
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-W>", true, true, true), "i", true)
+            end,
           },
           n = {
             ["q"] = function(...)
@@ -161,7 +161,7 @@ return {
         cache_picker = {
           num_pickers = 50,
           ignore_empty_prompt = true,
-        }
+        },
       },
       highlight = { enable = true },
     },
@@ -187,7 +187,7 @@ return {
           harpoon = {},
           project = {},
         },
-        defaults = vim.tbl_extend('force', opts.defaults, defaults),
+        defaults = vim.tbl_extend("force", opts.defaults, defaults),
       })
 
       telescope.load_extension("project")
@@ -202,25 +202,11 @@ return {
     },
   },
 
-  -- File browser
-  -- {
-    -- 	"nvim-telescope/telescope-file-browser.nvim",
-    -- 	dependencies = {
-      -- 		"nvim-lua/plenary.nvim",
-      -- 	},
-      -- 	keys = { -- Telescope file_browser path=" .. Util.get_root()
-        -- -- stylua: ignore
-        -- 		{ "fn", function() vim.cmd("Telescope file_browser path=" .. Util.get_root() .. " hidden=true") end, desc = "File Browser" },
-        -- 		{ "fN", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
-        -- 	},
-        -- 	lazy = true,
-        -- },
-
-        {
-          "nvim-telescope/telescope-project.nvim",
-          keys = {
-            { "<leader>sp", "<cmd>Telescope project<cr>", desc = "Project Browser" },
-          },
-          lazy = true,
-        },
-      }
+  {
+    "nvim-telescope/telescope-project.nvim",
+    keys = {
+      { "<leader>sp", "<cmd>Telescope project<cr>", desc = "Project Browser" },
+    },
+    lazy = true,
+  },
+}

@@ -21,12 +21,6 @@ return {
 
         disable = { "html" },
 
-        -- colors = {
-        -- 	"#FFD865",
-        -- 	"#AB9DF2",
-        -- 	"#67ACB5",
-        -- },
-
         hlgroups = {
           "TSRainbow1",
           "TSRainbow2",

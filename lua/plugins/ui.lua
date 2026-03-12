@@ -267,12 +267,6 @@ return {
     config = true,
   },
 
-  -- ui components
-  -- {
-  --   "MunifTanjim/nui.nvim",
-  --   lazy = true,
-  -- },
-
   -- Rainbow brackets/delimiters
   {
     "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",

@@ -205,9 +205,6 @@ return {
           "accept",
           "fallback",
         },
-
-        -- Shift+Enter: confirm and insert newline (closest to ConfirmBehavior.Replace)
-        ["<S-CR>"] = { "accept_and_enter" },
       },
     },
 

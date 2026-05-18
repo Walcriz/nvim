@@ -119,6 +119,12 @@ return {
           end
         end
 
+        for server, setup_fn in pairs(opts.setup) do
+          if setup_fn and vim.tbl_contains(available, server) then
+            setup_fn(server, {})
+          end
+        end
+
         mlsp.setup({ automatic_enable = true })
       end,
     },

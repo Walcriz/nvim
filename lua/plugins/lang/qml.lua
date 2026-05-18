@@ -1,17 +1,16 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "jose-elias-alvarez/typescript.nvim" },
     opts = {
       setup = {
-        tsserver = function(_, opts)
+        qmlls = function(_, _)
           require("util").on_attach(function(client)
-            if client.name == "qmlls" then
+            if client and client.name == "qmlls" then
               client.server_capabilities.semanticTokensProvider = nil
+              vim.lsp.semantic_tokens.enable(false, { client_id = client.id })
             end
           end)
-          require("qmlls").setup({ server = opts })
-          return true
+          return false
         end,
       },
     },

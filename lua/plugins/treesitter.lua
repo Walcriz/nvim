@@ -1,115 +1,85 @@
----@diagnostic disable: missing-fields
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
+    "romus204/tree-sitter-manager.nvim",
     lazy = false,
-    version = false, -- last release is way too old and doesn't work on Windows
-    branch = "main",
-    build = function()
-      require("nvim-treesitter.install").update()
-    end,
-    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      local tsm = require("tree-sitter-manager")
+      local installer = require("tree-sitter-manager.installer")
+      local util = require("tree-sitter-manager.util")
+      local cfg = require("tree-sitter-manager.config")
 
-    ---@type TSConfig
-    opts = {
-      highlight = { enable = true },
-      playground = { enable = true },
-      indent = { enable = true, disable = { "python" } },
-      context_commentstring = { enable = true, enable_autocmd = false },
-      rainbow = {
-        enable = true,
+      tsm.setup({
+        auto_install = false,
+        highlight = true,
+        nohighlight = {},
+        ensure_installed = {},
+        border = "rounded",
+      })
 
-        disable = { "html" },
+      local function filetype_to_lang(ft)
+        local lang = vim.treesitter.language.get_lang(ft)
+        if lang and cfg.effective_repos[lang] then
+          return lang
+        end
 
-        hlgroups = {
-          "TSRainbow1",
-          "TSRainbow2",
-          "TSRainbow3",
-        },
-      },
-    },
+        for parser, aliases in pairs(cfg.filetypes) do
+          if vim.tbl_contains(aliases, ft) then
+            return parser
+          end
+        end
 
-    config = function(_, opts)
-      require("nvim-treesitter").setup(opts)
+        if cfg.effective_repos[ft] then
+          return ft
+        end
+        return nil
+      end
 
-      local treesitter = require("nvim-treesitter")
+      local installing = {}
+      local asked = {}
 
-      local installing_cache = {}
-      local asked_cache = {}
-
-      vim.api.nvim_create_autocmd("BufEnter", {
+      vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
-          local buf = args.buf
-          local lang = vim.bo[buf].filetype
+          local ft = args.match
+          if not ft or ft == "" then return end
 
-          if not lang or lang == "" then
-            -- use file extension
-            lang = vim.fn.fnamemodify(vim.fn.expand("%"), ":e")
-          end
+          local lang = filetype_to_lang(ft)
+          if not lang then return end
 
-          -- Skip if no filetype
-          if not lang or lang == "" then
-            return
-          end
+          local installed = installer.is_only_query(lang)
+            and vim.uv.fs_stat(util.qpath(lang))
+            or vim.uv.fs_stat(util.ppath(lang))
+          if installed then return end
 
-          local tsLang = vim.treesitter.language.get_lang(lang)
-
-          if not tsLang then
-            return
-          end
-          lang = tsLang
-
-          -- Skip if Treesitter has no config for this filetype
-          if not require("nvim-treesitter.parsers")[lang] then
-            return
-          end
-
-          local installed = treesitter.get_installed()
-
-          -- If parser is installed, start Tree-sitter
-          if vim.tbl_contains(installed, lang) then
-            vim.treesitter.start(buf, lang)
-            return
-          end
+          if installing[lang] or asked[lang] then return end
+          asked[lang] = true
 
           vim.defer_fn(function()
-            if installing_cache[lang] then
-              return
-            end
-            if asked_cache[lang] then
-              return
-            end
-
-            asked_cache[lang] = true -- Mark immediately, not in callback
-
-            -- Floating prompt
             vim.ui.select({ "Yes", "No" }, {
-              prompt = "Tree-sitter parser for '" .. lang .. "' is not installed. Install now?",
-              buf = buf,
+              prompt = "Tree-sitter parser for '" .. lang .. "' not installed. Install now?",
             }, function(choice)
-              if choice == "Yes" then
-                installing_cache[lang] = true
-                local async = require("nvim-treesitter.async")
-                async.async(function()
-                  vim.notify("Installing Tree-sitter parser for " .. lang .. "...", vim.log.levels.INFO)
-                  local res = async
-                    .arun(function()
-                      return async.await(require("nvim-treesitter.install").install, lang)
-                    end)
-                    :wait()
-
-                  if res then
-                    vim.notify("Tree-sitter parser for " .. lang .. " installed", vim.log.levels.INFO)
-                    vim.defer_fn(function()
-                      vim.treesitter.start(buf, lang)
-                    end, 40)
-                  else
-                    vim.notify("Tree-sitter parser for " .. lang .. " failed to install", vim.log.levels.ERROR)
-                  end
-                end)()
-              else
+              if choice ~= "Yes" then
                 vim.notify("Skipping Tree-sitter installation for " .. lang, vim.log.levels.WARN)
+                return
               end
+
+              installing[lang] = true
+              local buf = args.buf
+
+              installer.install(lang, function(ok)
+                installing[lang] = nil
+                if ok then
+                  vim.schedule(function()
+                    if vim.api.nvim_buf_is_valid(buf) then
+                      vim.treesitter.start(buf, lang)
+                    end
+                  end)
+                else
+                  vim.notify(
+                    "Tree-sitter parser for " .. lang .. " failed to install",
+                    vim.log.levels.ERROR
+                  )
+                end
+              end)
             end)
           end, 300)
         end,

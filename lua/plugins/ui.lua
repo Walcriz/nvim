@@ -448,4 +448,34 @@ return {
       require("pdfreader").setup()
     end,
   },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    ft = { "markdown" },
+    opts = {
+      heading = {
+        sign = true,
+        position = "inline",
+        icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+        width = "full",
+        backgrounds = {
+          "MarkdownLevelBackground",
+          "MarkdownLevelBackground",
+          "MarkdownLevelBackground",
+          "MarkdownLevelBackground",
+          "MarkdownLevelBackground",
+          "MarkdownLevelBackground",
+        },
+        foregrounds = {
+          "MarkdownLevel1",
+          "MarkdownLevel2",
+          "MarkdownLevel3",
+          "MarkdownLevel4",
+          "MarkdownLevel5",
+          "MarkdownLevel6",
+        },
+      },
+    },
+  },
 }

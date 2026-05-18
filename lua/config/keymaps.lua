@@ -34,6 +34,16 @@ map("n", "<Space>3", "<cmd>tabn 3<cr>", { desc = "Goto tab 3" })
 map("n", "<Space>4", "<cmd>tabn 4<cr>", { desc = "Goto tab 4" })
 map("n", "<Space>5", "<cmd>tabn 5<cr>", { desc = "Goto tab 5" })
 map("n", "<Space>6", "<cmd>tabn 6<cr>", { desc = "Goto tab 6" })
+map("n", "<Space>7", "<cmd>tabn 7<cr>", { desc = "Goto tab 7" })
+map("n", "<Space>8", "<cmd>tabn 8<cr>", { desc = "Goto tab 8" })
+map("n", "<Space>9", "<cmd>tabn 9<cr>", { desc = "Goto tab 9" })
+
+map("n", "ä", "{", { desc = "Go up one paragraph" })
+map("n", "ö", "}", { desc = "Go down one paragraph" })
+
+map("n", "Ä", "<C-u>zz", { desc = "Half page up and center" })
+map("n", "Ö", "<C-d>zz", { desc = "Half page down and center" })
+
 
 -- Backspace delete in visual
 map("v", "<BS>", "s")

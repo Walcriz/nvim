@@ -19,6 +19,11 @@ return {
         gopls = {
           mason = false,
           staticcheck = true,
+          settings = {
+            gopls = {
+              buildFlags = { "-tags=prod" },
+            }
+          }
         },
       },
     },

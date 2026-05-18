@@ -72,13 +72,6 @@ for _, punct in pairs({ ",", ";" }) do
   })
 end
 
-npairs.add_rules({
-  -- arrow key on javascript/c#
-  Rule("%(.*%)%s*%=>$", " {  }", { "typescript", "typescriptreact", "javascript", "cs" })
-    :use_regex(true)
-    :set_end_pair_length(2),
-})
-
 -- close all of the opened pairs in that line
 local get_closing_for_line = function(line)
   local i = -1
@@ -127,16 +120,12 @@ npairs.add_rule(Rule("[%(%{%[]", "", {
   })
   :use_regex(true)
   :replace_endpair(function(opts)
-    -- Only look at the line up to the cursor position
-    local line_to_cursor = opts.line:sub(1, opts.col - 1)
-    return get_closing_for_line(line_to_cursor)
+    return get_closing_for_line(opts.line)  -- full line, not just up to cursor
   end)
   :end_wise(function(opts)
-    local line_to_cursor = opts.line:sub(1, opts.col - 1)
-    return get_closing_for_line(line_to_cursor) ~= ""
+    return get_closing_for_line(opts.line) ~= ""  -- full line, not just up to cursor
   end)
 )
-
 -- auto-pair <> for generics but not as greater-than/less-than operators
 npairs.add_rule(Rule("<", ">", {
   -- if you use nvim-ts-autotag, you may want to exclude these filetypes from this rule

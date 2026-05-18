@@ -177,22 +177,19 @@ return {
         end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
       end
 
-      map("ää", "next")
-      map("åå", "prev")
-
       -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
       vim.api.nvim_create_autocmd("FileType", {
         callback = function()
           local buffer = vim.api.nvim_get_current_buf()
-          map("ää", "next", buffer)
-          map("åå", "prev", buffer)
+          -- map("ää", "next", buffer)
+          -- map("åå", "prev", buffer)
         end,
       })
     end,
-    keys = {
-      { "ää", desc = "Next Reference" },
-      { "åå", desc = "Prev Reference" },
-    },
+    -- keys = {
+    --   { "ää", desc = "Next Reference" },
+    --   { "åå", desc = "Prev Reference" },
+    -- },
   },
 
   -- buffer remove

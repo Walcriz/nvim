@@ -275,6 +275,15 @@ require("monokai").setup({
     -- also add TS groups
     TSField = { fg = palette.green },
     TSProperty = { fg = palette.green },
+
+    MarkdownLevel1 = { fg = palette.yellow },
+    MarkdownLevel2 = { fg = palette.red },
+    MarkdownLevel3 = { fg = palette.purple },
+    MarkdownLevel4 = { fg = palette.aqua },
+    MarkdownLevel5 = { fg = palette.green },
+
+    -- Understrike
+    MarkdownLevelBackground = { bg = palette.black },
   },
 })
 

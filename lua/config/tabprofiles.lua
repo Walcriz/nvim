@@ -65,5 +65,10 @@ return {               -- Define custom indentation profiles for specific langua
       usetabs = false,
       tabsize = 4,
     },
+
+    make = {
+      usetabs = true,
+      tabsize = 2
+    }
   },
 }

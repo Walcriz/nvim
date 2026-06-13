@@ -1,15 +1,16 @@
-local init = require("init")
+local load = require("load").load_config
 
--- Avoid freezing vim forever
-if vim.fn.has("win32") then
-  vim.keymap.set("n", "<C-z>", "<Nop>", { noremap = true })
-  vim.keymap.set("i", "<C-c>", "<esc>", { noremap = true })
-  vim.keymap.set("n", "<C-c>", "<esc>", { noremap = true })
-  vim.keymap.set("v", "<C-c>", "<esc>", { noremap = true })
-end
+-- Install and bootstrap lazy.nvim
+require("bootstrap")
 
--- Initial setup and bootstrapping
-init.init()
+load("conf")
+load("opts")
 
--- Sets up keybindings and colorscheme
-init.after()
+-- Load hacks that may be needed for different platforms
+require("hacks")
+
+-- Setup lazy.nvim
+require("lazy_setup")
+
+load("maps")
+load("auto")

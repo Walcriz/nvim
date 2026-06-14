@@ -61,12 +61,21 @@ return {
           return
         end
 
-        local items, opts, on_choice = unpack(next_call)
+        local items, opts, on_choice, retries = unpack(next_call)
 
         -- Check for optional buffer restriction
         if opts and opts.buf then
           local current_buf = vim.api.nvim_get_current_buf()
           if current_buf ~= opts.buf then
+            if not vim.api.nvim_buf_is_valid(opts.buf) or retries >= 100 then
+              if on_choice then
+                on_choice(nil, nil)
+              end
+              vim.defer_fn(process_queue, 0)
+              return
+            end
+            next_call[4] = retries + 1
+
             -- If current buffer doesn't match, put it back at the end of the queue and try later
             table.insert(select_queue, next_call)
             -- Retry after a short delay
@@ -102,7 +111,7 @@ return {
 
       -- Override vim.ui.select
       vim.ui.select = function(items, opts, on_choice)
-        table.insert(select_queue, { items, opts, on_choice })
+        table.insert(select_queue, { items, opts, on_choice, 0 })
         process_queue()
       end
     end,

@@ -1,6 +1,7 @@
 return {
   {
     "folke/persistence.nvim",
+    enabled = not vim.g.neogit_session,
     event = "BufReadPre",
     opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals" } },
     -- stylua: ignore

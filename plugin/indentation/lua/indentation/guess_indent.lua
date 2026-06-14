@@ -169,7 +169,7 @@ function M.guess_from_buffer(bufnr)
   local multiline_pattern = nil
 
   -- Other
-  local filetype = vim.bo.filetype
+  local filetype = vim.bo[bufnr].filetype
 
   for chunk_start = 0, (max_num_lines - 1), chunk_size do
     -- Load new chunk

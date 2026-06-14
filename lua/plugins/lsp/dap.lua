@@ -7,11 +7,11 @@ return {
     keys = {
       { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
       { "<leader>ds", function() require("dap").continue() end, desc = "Start/Continue" },
-      { "<leader>do", function() require("dap").continue() end, desc = "Step Over" },
-      { "<leader>di", function() require("dap").continue() end, desc = "Step Into" },
+      { "<leader>do", function() require("dap").step_over() end, desc = "Step Over" },
+      { "<leader>di", function() require("dap").step_into() end, desc = "Step Into" },
       { "<F7>", function() require("dap").continue() end, desc = "Start/Continue" },
-      { "<F8>", function() require("dap").continue() end, desc = "Step Over" },
-      { "<F6>", function() require("dap").continue() end, desc = "Step Into" },
+      { "<F8>", function() require("dap").step_over() end, desc = "Step Over" },
+      { "<F6>", function() require("dap").step_into() end, desc = "Step Into" },
     },
     config = function()
       vim.api.nvim_create_user_command("Breakpoint", function()

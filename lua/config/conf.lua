@@ -21,6 +21,7 @@ local cfg = {
 
   appearance = {
     colorscheme = "kanagawa",
+    transparent_background = false,
   },
 
   icons = {

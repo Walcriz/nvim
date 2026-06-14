@@ -5,15 +5,15 @@ local M = {}
 M.palette = {
   name = "monokai-legacy",
 
-  base0 = "#222426",
-  base1 = "#211F22",
-  base2 = "#26292C",
-  base3 = "#2E323C",
-  base4 = "#333842",
-  base5 = "#4d5154",
-  base6 = "#72696A",
-  base7 = "#B1B1B1",
-  base8 = "#e3e3e1",
+  base0 = "#1F1E1F",
+  base1 = "#1E1D1E",
+  base2 = "#232223",
+  base3 = "#2A292A",
+  base4 = "#313031",
+  base5 = "#474547",
+  base6 = "#6A6768",
+  base7 = "#A3A0A1",
+  base8 = "#D8D5D6",
 
   border = "#504945",
   brown = "#504945",
@@ -21,7 +21,7 @@ M.palette = {
   white = "#EEE1E3",
   darkened = "#929190",
   grey = "#72696A",
-  black = "#000000",
+  black = "#101010",
 
   pink = "#FF6188",
   green = "#A9DC76",
@@ -36,11 +36,12 @@ M.palette = {
   diff_change = "#27406b",
   diff_text = "#23324d",
 
+  transparent = vim.g.walcriz.appearance.transparent_background and "NONE" or "#232223",
   param = "#FFDDC3",
   const = "#D5D5D5",
   popupSel = "#353336",
   popup = "#1d1b1e",
-  black2 = "#292c35",
+  black2 = "#353336",
   darker_black = "#19181b",
   linehighlight = "#353336",
 }
@@ -219,7 +220,8 @@ function M.plugins(p)
     NonText = { fg = p.base5 },
     Whitespace = { fg = p.base5 },
     SpecialKey = { fg = p.pink },
-    Title = { fg = p.border, bg = p.yellow, style = "bold" },
+    Title = { fg = p.yellow, bg = p.transparent, style = "bold" },
+    FloatTitle = { fg = p.border, bg = p.aqua, style = "bold" },
     Directory = { fg = p.aqua },
     MatchParen = { fg = p.pink },
     Question = { fg = p.yellow },
@@ -305,13 +307,13 @@ function M.plugins(p)
     NvimTreeFolderName = { fg = p.white },
     NvimTreeRootFolder = { fg = p.pink },
     NvimTreeSpecialFile = { fg = p.white, style = "NONE" },
+    NvimTreeStatusLine = { bg = p.transparent },
+    NvimTreeStatusLineNC = { bg = p.transparent },
 
     -- Extra exact groups from your theme
-    TabLineFill = { bg = p.black },
+    TabLineFill = { bg = p.transparent },
     TabLineSel = { bg = p.darker_black },
-    TabLine = { bg = p.black },
-    StatusLineTerm = { fg = p.base7, bg = p.base3 },
-    StatusLineTermNC = { fg = p.grey, bg = p.base3 },
+    TabLine = { bg = p.transparent },
 
     -- General
     Delimiter = {
@@ -622,6 +624,14 @@ function M.setup(config)
 
   for group, color in pairs(plugins) do
     hl(group, color)
+  end
+
+  if vim.g.walcriz.appearance.transparent_background then
+    vim.cmd([[
+      hi Normal guibg=NONE ctermbg=NONE
+      hi LineNr guibg=NONE ctermbg=NONE
+      hi SignColumn guibg=NONE ctermbg=NONE
+    ]])
   end
 end
 

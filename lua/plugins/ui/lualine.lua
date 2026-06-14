@@ -41,6 +41,10 @@ return {
         refresh = {
           statusline = 1000,
         },
+        disabled_filetypes = {
+          statusline = { "NvimTree" },
+          winbar = {},
+        },
       },
       sections = {
         lualine_a = { "mode" },

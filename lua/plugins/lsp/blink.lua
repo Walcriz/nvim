@@ -18,7 +18,7 @@ return {
           draw = {
             columns = {
               { "label", "label_description", gap = 1 },
-              vim.g.walcriz.core.using_nerd_font and { "kind_icon", "kind", gap = 1 } or { "kind", gap = 1 },
+              vim.g.walcriz.env.using_nerd_font and { "kind_icon", "kind", gap = 1 } or { "kind", gap = 1 },
             },
           },
         },

@@ -5,9 +5,9 @@ function M.lualine()
   return {
     normal = {
       a = { fg = p.black, bg = p.green, gui = "bold" },
-      b = { fg = p.darkened, bg = p.base3 },
-      c = { fg = p.darkened, bg = p.base2 },
-      x = { fg = p.darkened, bg = p.base2 },
+      b = { fg = p.darkened, bg = p.base4 },
+      c = { fg = p.darkened, bg = p.base3 },
+      x = { fg = p.darkened, bg = p.base3 },
     },
 
     insert = {
@@ -27,8 +27,8 @@ function M.lualine()
     },
 
     inactive = {
-      a = { fg = p.grey, bg = p.base2 },
-      b = { fg = p.grey, bg = p.base2 },
+      a = { fg = p.grey, bg = p.base3 },
+      b = { fg = p.grey, bg = p.base3 },
     },
   }
 end
@@ -41,11 +41,6 @@ return {
     priority = 1000,
     config = function()
       require("monokai_legacy").setup()
-      vim.cmd([[
-        hi Normal guibg=NONE ctermbg=NONE
-        hi LineNr guibg=NONE ctermbg=NONE
-        hi SignColumn guibg=NONE ctermbg=NONE
-      ]])
     end,
   },
 

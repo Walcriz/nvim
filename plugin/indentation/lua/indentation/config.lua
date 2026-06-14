@@ -45,7 +45,11 @@ function M.set_config(user_config)
     user_config = {}
   end
 
-  M.values = vim.tbl_extend("force", default_config, user_config)
+  M.values = vim.tbl_extend("force", default_config, user_config or {})
+  M.values.on_tab_options =
+    vim.tbl_deep_extend("force", default_config.on_tab_options, (user_config or {}).on_tab_options or {})
+  M.values.on_space_options =
+    vim.tbl_deep_extend("force", default_config.on_space_options, (user_config or {}).on_space_options or {})
 end
 
 -- This metatable allows for easier access to the config values. Instead of

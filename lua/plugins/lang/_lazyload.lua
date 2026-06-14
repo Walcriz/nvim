@@ -36,6 +36,7 @@ function M.setup(langs)
   local ok, registry = pcall(require, "mason-registry")
   if not ok then
     vim.notify("mason-registry not found!", vim.log.levels.ERROR)
+    return
   end
 
   -- When mason finishes installing a package, install + load matching extra plugins

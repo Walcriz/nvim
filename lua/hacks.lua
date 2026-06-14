@@ -1,5 +1,5 @@
 local function windows_vim_freeze_fix_hack()
-	if not vim.fn.has("win32") then
+	if vim.fn.has("win32") ~= 1 then
 		return
 	end
 

@@ -167,11 +167,11 @@ local function config()
 
   npairs.add_rules({
     Rule("$$", "$$", "tex"):with_pair(function(opts)
-      print(vim.inspect(opts))
+      -- don't add pair on that line
       if opts.line == "aa $$" then
-        -- don't add pair on that line
         return false
       end
+      return true
     end),
   })
 end

@@ -1,4 +1,5 @@
 local M = {}
+M._initialized = false
 
 local function dep_names(deps)
   local names = {}
@@ -17,6 +18,11 @@ end
 
 --- @param langs table[] list of lang specs (with .lsp, .mason, .dependencies)
 function M.setup(langs)
+  if M._initialized then
+    return
+  end
+  M._initialized = true
+
   local function load_for(predicate, install_first)
     for _, lang in ipairs(langs) do
       if lang.dependencies and predicate(lang) then
@@ -50,7 +56,9 @@ function M.setup(langs)
   end)
 
   -- When an LSP client attaches, load matching extra plugins (already installed)
+  local group = vim.api.nvim_create_augroup("WalcrizLangLazyload", { clear = true })
   vim.api.nvim_create_autocmd("LspAttach", {
+    group = group,
     callback = function(args)
       local client = vim.lsp.get_client_by_id(args.data.client_id)
       if not client then

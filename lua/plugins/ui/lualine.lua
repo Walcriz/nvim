@@ -54,7 +54,10 @@ return {
           {
             "diagnostics",
             on_click = function()
-              require("dapui").toggle()
+              local ok, dapui = pcall(require, "dapui")
+              if ok then
+                dapui.toggle()
+              end
             end,
             icons_enabled = true,
           },

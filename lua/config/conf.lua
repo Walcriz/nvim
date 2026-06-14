@@ -10,6 +10,7 @@ local cfg = {
     use_templates = true,
     scrollbar = true,
     dashboard = true,
+    color_picker = false,
   },
 
   enabled_lsps = {},

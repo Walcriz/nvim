@@ -18,7 +18,7 @@ M.palette = {
   border = "#504945",
   brown = "#504945",
 
-  white = "#EEE1E3",
+  white = "#f0e7e8",
   darkened = "#929190",
   grey = "#72696A",
   black = "#101010",

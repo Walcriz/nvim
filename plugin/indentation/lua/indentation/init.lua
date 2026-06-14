@@ -62,7 +62,7 @@ function M.apply_profile(buf, profile)
     opt.softtabstop = 0
   end
 
-  opt.smarttab = true
+  vim.opt_local.smarttab = true
 end
 
 function M.set_from_preset(buf, ft)

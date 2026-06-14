@@ -42,7 +42,7 @@ function M.set_space(size)
 end
 
 function M.apply_profile(buf, profile)
-  local opt = vim.opt_local
+  local opt = vim.bo[buf]
 
   if profile.usetabs then
     opt.tabstop = profile.tabsize

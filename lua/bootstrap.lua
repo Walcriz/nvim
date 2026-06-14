@@ -13,4 +13,4 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.walcriz = {}
+vim.g.walcriz = vim.g.walcriz or {}

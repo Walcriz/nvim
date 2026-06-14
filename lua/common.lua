@@ -89,6 +89,10 @@ function M.client_supports_method(client, method)
   -- Prefix method if needed
   method = method:find("/") and method or "textDocument/" .. method
 
+  if type(client.supports_method) == "function" then
+    return client:supports_method(method)
+  end
+
   -- Look up capability based on method
   local capability_map = {
     ["textDocument/hover"] = "hoverProvider",
@@ -104,11 +108,9 @@ function M.client_supports_method(client, method)
   }
 
   local cap = capability_map[method]
-  if not cap then
-    -- fallback: check if method exists in dynamicCapabilities
-    return client.server_capabilities[method] ~= nil
-  end
-  return client.server_capabilities[cap] ~= nil
+  if not cap then return false end
+  local value = client.server_capabilities and client.server_capabilities[cap]
+  return value == true or type(value) == "table"
 end
 
 return M

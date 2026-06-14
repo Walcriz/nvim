@@ -10,6 +10,8 @@ return {
   dependencies = {
     {
       "ray-x/go.nvim",
+      version = false,
+      branch = "master",
       dependencies = {
         "ray-x/guihua.lua",
         "neovim/nvim-lspconfig",

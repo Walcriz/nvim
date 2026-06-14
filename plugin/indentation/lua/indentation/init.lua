@@ -107,16 +107,17 @@ function M.setup(user_config)
       end
 
       -- fallback: guess indent
-      local guess = require("indentation")
+      local guess = require("indentation.guess_indent")
       if guess.guess_from_buffer then
         local g = guess.guess_from_buffer(buf)
-        if g then
+        if g == "tabs" then
+          M.apply_profile(buf, { usetabs = true, tabsize = vim.bo[buf].tabstop })
+          return
+        elseif type(g) == "number" and g > 0 then
           if vim.g.walcriz.core.notify_about_indentation then
             vim.notify("Using indent guess: " .. g, vim.log.levels.INFO)
           end
-          vim.bo[buf].shiftwidth = g
-          vim.bo[buf].tabstop = g
-          vim.bo[buf].expandtab = true
+          M.apply_profile(buf, { usetabs = false, tabsize = g, visualtabsize = g })
           return
         end
       end

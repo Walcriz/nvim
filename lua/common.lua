@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+  root_patterns = { ".git" },
+}
 
 function M.safe_require(name)
   local ok, mod = pcall(require, name)
@@ -55,7 +57,7 @@ function M.get_root()
       end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
       for _, p in ipairs(paths) do
         local r = vim.loop.fs_realpath(p)
-        if path:find(r, 1, true) then
+        if r and path:find(r, 1, true) then
           roots[#roots + 1] = r
         end
       end
@@ -67,8 +69,8 @@ function M.get_root()
   local root = roots[1]
   if not root then
     path = path and vim.fs.dirname(path) or vim.loop.cwd()
-    root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
-    root = root and vim.fs.dirname(root) or vim.loop.cwd()
+    local marker = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
+    root = marker and vim.fs.dirname(marker) or vim.loop.cwd()
   end
   return root
 end

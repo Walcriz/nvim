@@ -25,22 +25,4 @@ function M.load_config(name)
   end
 end
 
-function M.auto_load_config()
-  if vim.fn.argc(-1) == 0 then
-    -- Loading of autocmds and keymaps can wait
-    vim.api.nvim_create_autocmd("User", {
-      group = vim.api.nvim_create_augroup("WalVim", { clear = true }),
-      pattern = "VeryLazy",
-      callback = function()
-        M.load("autocmds")
-        M.load("keymaps")
-      end,
-    })
-  else
-    -- Load autocmds and keymaps so they affect current buffers
-    M.load("autocmds")
-    M.load("keymaps")
-  end
-end
-
 return M

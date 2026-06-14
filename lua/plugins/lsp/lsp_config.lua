@@ -225,17 +225,10 @@ return {
     end
 
     local mlsp = require("mason-lspconfig")
-    local available = mlsp.get_available_servers()
 
     for server, server_opts in pairs(servers) do
-      if server_opts and not vim.tbl_contains(available, server) then
+      if server_opts then
         setup(server)
-      end
-    end
-
-    for server, setup_fn in pairs(opts.setup) do
-      if setup_fn and vim.tbl_contains(available, server) then
-        setup_fn(server, {})
       end
     end
 

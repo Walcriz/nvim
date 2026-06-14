@@ -1,5 +1,12 @@
 local M = {}
 
+local function mason_name(lsp_name, lang)
+  if type(lang) == "table" and lang.mason then
+    return lang.mason
+  end
+  return lsp_name
+end
+
 function M.is_enabled(lsp_name, lang)
   local cfg = vim.g.walcriz or {}
   for _, name in ipairs(cfg.enabled_lsps or {}) do
@@ -8,25 +15,30 @@ function M.is_enabled(lsp_name, lang)
     end
   end
 
-  local mason_name = lang.mason or lsp_name
   local ok, registry = pcall(require, "mason-registry")
-  if ok and registry.has_package(mason_name) then
-    local pkg_ok, pkg = pcall(registry.get_package, mason_name)
-    if pkg_ok and pkg:is_installed() then
-      return true
-    end
+  if not ok then
+    return false
+  end
+
+  local pkg_name = mason_name(lsp_name, lang)
+  local pkg_ok, pkg = pcall(registry.get_package, pkg_name)
+
+  if pkg_ok and pkg:is_installed() then
+    return true
   end
 
   return false
 end
 
-function M.is_installed(lsp_name)
+function M.is_installed(lsp_name, lang)
   local ok, registry = pcall(require, "mason-registry")
-  if ok then
-    return registry.has_package(lsp_name)
+  if not ok then
+    vim.notify("mason-registry not found!", vim.log.levels.ERROR)
+    return false
   end
-  vim.notify("mason-registry not found!", vim.log.levels.ERROR)
-  return false
+
+  local pkg_name = mason_name(lsp_name, lang)
+  return registry.has_package(pkg_name)
 end
 
 M.data = nil

@@ -1,5 +1,6 @@
 return {
-  lsp = "rust-analyzer",
+  lsp = "rust_analyzer",
+  mason = "rust-analyzer",
 
   dependencies = {
     {

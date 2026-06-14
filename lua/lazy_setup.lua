@@ -15,7 +15,7 @@ end
 -- _local always gets the last word, in both modes
 local local_plugins = safe("_local.plugins")
 if local_plugins then
-  spec[#spec + 1] = "_local.plugins"
+  spec[#spec + 1] = { "_local.plugins" }
 end
 
 -- Setup

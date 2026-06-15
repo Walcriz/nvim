@@ -13,6 +13,10 @@ local cfg = {
     color_picker = false,
   },
 
+  plugins = {
+    update_checker = true,
+  },
+
   enabled_lsps = {},
 
   env = {

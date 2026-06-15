@@ -27,7 +27,7 @@ require("lazy").setup({
   },
   install = { colorscheme = { vim.g.walcriz.appearance and vim.g.walcriz.appearance.colorscheme or "shine" } },
   checker = {
-    enabled = true,
+    enabled = vim.g.walcriz.plugins and vim.g.walcriz.plugins.update_checker or false,
     concurrency = 1,
     notify = false,
   }, -- Auto check for plugin updates

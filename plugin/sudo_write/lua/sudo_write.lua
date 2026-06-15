@@ -88,7 +88,7 @@ local function validate_password(backend, pw, cb)
   )
 end
 
-local function privileged_write(backend, password, file, content, cb)
+local function privileged_write(backend, file, content, cb)
   local cmd
 
   if backend == "sudo" then
@@ -99,7 +99,7 @@ local function privileged_write(backend, password, file, content, cb)
 
   vim.system(
     cmd,
-    { stdin = password .. "\n" .. content, text = true },
+    { stdin = content, text = true },
     function(obj)
       vim.schedule(function()
         cb(obj.code == 0, obj.stderr)
@@ -129,7 +129,7 @@ local function retry_loop(file, content, backend, tries)
       return
     end
 
-    privileged_write(backend, pw, file, content, function(ok)
+    privileged_write(backend, file, content, function(ok)
       if ok then
         set_cache(pw, backend)
         vim.cmd("edit!")
@@ -188,7 +188,7 @@ function M.save_with_sudo()
 
   -- cached path
   if cache_valid() and cache.backend == backend then
-    privileged_write(backend, cache.password, file, content, function(ok)
+    privileged_write(backend, file, content, function(ok)
       if ok then
         vim.cmd("edit!")
         cmdmsg("Saved with " .. backend, "MoreMsg")

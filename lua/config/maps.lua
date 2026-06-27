@@ -42,6 +42,8 @@ map("n", "ö", "}", { desc = "Go down one paragraph" })
 map("n", "Ä", "<C-u>zz", { desc = "Half page up and center" })
 map("n", "Ö", "<C-d>zz", { desc = "Half page down and center" })
 
+-- Fix <C-c>
+map("i", "<C-c>", "<Esc>")
 
 -- Backspace delete in visual
 map("v", "<BS>", "s")

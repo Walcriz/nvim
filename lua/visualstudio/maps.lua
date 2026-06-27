@@ -12,7 +12,7 @@ end, {})
 -- LSP
 -- ================ --
 
-map("n", "<leader>dd", "<cmd>lua require('vscode').action('editor.action.showHover')<cr>", { desc = "Line Diagnostics" })
+map("n", "<leader>dd", function() vscode.action('editor.action.showHover') end, { desc = "Line Diagnostics" })
 map("n", "gd", function() vscode.action("editor.action.revealDefinition") end, { desc = "Goto Definition" })
 map("n", "gD", function() vscode.action("editor.action.revealDeclaration") end, { desc = "Goto Declaration" })
 map("n", "gi", function() vscode.action("editor.action.goToImplementation") end, { desc = "Goto Implementation" })

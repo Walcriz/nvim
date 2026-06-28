@@ -1,49 +1,32 @@
 return {
-  {
-    "ray-x/go.nvim",
-    branch = "treesitter-main",
-    dependencies = {
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = true,
-    ft = { "go", "gomod" },
-    build = function() require("go.install").update_all() end
-  },
+  lsp = "gopls",
 
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        gopls = {
-          mason = false,
-          staticcheck = true,
-          settings = {
-            gopls = {
-              buildFlags = { "-tags=prod" },
-            }
-          }
-        },
-      },
+  settings = {
+    gopls = {
+      buildFlags = nil,
     },
   },
 
-  {
-    "Walcriz/action-lists.nvim",
-    opts = {
-      lists = {
-        code_insert = {
-          go = {
-            ft = { "go" },
-            actions = {
-              Comment = "GoCmt",
-              ["Tag Add"] = "GoAddTag",
-              ["Tag Rm"] = "GoRmTag",
-            },
-          },
-        },
+  dependencies = {
+    {
+      "ray-x/go.nvim",
+      version = false,
+      branch = "master",
+      dependencies = {
+        "ray-x/guihua.lua",
+        "neovim/nvim-lspconfig",
       },
+      config = true,
+      ft = { "go", "gomod" },
+      build = function()
+        require("go.install").update_all()
+      end,
+    },
+
+    {
+      "theHamsta/nvim-dap-virtual-text",
+      enabled = not vim.g.walcriz.core.minimal,
+      ft = { "go", "gomod" },
     },
   },
 }

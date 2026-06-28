@@ -1,0 +1,19 @@
+return {
+  {
+    "folke/persistence.nvim",
+    enabled = not vim.g.neogit_session,
+    event = "BufReadPre",
+    opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals" } },
+    -- stylua: ignore
+    keys = {
+      { "<leader>p", function () require("persistence").select() end },
+      { "<leader>rs", function() require("persistence").load() end,                desc = "Restore Session" },
+      { "<leader>rl", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+      { "<leader>rd", function() require("persistence").stop() end,                desc = "Don't Save Current Session" },
+    },
+
+    config = function(_, opts)
+      require("persistence").setup(opts)
+    end,
+  },
+}

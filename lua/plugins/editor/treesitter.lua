@@ -7,6 +7,7 @@ return {
       local installer = require("tree-sitter-manager.installer")
       local util = require("tree-sitter-manager.util")
       local cfg = require("tree-sitter-manager.config")
+      local filetypes = require("tree-sitter-manager.filetypes")
 
       tsm.setup({
         auto_install = false,
@@ -22,7 +23,7 @@ return {
           return lang
         end
 
-        for parser, aliases in pairs(cfg.filetypes) do
+        for parser, aliases in pairs(filetypes) do
           if vim.tbl_contains(aliases, ft) then
             return parser
           end

@@ -42,7 +42,6 @@ function M.setup(langs)
   if not ok then
     vim.notify("mason-registry not found!", vim.log.levels.ERROR)
   else
-    -- When mason finishes installing a package, install + load matching extra plugins
     registry:on("package:install:success", function(pkg)
       vim.notify(pkg.name .. " installed", vim.log.levels.INFO)
       vim.schedule(function()
@@ -53,7 +52,6 @@ function M.setup(langs)
     end)
   end
 
-  -- When an LSP client attaches, load matching extra plugins (already installed)
   local group = vim.api.nvim_create_augroup("WalcrizLangLazyload", { clear = true })
   vim.api.nvim_create_autocmd("LspAttach", {
     group = group,

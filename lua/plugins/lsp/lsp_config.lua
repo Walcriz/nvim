@@ -200,6 +200,10 @@ return {
         capabilities = vim.deepcopy(capabilities),
       }, servers[server] or {})
 
+      if lang.filetype_overrides[server] then
+        server_opts.filetypes = lang.filetype_overrides[server]
+      end
+
       if lang.on_new_config_handlers[server] then
         local user_on_new_config = lang.on_new_config_handlers[server]
         local existing_on_new_config = server_opts.on_new_config

@@ -72,6 +72,7 @@ function M.load()
   local servers = {}
   local setup_handlers = {}
   local on_new_config_handlers = {}
+  local filetype_overrides = {}
   local dependencies = {}
   local langs = {}
 
@@ -89,6 +90,9 @@ function M.load()
         end
         if lang.on_new_config then
           on_new_config_handlers[lang.lsp] = lang.on_new_config
+        end
+        if lang.filetypes then
+          filetype_overrides[lang.lsp] = lang.filetypes
         end
         if lang.dependencies then
           vim.list_extend(dependencies, lang.dependencies)
@@ -108,6 +112,7 @@ function M.load()
     servers = servers,
     setup_handlers = setup_handlers,
     on_new_config_handlers = on_new_config_handlers,
+    filetype_overrides = filetype_overrides,
     dependencies = dependencies,
     langs = langs,
   }
